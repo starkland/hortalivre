@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="21px" height="17px" viewBox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>Path</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="llanding" sketch:type="MSArtboardGroup" transform="translate(-1181.000000, -515.000000)" fill="#EBEBEB">
+            <g id="nome-+-email-+-Já-pensou-em-comprar-+-Rectangle-119-+-Imported-Layers" sketch:type="MSLayerGroup" transform="translate(151.000000, 341.000000)">
+                <g id="nome-+-email" transform="translate(679.000000, 8.000000)" sketch:type="MSShapeGroup">
+                    <g id="email" transform="translate(0.500000, 161.500000)">
+                        <path d="M360.340721,5.13164405 L360.340721,22.274541 C360.340721,22.6217772 360.622536,22.903592 360.969772,22.903592 C361.316169,22.903592 361.598823,22.6217772 361.598823,22.274541 L361.598823,5.14422507 L367.853267,11.3382803 C367.974884,11.4607355 368.135082,11.5211244 368.296119,11.5211244 C368.457156,11.5211244 368.619871,11.4590581 368.743165,11.3340866 C368.987236,11.0874986 368.985559,10.6899384 368.738132,10.4450279 L361.405075,3.18242478 C361.161842,2.93919174 360.764282,2.93919174 360.521049,3.18242478 L353.187154,10.4450279 C352.939727,10.6890997 352.937211,11.0874986 353.182121,11.3340866 C353.425354,11.5806746 353.824592,11.5840295 354.072019,11.3382803 L360.340721,5.13164405 Z" id="Path" transform="translate(360.962484, 12.951796) rotate(-270.000000) translate(-360.962484, -12.951796) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
