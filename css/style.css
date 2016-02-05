@@ -211,10 +211,6 @@ form {
 }
 
 @media (max-width: 320px) {
-  body {
-    background-image:linear-gradient(0deg, #16663B 50%, #fff 50%);
-  }
-
   .container:first-child {
     min-height: 500px;
   }
@@ -234,5 +230,11 @@ form {
 
   .copyright {
     text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    background-image:linear-gradient(0deg, #16663B 50%, #fff 50%);
   }
 }
