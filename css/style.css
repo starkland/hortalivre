@@ -19,7 +19,7 @@ h4 {
 .container:first-child {
   margin-top: 15%;
   padding-left: 0;
-  min-height: 490px;
+  min-height: 420px;
 }
 
 .box-presentation figure {
@@ -208,4 +208,31 @@ form {
 .thankyou_message {
   color: #ffffff;
   display: none;
+}
+
+@media (max-width: 320px) {
+  body {
+    background-image:linear-gradient(0deg, #16663B 50%, #fff 50%);
+  }
+
+  .container:first-child {
+    min-height: 500px;
+  }
+
+  .box-presentation img {
+    max-width: 100%;
+  }
+
+  h4 {
+    font-size: 18px;
+    line-height: 30px;
+  }
+
+  footer {
+    background-color: #16663B;
+  }
+
+  .copyright {
+    text-align: center;
+  }
 }

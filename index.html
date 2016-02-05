@@ -12,7 +12,7 @@
   <!-- Custom -->
   <link rel="stylesheet" href="css/style.css">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
 
   <!-- Favicons and Icons -->
   <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
@@ -62,7 +62,7 @@
 <div class="container">
   <div class="row">
     
-    <aside class="col-xs-12 col-sm-6 pull-left box-presentation">
+    <aside class="col-xs-11 col-xs-offset-1 col-sm-6 col-sm-offset-0 pull-left box-presentation">
       <figure>
         <img src="images/hortalivre.svg" alt="Hortalivre <3">
       </figure>
@@ -72,12 +72,12 @@
       Vem com a gente.</h4>
     </aside>
 
-    <aside class="col-xs-12 col-sm-5 col-sm-offset-1 pull-right box-email">
+    <aside class="col-xs-11 col-xs-offset-1 col-sm-5 col-sm-offset-1 pull-right box-email">
       <h4>Cadastre seu e-mail e seja um dos primeiros a conhecer o hortalivre!</h4>
         
       <form id="gform" method="POST" action="https://script.google.com/macros/s/AKfycbxeig1zr2dO4SzBKlmVJXVwLWHg9MH8COtqk6KDIHeKECuMHL4/exec">
-        <input type="text" name="name" class="input-primary" placeholder="Digite seu nome">
-        <input type="email" name="email" class="input-primary" placeholder="Digite seu email">
+        <input type="text" name="name" class="input-primary" autocomplete="off" placeholder="Digite seu nome">
+        <input type="email" name="email" class="input-primary" autocomplete="off" placeholder="Digite seu email">
 
         <input type="submit" class="btn-submit send" value="" title="Pronto pra enviar?">
       </form>
@@ -93,12 +93,14 @@
 
 <footer class="container">
   <div class="row">
-    <div class="pull-left by">
-      <p>Feito com <span class="glyphicon glyphicon-heart pulse"></span> por <a href="http://comodocoletivo.com" target="_blank">cômodo coletivo</a></p>
-    </div>
+    <div class="col-xs-11 col-xs-offset-1">
+      <div class="pull-left by">
+        <p>Feito com <span class="glyphicon glyphicon-heart pulse"></span> por <a href="http://comodocoletivo.com" target="_blank">cômodo coletivo</a></p>
+      </div>
 
-    <div class="pull-right copyright">
-      <p>2016 - Todos os direitos reservados Hortalivre</p>
+      <div class="pull-right copyright">
+        <p>2016 - Todos os direitos reservados Hortalivre</p>
+      </div>
     </div>
   </div>
 </footer>
