@@ -1,0 +1,69 @@
+//
+// Components
+//
+
+.components {
+  button {
+    margin-bottom: 30px;
+  }
+}
+
+// ====
+
+
+//
+// Buttons
+//
+
+.btn-primary {
+  background-color: $color-primary;
+  border: none;
+  outline: none;
+  font-weight: $fw-bold;
+  position: relative;
+  color: #ffffff;
+  font-size: ($fs-normal)+.2;
+
+  @include bdr(40px);
+  @include transition(background, .2s, linear, 0s);
+
+  @extend .col-xs-12;
+
+  &:hover, &:active, &:focus {
+    background-color: $color-secondary;
+  }
+
+  &.smallest {
+    height: 27px;
+    font-size: ($fs-normal)-.2;
+    @extend .col-sm-3;
+  }
+
+  &.small {
+    height: 40px;
+    @extend .col-sm-2;
+  }
+
+  &.big {
+    height: 50px;
+    @extend .col-sm-3;
+  }
+
+  span {
+    zoom: 1.5;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.btn-secondary {
+  @extend .btn-primary;
+
+  &.fb {
+    background-color: $fb-button;
+  }
+
+  &.tw {
+    background-color: $tw-button;
+  }
+}

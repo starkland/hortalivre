@@ -77,7 +77,8 @@ module.exports = function (grunt) {
       },
       compass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass:server', 'autoprefixer:server', 'gulp:styleguide-generate', 'gulp:styleguide-applystyles']
+        tasks: ['compass:server', 'autoprefixer:server']
+        // tasks: ['compass:server', 'autoprefixer:server', 'gulp:styleguide-generate', 'gulp:styleguide-applystyles'] // styleguide
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -480,9 +481,7 @@ module.exports = function (grunt) {
       'concurrent:server',
       'autoprefixer:server',
       'connect:livereload',
-      'watch',
-      'gulp:styleguide-generate',
-      'gulp:styleguide-applystyles'
+      'watch'
     ]);
   });
 
@@ -524,6 +523,8 @@ module.exports = function (grunt) {
     'build'
   ]);
 
-  // grunt.registerTask('styleguide', [
-  // ]);
+  grunt.registerTask('styleguide', [
+    'gulp:styleguide-generate',
+    'gulp:styleguide-applystyles'
+  ]);
 };
