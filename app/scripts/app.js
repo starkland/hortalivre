@@ -44,6 +44,11 @@ angular
         controller: 'CadastroCtrl',
         controllerAs: 'cadastro'
       })
+      .when('/esqueci-senha', {
+        templateUrl: 'views/esqueci-senha.html',
+        controller: 'EsqueciSenhaCtrl',
+        controllerAs: 'esqueciSenha'
+      })
       .otherwise({
         redirectTo: '/'
       });
