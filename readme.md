@@ -1,9 +1,12 @@
-# Hortalivre
+# hortalivre
 
-[![Code Climate](https://codeclimate.com/github/comodocoletivo/hortalivre/badges/gpa.svg)](https://codeclimate.com/github/comodocoletivo/hortalivre)
+This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
+version 0.12.1.
 
-> Sem agrotóxico ok?
+## Build & development
 
-<a href="http://hortalivre.com.br">
-  <img width="50" src="https://github.com/comodocoletivo/hortalivre/blob/gh-pages/images/horta-icon.png" alt="Hortalivre Logo">
-</a>
+Run `grunt` for building and `grunt serve` for preview.
+
+## Testing
+
+Running `grunt test` will run the unit tests with karma.

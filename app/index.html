@@ -1,0 +1,154 @@
+<!doctype html>
+<html ng-app="hortalivreApp">
+  <head>
+    <meta charset="utf-8">
+    <base href="/">
+    <title>Hortalivre</title>
+
+    <!-- META TAGS -->
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#16663B" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="keywords" content="horta, hortalivre, plantação, sem agrotóxico">
+    <meta name="title" content="Hortalivre">
+    <meta name="publisher" content="Cômodo Coletivo">
+    <meta name="creator.address" content="contato@comodocoletivo.com">
+    <meta name="robots" content="all">
+    <meta name="author" content="Cômodo Coletivo">
+    <meta name="rating" content="general">
+    <meta name="distribution" content="global">
+    <meta name="copyright" content="Cômodo Coletivo - Todos os direitos reservados">
+
+    <!-- FACEBOOK  -->
+    <!-- <meta property="fb:app_id" content="961547147258065" /> -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://hortalivre.com.br">
+    <meta property="og:title" content="Hortalivre">
+    <meta property="og:image" content="../horta-share.png">
+    <meta property="og:description" content="Seja bem-vindo a maior horta online do Brasil!">
+
+    <!-- TWITTER -->
+    <meta name="twitter:card" value="summary_large_image">
+    <meta name="twitter:card" value="summary">
+    <meta name="twitter:creator" value="@hortalivre">
+    <meta name="twitter:site" value="http://hortalivre.com.br">
+    <meta name="twitter:title" content="Hortalivre">
+    <meta name="twitter:image:src" content="../horta-share.png">
+    <meta name="twitter:description" content="Seja bem-vindo a maior horta online do Brasil!">
+
+    <!-- APPLE TOUCH ICON -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#16663B">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#16663B">
+
+    <!-- HUMANS -->
+    <link type="text/plain" rel="author" href="humans.txt" />
+
+    <!-- Google web Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Poppins:300,700' rel='stylesheet' type='text/css'>
+
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body>
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <header class="header">
+      <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="#/">hortalivre</a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#/">Home</a></li>
+              <li><a ng-href="#/about">About</a></li>
+              <li><a ng-href="#/">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <div ng-view=""></div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+      </div>
+    </footer>
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/components.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
