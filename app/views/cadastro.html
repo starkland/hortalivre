@@ -1,0 +1,40 @@
+<section class="sc-cadastro">
+  <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+    <figure>
+        <img src="http://dummyimage.com/165x220/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image">
+    </figure>
+
+    <aside class="row btn-wrapper">
+      <div class="col-xs-12">
+        <button ng-click="fbCadastro()" class="btn btn-secondary small fb col-sm-5"><span></span>facebook</button>
+        <button ng-click="twCadastro()" class="btn btn-secondary small tw col-sm-5 col-sm-push-2"><span></span>twitter</button>
+      </div>
+    </aside>
+
+    <form class="row form-primary" ng-submit="cadastroEmail()">
+      <div class="col-xs-12">
+        <fieldset class="form-group">
+          <span class="icon name"></span>
+          <input class="input-primary" type="text" placeholder="nome" ng-model="cadastro.name">
+        </fieldset>
+
+        <fieldset class="form-group">
+          <span class="icon email"></span>
+          <input class="input-primary" type="email" placeholder="e-mail" ng-model="cadastro.email">
+        </fieldset>
+
+        <fieldset class="form-group">
+          <span class="icon email"></span>
+          <input class="input-primary icon" type="password" placeholder="senha" ng-model="cadastro.password">
+        </fieldset>
+
+        <fieldset class="form-group">
+          <input type="checkbox" id="concordo-termos-de-uso" ng-model="cadastro.termos">
+          <label for="concordo-termos-de-uso">concordo com os termos de uso</label>
+        </fieldset>
+
+        <button type="submit" class="btn btn-primary small active">cadastrar</button>
+      </div>
+    </form>
+  </div>
+</section>

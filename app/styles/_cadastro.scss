@@ -1,0 +1,18 @@
+//
+// Cadastro Section
+//
+
+.sc-cadastro {
+  @extend .sc-login;
+
+  form {
+    text-align: center;
+  }
+
+  label {
+    font-weight: $fw-light;
+    font-size: ($fs-normal)+.2;
+  }
+}
+
+// ====
