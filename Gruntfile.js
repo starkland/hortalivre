@@ -9,6 +9,10 @@
 
 module.exports = function (grunt) {
 
+  // Styleguide generator
+  var gulp = require('gulp'),
+      styleguide = require('sc5-styleguide');
+
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
@@ -27,6 +31,29 @@ module.exports = function (grunt) {
 
   // Define the configuration for all the tasks
   grunt.initConfig({
+
+    // Styleguide generator
+    gulp: {
+      'styleguide-generate': function() {
+        var outputPath = 'output';
+        // var outputPath = 'output';
+
+        return gulp.src(['app/styles/main.scss'])
+          .pipe(styleguide.generate({
+              title: 'Hortalivre Styleguide',
+              server: true,
+              rootPath: outputPath,
+              overviewPath: 'README.md'
+            }))
+          .pipe(gulp.dest(outputPath));
+      },
+
+      'styleguide-applystyles': function() {
+        gulp.src('app/styles/main.scss')
+          .pipe(styleguide.applyStyles())
+          .pipe(gulp.dest('output'));
+      }
+    },
 
     // Project settings
     yeoman: appConfig,
@@ -50,7 +77,7 @@ module.exports = function (grunt) {
       },
       compass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass:server', 'autoprefixer:server']
+        tasks: ['compass:server', 'autoprefixer:server', 'gulp:styleguide-generate', 'gulp:styleguide-applystyles']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -453,7 +480,9 @@ module.exports = function (grunt) {
       'concurrent:server',
       'autoprefixer:server',
       'connect:livereload',
-      'watch'
+      'watch',
+      'gulp:styleguide-generate',
+      'gulp:styleguide-applystyles'
     ]);
   });
 
@@ -494,4 +523,7 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  // grunt.registerTask('styleguide', [
+  // ]);
 };
