@@ -1,0 +1,37 @@
+<section class="sc-login">
+  <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+    <figure>
+        <img src="http://dummyimage.com/165x220/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image">
+    </figure>
+
+    <aside class="row btn-wrapper">
+      <div class="col-xs-12">
+        <button ng-click="fbLogin()" class="btn btn-secondary small fb col-sm-5"><span></span>facebook</button>
+        <button ng-click="twLogin()" class="btn btn-secondary small tw col-sm-5 col-sm-push-2"><span></span>twitter</button>
+      </div>
+    </aside>
+
+    <form class="row form-primary" ng-submit="loginEmail()">
+      <div class="col-xs-12">
+        <fieldset class="form-group">
+          <span class="icon email"></span>
+          <input class="input-primary" type="email" placeholder="e-mail" ng-model="login.email">
+        </fieldset>
+
+        <fieldset class="form-group">
+          <span class="icon email"></span>
+          <input class="input-primary icon" type="password" placeholder="senha" ng-model="login.password">
+        </fieldset>
+
+        <button type="submit" class="btn btn-primary small active">entrar</button>
+      </div>
+    </form>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <a href="" title="Esqueceu a senha?">Esqueci a senha</a>
+        <a href="" title="Criar conta">Criar conta</a>
+      </div>
+    </div>
+  </div>
+</section>
