@@ -49,6 +49,11 @@ angular
         controller: 'EsqueciSenhaCtrl',
         controllerAs: 'esqueciSenha'
       })
+      .when('/perfil', {
+        templateUrl: 'views/perfil.html',
+        controller: 'PerfilCtrl',
+        controllerAs: 'perfil'
+      })
       .otherwise({
         redirectTo: '/login'
       });

@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name hortalivreApp.controller:MainCtrl
+ * @name hortalivreApp.controller:PerfilCtrl
  * @description
- * # MainCtrl
+ * # PerfilCtrl
  * Controller of the hortalivreApp
  */
 angular.module('hortalivreApp')
-  .controller('MainCtrl', function () {
+  .controller('PerfilCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
