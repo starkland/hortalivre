@@ -8,10 +8,5 @@
  * Controller of the hortalivreApp
  */
 angular.module('hortalivreApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainCtrl', function ($scope) {
   });

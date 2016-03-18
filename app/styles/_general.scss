@@ -2,9 +2,18 @@
 // General Styles
 //
 
+html, body {
+  height: 100%;
+  position: relative;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   font-size: $fs-root;
+}
+
+.container {
+  height: 100%;
 }
 
 // ====

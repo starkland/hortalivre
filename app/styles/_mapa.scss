@@ -1,0 +1,107 @@
+//
+// Main Section | Map
+//
+
+%title-wrapper-box {
+   color: $color-secondary;
+  margin-bottom: 10px;
+  font-weight: $fw-bold;
+}
+
+.wrapper-box-home {
+  height: 100%;
+  position: relative;
+  text-align: center;
+}
+
+.user-info {
+  figure {
+    img {
+      height: 110px;
+      width: 110px;
+      overflow: hidden;
+      margin-bottom: 5px;
+      @include bdr(100%);
+    }
+  }
+
+  h3 {
+    @extend %title-wrapper-box;
+    font-size: ($fs-medium)+.7;
+  }
+
+  button {
+    margin-bottom: 10px;
+  }
+
+  .address {
+    font-weight: $fw-light;
+    font-size: $fs-normal;
+    color: $color-primary;
+  }
+}
+
+.user-garden {
+  h4 {
+    @extend %title-wrapper-box;
+    font-size: ($fs-medium);
+  }
+
+  .list-itens {
+    margin: 20px auto 40px auto;
+    padding-left: 0;
+    max-height: 265px;
+    overflow: auto;
+
+    li {
+      font-size: ($fs-medium)+.7;
+      color: $border-primary;
+      list-style-type: none;
+      border-bottom: 1px solid $border-primary;
+      font-weight: $fw-bold;
+      padding: 10px 0;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+
+// ====
+
+
+/* Small devices (tablets, 768px and up) */
+// @media screen and (min-width: 768px) { ... }
+
+/* Medium devices (desktops, 992px and up) */
+@media screen and (min-width: 992px) {
+  .user-info {
+    figure {
+      img {
+        width: 165px;
+        height: 165px;
+      }
+    }
+
+    h3 { font-size: ($fs-large)+.4; }
+
+    .address { font-size: ($fs-normal)+.2; }
+  }
+
+  .user-garden {
+    font-size: ($fs-medium)+.4;
+
+    h4 {  font-size: ($fs-medium)+.2; }
+
+    .list-itens {
+      max-height: 295px;
+
+      li { font-size: ($fs-large)+.4; }
+    }
+  }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+// @media screen and (min-width: 1200px) { ... }

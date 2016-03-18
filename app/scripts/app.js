@@ -19,7 +19,7 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
+      .when('/main', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
@@ -50,6 +50,6 @@ angular
         controllerAs: 'esqueciSenha'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/login'
       });
   });
