@@ -16,4 +16,24 @@ body {
   height: 100%;
 }
 
+.navbar {
+  height: 80px;
+  background-color: #fff;
+  position: relative;
+  z-index: 20;
+  margin-bottom: 0;
+}
+
+.navbar-header { height: 100%; }
+
+.navbar-nav {
+  height: 80px;
+
+  li { height: 100%; }
+
+  a {
+    line-height: 80px;
+  }
+}
+
 // ====

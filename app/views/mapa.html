@@ -1,0 +1,44 @@
+<section class="sc-map">
+  <div class="hidden-xs col-xs-12 col-sm-3 wrapper-box-map">
+    <div class="row user-info">
+      <div class="col-xs-12">
+        <figure>
+          <img src="http://dummyimage.com/110x110/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image">
+        </figure>
+
+        <h3>thulio philipe</h3>
+
+        <button ng-click="fbLogin()" class="btn btn-secondary smallest fb col-xs-12 col-sm-5"><span></span>facebook</button>
+        <button ng-click="twLogin()" class="btn btn-secondary smallest tw col-xs-12 col-sm-5 col-sm-push-2"><span></span>twitter</button>
+
+        <div class="row">
+          <p class="address">Av. Integração - 571, 081 00000.0000</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row user-garden">
+      <h4>itens da horta</h4>
+
+      <ul class="list-itens">
+        <li>alface</li>
+        <li>cebolinho</li>
+        <li>tomate</li>
+        <li>alcatrão</li>
+        <li>cenoura</li>
+        <li>pepino</li>
+      </ul>
+    </div>
+  </div>
+
+  <aside class="hidden-xs map-more-actions col-sm-6 col-sm-offset-4">
+    <button ng-click="searchHortas()" class="btn btn">Hortas</button>
+    <button ng-click="searchFeiras()" class="btn btn">Feiras</button>
+
+    <form ng-submit="search()">
+      <input type="search" placeholder="O que você procura?" ng-model="map.search" class="input-primary">
+    </form>
+  </aside>
+
+  <div id="map-container" class="map-container"></div>
+</section>

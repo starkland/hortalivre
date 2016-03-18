@@ -54,6 +54,11 @@ angular
         controller: 'PerfilCtrl',
         controllerAs: 'perfil'
       })
+      .when('/mapa', {
+        templateUrl: 'views/mapa.html',
+        controller: 'MapaCtrl',
+        controllerAs: 'mapa'
+      })
       .otherwise({
         redirectTo: '/login'
       });
