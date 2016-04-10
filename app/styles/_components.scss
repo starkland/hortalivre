@@ -107,6 +107,12 @@
       z-index: 1;
     }
 
+    &.name {
+      &:before {
+        @include path('icon-email.svg');
+      }
+    }
+
     &.email {
       &:before {
         @include path('icon-email.svg');
@@ -115,7 +121,7 @@
 
     &.senha {
       &:before {
-        @include path('icon-senha.svg');
+        @include path('icon-email.svg');
       }
     }
   }

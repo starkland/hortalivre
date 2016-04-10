@@ -13,7 +13,16 @@
     font-weight: $fw-light;
     font-size: ($fs-normal)+.2;
   }
+
+  .btn-title {
+    font-size: ($fs-medium)+.4;
+    color: $color-secondary;
+    text-align: center;
+    font-weight: $fw-bold;
+    margin-bottom: 30px;
+  }
 }
+
 
 // ====
 
@@ -25,7 +34,11 @@
 @media (min-width: 768px) {}
 
 // Desktop
-@media (min-width: 992px) {}
+@media (min-width: 992px) {
+  .btn-title {
+    font-size: ($fs-large)+.4;
+  }
+}
 
 // Large Desktops
 @media screen and (min-width: 1200px) {}

@@ -1,15 +1,27 @@
 <section class="sc-cadastro">
   <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-    <figure>
-        <img src="http://dummyimage.com/165x220/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image">
+    <figure class="col-xs-8 col-xs-offset-2 visible-xs">
+      <img src="images/logo.svg" alt="Selo Hortalivre">
+    </figure>
+
+    <figure class="col-sm-4 col-sm-offset-4 hidden-xs">
+      <img src="images/selo.png" alt="Selo Hortalivre">
     </figure>
 
     <aside class="row btn-wrapper">
       <div class="col-xs-12">
-        <button ng-click="fbCadastro()" class="btn btn-secondary small fb col-sm-5"><span></span>facebook</button>
-        <button ng-click="twCadastro()" class="btn btn-secondary small tw col-sm-5 col-sm-push-2"><span></span>twitter</button>
+        <h3 class="btn-title">cadastre-se</h3>
+
+        <button ng-click="fbCadastro()" class="btn btn-secondary small fb col-sm-5"><span></button>
+        <button ng-click="twCadastro()" class="btn btn-secondary small tw col-sm-5 col-sm-push-2"></button>
       </div>
     </aside>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <p class="ou">ou</p>
+      </div>
+    </div>
 
     <form class="row form-primary" ng-submit="cadastroEmail()">
       <div class="col-xs-12">
@@ -24,7 +36,7 @@
         </fieldset>
 
         <fieldset class="form-group">
-          <span class="icon email"></span>
+          <span class="icon senha"></span>
           <input class="input-primary icon" type="password" placeholder="senha" ng-model="cadastro.password">
         </fieldset>
 
@@ -33,7 +45,7 @@
           <label for="concordo-termos-de-uso">concordo com os termos de uso</label>
         </fieldset>
 
-        <button type="submit" class="btn btn-primary small active">cadastrar</button>
+        <button type="submit" class="btn btn-primary small active col-xs-12 col-sm-4 col-sm-offset-4">cadastrar</button>
       </div>
     </form>
   </div>
