@@ -14,10 +14,6 @@
     }
   }
 
-  form {
-    margin-top: 20px;
-  }
-
   a {
     display: block;
     text-align: center;
@@ -35,6 +31,41 @@
       color: $color-primary;
     }
   }
+
+  button {
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    &.fb {
+      @include path('facebook-hover.svg');
+    }
+
+    &.tw {
+      @include path('twitter-hover.svg');
+    }
+  }
+}
+
+.ou {
+  text-align: center;
+  font-size: ($fs-normal)+.2;
+  margin: 10px auto;
+  color: #333333;
+  font-weight: $fw-light;
 }
 
 // ====
+
+
+//
+// Media Queries
+//
+
+// iPad
+@media (min-width: 768px) {}
+
+// Desktop
+@media (min-width: 992px) {}
+
+// Large Desktops
+@media screen and (min-width: 1200px) {}

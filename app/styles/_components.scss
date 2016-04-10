@@ -98,12 +98,25 @@
       width: 20px;
       height: 20px;
       display: inline-block;
-      background-color: black;
+      background-repeat: no-repeat;
+      background-size: 100%;
 
       top: 12px;
       left: 15px;
       position: absolute;
       z-index: 1;
+    }
+
+    &.email {
+      &:before {
+        @include path('icon-email.svg');
+      }
+    }
+
+    &.senha {
+      &:before {
+        @include path('icon-senha.svg');
+      }
     }
   }
 }

@@ -2,6 +2,21 @@
 // General Styles
 //
 
+%placeholder {
+  color: #4a4a4a;
+  font-size: ($fs-normal)+.2;
+  font-weight: $fw-light;
+}
+
+::-webkit-input-placeholder { @extend %placeholder; }
+
+:-moz-placeholder { @extend %placeholder; }
+
+::-moz-placeholder { @extend %placeholder; }
+
+:-ms-input-placeholder { @extend %placeholder; }
+
+
 html, body {
   height: 100%;
   position: relative;
@@ -18,10 +33,11 @@ body {
 
 .navbar {
   height: 80px;
-  background-color: #fff;
+  background-color: #ffffff;
   position: relative;
   z-index: 20;
   margin-bottom: 0;
+  border: none;
 }
 
 .navbar-header { height: 100%; }
@@ -32,8 +48,55 @@ body {
   li { height: 100%; }
 
   a {
-    line-height: 80px;
+    line-height: 30px !important;
+    color: #333333 !important;
+    text-decoration: underline;
+    font-size: ($fs-normal)+.2;
+    font-weight: $fw-bold;
+
+    &:hover {
+      color: $color-primary !important;
+    }
+  }
+
+  // cadastrar-se
+  .btn-primary {
+    margin-top: 10px;
+    line-height: 10px !important;
+    color: #fff !important;
+    text-decoration: none;
+  }
+}
+
+.navbar-brand {
+  display: block;
+  padding: 0;
+
+  figure {
+    margin-top: -4px;
+  }
+
+  img {
+    max-width: 100%;
   }
 }
 
 // ====
+
+
+//
+// Media Queries
+//
+
+// iPad
+@media (min-width: 768px) {
+  .navbar {
+    margin-bottom: 70px;
+  }
+}
+
+// Desktop
+@media (min-width: 992px) {}
+
+// Large Desktops
+@media screen and (min-width: 1200px) {}
