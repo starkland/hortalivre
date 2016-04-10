@@ -85,6 +85,43 @@ body {
 
 
 //
+// Footer
+//
+
+footer {
+  height: 40px !important;
+  text-align: center;
+  position: relative;
+  top: 70px;
+}
+
+.by {
+  color: #16663B;
+  font-size: $fs-normal;
+
+  a {
+    color: #16663B;
+    text-decoration: underline;
+  }
+}
+
+.copyright {
+  color: #16663B;
+  font-size: $fs-normal;
+}
+
+.glyphicon-heart {
+  color: #16663B;
+
+  &:before {
+    content: '\e005';
+  }
+}
+
+// ====
+
+
+//
 // Media Queries
 //
 
@@ -92,6 +129,16 @@ body {
 @media (min-width: 768px) {
   .navbar {
     margin-bottom: 70px;
+  }
+
+  .by {
+    float: left !important;
+    text-align: left;
+  }
+
+  .copyright {
+    float: right !important;
+    text-align: right;
   }
 }
 
