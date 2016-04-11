@@ -19,57 +19,59 @@
     </div>
   </aside>
 
-  <aside class="container download-section">
-    <div class="row">
-      <div class="col-sm-6">
-        <h4>acesse nosso mapa de qualquer dispositivo.</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus rerum, recusandae eveniet amet, doloremque molestiae.</p>
+  <div class="container">
+    <aside class="download-section">
+      <div class="row">
+        <div class="col-sm-6">
+          <h4>acesse nosso mapa de qualquer dispositivo.</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus rerum, recusandae eveniet amet, doloremque molestiae.</p>
 
-        <a href="#" title="Em breve na App Store" class="download-app-store">Em breve na App Store</a>
-        <a href="#" title="Em breve na Google Play" class="download-google-play">Em breve na Google Play</a>
+          <a href="#" title="Em breve na App Store" class="download-app-store">Em breve na App Store</a>
+          <a href="#" title="Em breve na Google Play" class="download-google-play">Em breve na Google Play</a>
+        </div>
+
+        <div class="col-sm-6">
+          <figure>
+          <img src="images/ornamento.svg" alt="3 Telas, desktop, smartphone e tablet.">
+          </figure>
+        </div>
       </div>
+    </aside>
 
-      <div class="col-sm-6">
-        <figure>
-        <img src="images/ornamento.svg" alt="3 Telas, desktop, smartphone e tablet.">
-        </figure>
+    <aside class="about-section">
+      <div class="row">
+        <div class="col-sm-6">
+          <h4>sobre o projeto</h4>
+        </div>
+
+        <div class="col-sm-6">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ut incidunt rem pariatur officiis voluptas. Illo nihil dicta consectetur, rem tenetur atque consequuntur a praesentium quam, veritatis pariatur excepturi enim! Facere consequatur optio esse nesciunt deserunt expedita, ab laboriosam fugiat animi quasi eum eos voluptate, corporis numquam cum ratione quae ut. Temporibus corporis laudantium repellendus qui aperiam nobis maxime consectetur?</p>
+
+          <a ng-click="videoModal=true" data-toggle="modal" data-target="#video-modal" href="" title="Veja o vídeo e saiba mais.">veja o vídeo e saiba mais.</a>
+        </div>
       </div>
-    </div>
-  </aside>
+    </aside>
 
-  <aside class="container about-section">
-    <div class="row">
-      <div class="col-sm-6">
-        <h4>sobre o projeto</h4>
+    <aside class="who-is-speaking">
+      <div class="row">
+        <div class="col-xs-12">
+          <h4>quem está falando</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, accusantium.</p>
+
+          <ul>
+            <li><figure><img src="http://dummyimage.com/120x50/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image"></figure></li>
+            <li><figure><img src="http://dummyimage.com/120x50/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image"></figure></li>
+            <li><figure><img src="http://dummyimage.com/120x50/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image"></figure></li>
+            <li><figure><img src="http://dummyimage.com/120x50/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image"></figure></li>
+            <li><figure><img src="http://dummyimage.com/120x50/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image"></figure></li>
+          </ul>
+        </div>
       </div>
-
-      <div class="col-sm-6">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ut incidunt rem pariatur officiis voluptas. Illo nihil dicta consectetur, rem tenetur atque consequuntur a praesentium quam, veritatis pariatur excepturi enim! Facere consequatur optio esse nesciunt deserunt expedita, ab laboriosam fugiat animi quasi eum eos voluptate, corporis numquam cum ratione quae ut. Temporibus corporis laudantium repellendus qui aperiam nobis maxime consectetur?</p>
-
-        <a ng-click="videoModal=true" data-toggle="modal" data-target="#video-modal" href="" title="Veja o vídeo e saiba mais.">veja o vídeo e saiba mais.</a>
-      </div>
-    </div>
-  </aside>
-
-  <aside class="container who-is-speaking">
-    <div class="row">
-      <div class="col-xs-12">
-        <h4>quem está falando</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, accusantium.</p>
-
-        <ul>
-          <li><figure><img src="http://dummyimage.com/120x50/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image"></figure></li>
-          <li><figure><img src="http://dummyimage.com/120x50/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image"></figure></li>
-          <li><figure><img src="http://dummyimage.com/120x50/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image"></figure></li>
-          <li><figure><img src="http://dummyimage.com/120x50/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image"></figure></li>
-          <li><figure><img src="http://dummyimage.com/120x50/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image"></figure></li>
-        </ul>
-      </div>
-    </div>
-  </aside>
+    </aside>
+  </div>
 </section>
 
-<!-- video modal -->
+<!-- video modal / Desktop -->
 <div ng-if="videoModal">
   <div class="modal fade" id="video-modal" tabindex="-1" role="dialog" aria-labelledby="VideoModal">
     <div class="modal-dialog" role="document">
@@ -84,5 +86,26 @@
 
 <!-- mobile -->
 <div class="visible-xs sc-home mobile">
-  <div class="col-xs-12"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <figure class="col-xs-offset-2 visible-xs">
+          <img src="images/logo.svg" alt="Selo Hortalivre">
+        </figure>
+
+        <h3>olá, seja bem-vindo a maior horta online do Brasil</h3>
+
+        <div class="col-xs-12">
+          <span class="seta-down"></span>
+        </div>
+
+        <div class="col-xs-6 col-xs-offset-3">
+          <ul class="nav navbar-nav">
+            <li><a class="btn btn-primary small active" href="#/cadastro" title="Cadastrar-se">cadastrar-se</a></li>
+            <li><a href="#/login" title="Entrar">entrar</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

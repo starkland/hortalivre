@@ -135,7 +135,7 @@ angular.module('hortalivreApp')
     // ====
 
     $scope.loadMap = function() {
-      _getLocation();
+      // _getLocation();
     }
 
 
