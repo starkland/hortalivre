@@ -31,14 +31,15 @@
     </div>
   </div>
 
-  <aside class="hidden-xs map-more-actions col-sm-6 col-sm-offset-4">
+  <div ng-include src="'views/partials/search-garden.html'"></div>
+  <!-- <aside class="hidden-xs map-more-actions col-sm-6 col-sm-offset-4">
     <button ng-click="searchHortas()" class="btn btn">Hortas</button>
     <button ng-click="searchFeiras()" class="btn btn">Feiras</button>
 
     <form ng-submit="search()">
       <input type="search" placeholder="O que você procura?" ng-model="map.search" class="input-primary">
     </form>
-  </aside>
+  </aside> -->
 
   <div id="map-container" class="map-container"></div>
 </section>

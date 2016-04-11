@@ -83,7 +83,7 @@
 
     <div ng-include src="'views/partials/header.html'"></div>
 
-    <main class="container-fluid">
+    <main class="container-fluid no-padding">
       <div ng-view=""></div>
     </main>
 
@@ -91,7 +91,7 @@
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script async src="https://maps.google.com/maps/api/js"></script>
+     <script async src="https://maps.google.com/maps/api/js?signed_in=true&libraries=drawing"></script>
 
      <script>
        !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
@@ -127,6 +127,7 @@
         <script src="scripts/controllers/esqueci-senha.js"></script>
         <script src="scripts/controllers/perfil.js"></script>
         <script src="scripts/controllers/mapa.js"></script>
+        <script src="scripts/services/notification.js"></script>
         <!-- endbuild -->
 </body>
 </html>

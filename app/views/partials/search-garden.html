@@ -1,0 +1,17 @@
+<!--
+  + trocar button por inputs
+-->
+
+<aside class="hidden-xs map-more-actions">
+  <button ng-click="searchHortas(); type='hortas';" ng-class="{ 'active' : type == 'hortas' }" class="btn btn horta" data-popup="procure pela horta mais próxima">
+    Hortas
+  </button>
+
+  <button ng-click="searchFeiras();type='feiras';" ng-class="{ 'active' : type == 'feiras' }" class="btn btn feira" data-popup="procure pela feira mais próxima">
+    Feiras
+  </button>
+
+  <form ng-submit="search()">
+    <input type="search" placeholder="O que você procura?" ng-model="map.search" class="input-primary">
+  </form>
+</aside>

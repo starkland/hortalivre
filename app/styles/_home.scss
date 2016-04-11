@@ -1,0 +1,139 @@
+//
+// General Styles
+//
+
+%title-section {
+  font-size: ($fs-large)+.4;
+  font-weight: $fw-bold;
+  color: #16663b;
+}
+
+%description-section {
+  font-size: ($fs-normal)+.2;
+  font-weight: $fw-light;
+  color: #4a4a4a;
+  margin: 20px auto;
+}
+
+.map-section {
+  width: 100%;
+  height: 640px;
+  margin-top: -30px;
+  position: relative;
+  background-color: rgba(206, 206, 206, .7);
+
+  .map-more-actions {
+    margin-top: 285px;
+  }
+}
+
+.map-home {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 10;
+
+  // &:before {
+  //   content: '';
+  //   width: 100%;
+  //   height: 100%;
+  //   display: block;
+  //   z-index: 20;
+  //   position: absolute;
+    // background-color: rgba(206, 206, 206, .7);
+  // }
+}
+
+.map-content {
+  position: relative;
+  text-align: center;
+  z-index: 12;
+  margin-top: 220px;
+
+  h3 { @extend %title-section; }
+
+  button { margin-top: 30px; }
+}
+
+.download-section {
+  margin-top: -70px;
+  z-index: 10;
+  position: relative;
+
+  h4 { @extend %title-section; }
+
+  p { @extend %description-section; }
+}
+
+.about-section {
+  margin-top: 140px;
+
+  h4 { @extend %title-section; }
+
+  p { @extend %description-section; }
+
+  a {
+    font-size: ($fs-normal)+.2;
+    color: #16663b !important;
+    text-decoration: none;
+    position: relative;
+    font-weight: $fw-bold;
+
+    &:before {
+      content: '';
+      width: 35px;
+      height: 35px;
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 5px;
+      background-repeat: no-repeat;
+      @include path('icon-video.svg');
+    }
+  }
+}
+
+.who-is-speaking {
+  margin: 140px auto 80px auto;
+  text-align: center;
+
+  h4 {
+    @extend %title-section;
+  }
+
+  p {
+    @extend %description-section;
+  }
+
+  ul {
+    margin-top: 60px;
+
+    li {
+      display: inline-block;
+      vertical-align: middle;
+      list-style-type: none;
+      opacity: .7;
+      margin: 0 40px;
+
+      &:hover {
+        @include transition(opacity, .25s, 0s, ease-in-out);
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// ====
+
+//
+// Media Queries
+//
+
+// iPad
+@media (min-width: 768px) {}
+
+// Desktop
+@media (min-width: 992px) {}
+
+// Large Desktops
+@media screen and (min-width: 1200px) {}

@@ -1,0 +1,88 @@
+<!-- desktop -->
+<section class="hidden-xs sc-home desktop" ng-init="loadMap()">
+  <aside class="map-section">
+    <div id="map-home" class="map-home"></div>
+
+    <div class="container">
+      <div class="row">
+        <div ng-show="!garden" class="col-sm-8 col-sm-offset-2">
+          <div class="map-content">
+            <h3>olá, seja bem-vindo <br> a maior horta online do Brasil</h3>
+            <button ng-click="garden=true" class="btn btn-primary big col-sm-4 col-sm-offset-4">procurar horta</button>
+          </div>
+        </div>
+
+        <div ng-show="garden" class="col-sm-8 col-sm-offset-2">
+          <div ng-include src="'views/partials/search-garden.html'"></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <aside class="container download-section">
+    <div class="row">
+      <div class="col-sm-6">
+        <h4>acesse nosso mapa de qualquer dispositivo.</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus rerum, recusandae eveniet amet, doloremque molestiae.</p>
+
+        <a href="#" title="Em breve na App Store" class="download-app-store">Em breve na App Store</a>
+        <a href="#" title="Em breve na Google Play" class="download-google-play">Em breve na Google Play</a>
+      </div>
+
+      <div class="col-sm-6">
+        <figure>
+        <img src="images/ornamento.svg" alt="3 Telas, desktop, smartphone e tablet.">
+        </figure>
+      </div>
+    </div>
+  </aside>
+
+  <aside class="container about-section">
+    <div class="row">
+      <div class="col-sm-6">
+        <h4>sobre o projeto</h4>
+      </div>
+
+      <div class="col-sm-6">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ut incidunt rem pariatur officiis voluptas. Illo nihil dicta consectetur, rem tenetur atque consequuntur a praesentium quam, veritatis pariatur excepturi enim! Facere consequatur optio esse nesciunt deserunt expedita, ab laboriosam fugiat animi quasi eum eos voluptate, corporis numquam cum ratione quae ut. Temporibus corporis laudantium repellendus qui aperiam nobis maxime consectetur?</p>
+
+        <a ng-click="videoModal=true" data-toggle="modal" data-target="#video-modal" href="" title="Veja o vídeo e saiba mais.">veja o vídeo e saiba mais.</a>
+      </div>
+    </div>
+  </aside>
+
+  <aside class="container who-is-speaking">
+    <div class="row">
+      <div class="col-xs-12">
+        <h4>quem está falando</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, accusantium.</p>
+
+        <ul>
+          <li><figure><img src="http://dummyimage.com/120x50/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image"></figure></li>
+          <li><figure><img src="http://dummyimage.com/120x50/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image"></figure></li>
+          <li><figure><img src="http://dummyimage.com/120x50/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image"></figure></li>
+          <li><figure><img src="http://dummyimage.com/120x50/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image"></figure></li>
+          <li><figure><img src="http://dummyimage.com/120x50/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image"></figure></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+</section>
+
+<!-- video modal -->
+<div ng-if="videoModal">
+  <div class="modal fade" id="video-modal" tabindex="-1" role="dialog" aria-labelledby="VideoModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/rh62zz9HRkg" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- mobile -->
+<div class="visible-xs sc-home mobile">
+  <div class="col-xs-12"></div>
+</div>

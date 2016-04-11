@@ -26,30 +26,6 @@
     background-color: #fff;
     @include bsd(1px, 0, 1px, rgba(0, 0, 0, .2));
   }
-
-  .map-more-actions {
-    position: absolute;
-    z-index: 11;
-    bottom: 60px;
-
-    button {
-      width: 70px;
-      height: 70px;
-      @include bdr(100%);
-      margin-right: 30px;
-    }
-
-    form {
-      width: 70%;
-      display: inline-block;
-    }
-
-    input {
-      border: 1px solid $border-primary;
-      @include bdr(40px);
-      padding: 15px 25px;
-    }
-  }
 }
 
 /* Medium devices (desktops, 992px and up) */

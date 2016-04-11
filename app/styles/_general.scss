@@ -31,6 +31,10 @@ body {
   height: 100%;
 }
 
+.no-padding {
+  padding: 0 !important;
+}
+
 .navbar {
   height: 80px;
   background-color: #ffffff;
@@ -48,7 +52,7 @@ body {
   li { height: 100%; }
 
   a {
-    line-height: 30px !important;
+    line-height: 60px !important;
     color: #333333 !important;
     text-decoration: underline;
     font-size: ($fs-normal)+.2;
@@ -61,7 +65,7 @@ body {
 
   // cadastrar-se
   .btn-primary {
-    margin-top: 10px;
+    margin-top: 20px;
     line-height: 10px !important;
     color: #fff !important;
     text-decoration: none;
