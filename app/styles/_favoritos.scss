@@ -1,0 +1,72 @@
+//
+// Favoritos Section
+//
+
+.sc-favoritos {
+  aside {
+    // background-color: orangered;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  figure {
+    width: 165px;
+    height: 165px;
+    @include bdr(100%);
+    overflow: hidden;
+    display: inline-block;
+
+    img { max-width: 100%; }
+  }
+
+  h3 {
+    font-size: ($fs-large)-1.4;
+    font-weight: $fw-bold;
+    color: #16663b;
+    display: block;
+  }
+
+  .wrapper-button {
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  button {
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-indent: -9999px;
+    font-weight: $fw-light;
+    margin-right: 30px;
+    background-size: 100%;
+
+    &.fb {
+      @include path('facebook-hover.svg');
+    }
+
+    &.tw {
+      @include path('twitter-hover.svg');
+    }
+  }
+
+  p {
+    display: block;
+    color: #333333;
+    font-size: ($fs-normal)+.2;
+  }
+}
+
+// ====
+
+
+//
+// Media Queries
+//
+
+// iPad
+@media (min-width: 768px) {}
+
+// Desktop
+@media (min-width: 992px) {}
+
+// Large Desktops
+@media screen and (min-width: 1200px) {}

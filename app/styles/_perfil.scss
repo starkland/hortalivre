@@ -74,11 +74,15 @@
 // ====
 
 
-/* Small devices (tablets, 768px and up) */
-// @media screen and (min-width: 768px) { ... }
+//
+// Media Queries
+//
 
-/* Medium devices (desktops, 992px and up) */
-@media screen and (min-width: 992px) {
+// iPad
+@media (min-width: 768px) {}
+
+// Desktop
+@media (min-width: 992px) {
   .user-info {
     figure {
       img {
@@ -104,20 +108,6 @@
     }
   }
 }
-
-/* Large devices (large desktops, 1200px and up) */
-// @media screen and (min-width: 1200px) { ... }
-
-
-//
-// Media Queries
-//
-
-// iPad
-@media (min-width: 768px) {}
-
-// Desktop
-@media (min-width: 992px) {}
 
 // Large Desktops
 @media screen and (min-width: 1200px) {}
