@@ -8,7 +8,7 @@
  * Controller of the hortalivreApp
  */
 angular.module('hortalivreApp')
-  .controller('MapaCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  .controller('MapaCtrl', ['$scope', '$rootScope', 'Notification', function ($scope, $rootScope, Notification) {
 
     // obtém a localização do usuário
     function _getLocation() {
@@ -33,7 +33,7 @@ angular.module('hortalivreApp')
         lng: position.coords.longitude
       };
 
-      map = new google.maps.Map(document.getElementById('map-home'), {
+      map = new google.maps.Map(document.getElementById('map-primary'), {
         center: userPosition,
         zoom: 14,
         mapTypeControl: false,
@@ -146,26 +146,28 @@ angular.module('hortalivreApp')
     // ====
 
     $scope.loadMap = function() {
-      // _getLocation();
+      _getLocation();
 
       // adiciona um user no rootScope pra poder esconder e exibir o header
       $rootScope.user = true;
     }
 
-    // ====
-    // Search into map
+
+    // Pesquisar as feiras
     $scope.map = {};
 
-    $scope.search = function() {
-      console.log($scope.map)
+    $scope.searchHortas = function() {
+      $scope.map.type = 'hortas';
     };
 
-    $scope.searchHortas = function() {
-      console.log('Hortas');
-    }
-
     $scope.searchFeiras = function() {
-      console.log('Feiras');
+      $scope.map.type = 'feiras';
+    };
+
+    $scope.search = function() {
+      var params = $scope.map;
+
+      console.warn('Enviando -> ', params);
     }
 
   }]);
