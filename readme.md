@@ -72,9 +72,6 @@ Para contribuir para o Hortalivre, clone este repositório localmente e commit s
 Estamos utilizando o [Yeoman](https://github.com/yeoman/generator-angular) como generator e sua instalação será necessária para a criação de rotas, serviços, controladores, views, etc ...
 
 
-You can find more detail in our [contributing guide](#). Participation in this open source project is subject to a [Code of Conduct](#).
-
-
 ## Suporte
 
 Atualmente estamos dando suporte para os seguintes navegadores:
