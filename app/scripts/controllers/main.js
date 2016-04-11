@@ -24,6 +24,75 @@ angular.module('hortalivreApp')
       Notification.show('error', 'Hortalivre', error);
     }
 
+    // inicia o mapa
+    var userPosition, map, marker, drawingManager, infowindow;
+
+    function _initMap(position) {
+      userPosition = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      map = new google.maps.Map(document.getElementById('map-home'), {
+        center: userPosition,
+        zoom: 14,
+        mapTypeControl: false,
+        panControl: false,
+        streetViewControl: false,
+        zoomControl: true,
+        scrollwheel: false,
+        draggable: true,
+        zoomControlOptions: {
+          style: google.maps.ZoomControlStyle.SMALL
+        }
+      });
+
+      marker = new google.maps.Marker({
+        position: userPosition,
+        map: map
+      });
+
+      infowindow = new google.maps.InfoWindow({
+        content: 'Marker',
+        maxWidth: 700
+      });
+
+      google.maps.event.addListener(marker, 'click', function() {
+        map.setZoom(10);
+        map.setCenter(marker.getPosition());
+
+        infowindow.open(map, marker);
+      });
+
+      drawingManager = new google.maps.drawing.DrawingManager({
+        drawingControl: true,
+        drawingControlOptions: {
+          position: google.maps.ControlPosition.TOP_RIGHT,
+          drawingModes: [google.maps.drawing.OverlayType.POLYGON]
+        },
+        polygonOptions: {
+          editable: true,
+          clickable: true,
+          draggable: true,
+          strokeColor: '#16663b',
+          strokeOpacity: 0.7,
+          fillColor: '#16663b',
+          fillOpacity: 0.2,
+          strokeWeight: 2,
+        }
+      });
+
+      drawingManager.setMap(map);
+
+
+      // Eventos
+      // carrega mais marcadores
+      google.maps.event.addListener(map, 'idle', _showMarkers);
+
+      // Permite o usuário desenhar no mapa
+      google.maps.event.addListener(drawingManager, 'polygoncomplete', _getCoordinates);
+    }
+
     // obtém mais marcadores quando move o mapa
     function _showMarkers() {
       var bounds, south, south_lat, south_lng, north,
@@ -52,7 +121,17 @@ angular.module('hortalivreApp')
 
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(center_lat, center_lng),
-        map: map
+        map: map,
+        icon: 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/map-marker-32.png'
+      });
+
+      infowindow = new google.maps.InfoWindow({
+        content: 'lat: ' + center_lat + ', lng: ' + center_lng,
+        maxWidth: 700
+      });
+
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.open(map, marker);
       });
     }
 
@@ -64,78 +143,10 @@ angular.module('hortalivreApp')
 
       console.warn('Coordinates of drawing: ', coordinates);
     }
-
-    // inicia o mapa
-    function _initMap(position) {
-      var userPosition, map, marker, drawingManager, infowindow;
-
-      infowindow = new google.maps.InfoWindow;
-
-      userPosition = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-
-      map = new google.maps.Map(document.getElementById('map-home'), {
-        center: userPosition,
-        zoom: 14,
-        mapTypeControl: false,
-        panControl: false,
-        streetViewControl: false,
-        zoomControl: true,
-        scrollwheel: false,
-        draggable: true,
-        zoomControlOptions: {
-          style: google.maps.ZoomControlStyle.SMALL
-        }
-      });
-
-      marker = new google.maps.Marker({
-        position: userPosition,
-        map: map
-      });
-
-      marker.addListener('click', function() {
-        infowindow.setContent('Você está aqui!');
-        infowindow.open(map, marker);
-
-        map.setZoom(10);
-        map.setCenter(marker.getPosition());
-      });
-
-      drawingManager = new google.maps.drawing.DrawingManager({
-        drawingControl: true,
-        drawingControlOptions: {
-          position: google.maps.ControlPosition.TOP_RIGHT,
-          drawingModes: [google.maps.drawing.OverlayType.POLYGON]
-        },
-        polygonOptions: {
-          editable: true,
-          clickable: true,
-          draggable: true,
-          strokeColor: '#1E90FF',
-          strokeOpacity: 0.7,
-          fillColor: '#1E90FF',
-          fillOpacity: 0.2,
-          strokeWeight: 2,
-        }
-      });
-
-      drawingManager.setMap(map);
-
-
-      // Eventos
-
-      // carrega mais marcadores
-      // google.maps.event.addListener(map, 'idle', _showMarkers);
-
-      // Permite o usuário desenhar no mapa
-      // google.maps.event.addListener(drawingManager, 'polygoncomplete', _getCoordinates);
-    }
     // ====
 
     $scope.loadMap = function() {
-      // _getLocation();
+      _getLocation();
     }
 
 
