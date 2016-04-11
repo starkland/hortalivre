@@ -37,7 +37,8 @@
     text-indent: -9999px;
     font-weight: $fw-light;
     margin-right: 30px;
-    background-size: 100%;
+    background-size: 50%;
+    margin-bottom: 10px;
 
     &.fb {
       @include path('facebook-hover.svg');
@@ -66,7 +67,14 @@
 @media (min-width: 768px) {}
 
 // Desktop
-@media (min-width: 992px) {}
+@media (min-width: 992px) {
+  .sc-favoritos {
+    button {
+      background-size: 100%;
+      margin-bottom: 0;
+    }
+  }
+}
 
 // Large Desktops
 @media screen and (min-width: 1200px) {}
