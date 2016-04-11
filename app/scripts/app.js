@@ -59,6 +59,11 @@ angular
         controller: 'MapaCtrl',
         controllerAs: 'mapa'
       })
+      .when('/favoritos', {
+        templateUrl: 'views/favoritos.html',
+        controller: 'FavoritosCtrl',
+        controllerAs: 'favoritos'
+      })
       .otherwise({
         redirectTo: '/login'
       });

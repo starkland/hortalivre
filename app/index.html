@@ -81,7 +81,8 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div ng-include src="'views/partials/header.html'"></div>
+    <div ng-if="!user" ng-include src="'views/partials/header.html'"></div>
+    <div ng-if="user" ng-include src="'views/partials/header-user.html'"></div>
 
     <main class="container-fluid no-padding">
       <div ng-view=""></div>
@@ -128,6 +129,7 @@
         <script src="scripts/controllers/perfil.js"></script>
         <script src="scripts/controllers/mapa.js"></script>
         <script src="scripts/services/notification.js"></script>
+        <script src="scripts/controllers/favoritos.js"></script>
         <!-- endbuild -->
 </body>
 </html>

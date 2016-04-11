@@ -1,5 +1,5 @@
-<section class="sc-map">
-  <div class="hidden-xs col-xs-12 col-sm-3 wrapper-box-map">
+<section class="sc-map" ng-init="loadMap()">
+  <!-- <div class="hidden-xs col-xs-12 col-sm-3 wrapper-box-map">
     <div class="row user-info">
       <div class="col-xs-12">
         <figure>
@@ -29,17 +29,9 @@
         <li>pepino</li>
       </ul>
     </div>
-  </div>
+  </div> -->
 
-  <div ng-include src="'views/partials/search-garden.html'"></div>
-  <!-- <aside class="hidden-xs map-more-actions col-sm-6 col-sm-offset-4">
-    <button ng-click="searchHortas()" class="btn btn">Hortas</button>
-    <button ng-click="searchFeiras()" class="btn btn">Feiras</button>
+  <!-- <div ng-include src="'views/partials/search-garden.html'"></div> -->
 
-    <form ng-submit="search()">
-      <input type="search" placeholder="O que você procura?" ng-model="map.search" class="input-primary">
-    </form>
-  </aside> -->
-
-  <div id="map-container" class="map-container"></div>
+  <!-- <div id="map-container" class="map-container"></div> -->
 </section>

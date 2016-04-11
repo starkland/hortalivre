@@ -8,93 +8,149 @@
  * Controller of the hortalivreApp
  */
 angular.module('hortalivreApp')
-  .controller('MapaCtrl', function ($scope) {
+  .controller('MapaCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
 
-    // ====
-    // Get user location
-    function getLocation() {
+    // obtém a localização do usuário
+    function _getLocation() {
       if (navigator.geolocation) {
-        console.log('Get userlocation...');
-        navigator.geolocation.getCurrentPosition(initMap, error);
+        navigator.geolocation.getCurrentPosition(_initMap, error);
       } else {
-        window.alert('Geolocation is not supported.');
+        Notification.show('error', 'Hortalivre', 'Seu browser não suporta geolocalização.')
       }
     }
 
-    function error(err) {
-      window.alert('Error: ', err);
+    function error(error) {
+      console.warn('Error: ', error);
+      Notification.show('error', 'Hortalivre', error);
     }
 
-    getLocation();
-    // ====
+    // inicia o mapa
+    var userPosition, map, marker, drawingManager, infowindow;
 
-    // ====
-    // Initialize map with user location
-    var map, userPosition, marker, infowindow, bounds, south_lat, south_lng,
-        north_lat, north_lng, center_lat, center_lng;
+    function _initMap(position) {
+      userPosition = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
 
-    function initMap(position) {
-      userPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-      map = new google.maps.Map(document.getElementById('map-container'), {
-        zoom: 12,
+      map = new google.maps.Map(document.getElementById('map-home'), {
         center: userPosition,
-        scrollwheel: false
+        zoom: 14,
+        mapTypeControl: false,
+        panControl: false,
+        streetViewControl: false,
+        zoomControl: true,
+        scrollwheel: false,
+        draggable: true,
+        zoomControlOptions: {
+          style: google.maps.ZoomControlStyle.SMALL
+        }
       });
 
       marker = new google.maps.Marker({
-        map: map,
         position: userPosition,
-        icon: 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/map-marker-32.png'
+        map: map
       });
 
       infowindow = new google.maps.InfoWindow({
-        content: 'Hey You',
+        content: 'Marker',
         maxWidth: 700
       });
 
-      // evento para quando mexer no mapa
-      // google.maps.event.addListener(map, 'idle', showMarkers);
-
       google.maps.event.addListener(marker, 'click', function() {
+        map.setZoom(10);
+        map.setCenter(marker.getPosition());
+
         infowindow.open(map, marker);
       });
+
+      drawingManager = new google.maps.drawing.DrawingManager({
+        drawingControl: true,
+        drawingControlOptions: {
+          position: google.maps.ControlPosition.TOP_RIGHT,
+          drawingModes: [google.maps.drawing.OverlayType.POLYGON]
+        },
+        polygonOptions: {
+          editable: true,
+          clickable: true,
+          draggable: true,
+          strokeColor: '#16663b',
+          strokeOpacity: 0.7,
+          fillColor: '#16663b',
+          fillOpacity: 0.2,
+          strokeWeight: 2,
+        }
+      });
+
+      drawingManager.setMap(map);
+
+
+      // Eventos
+      // carrega mais marcadores
+      google.maps.event.addListener(map, 'idle', _showMarkers);
+
+      // Permite o usuário desenhar no mapa
+      google.maps.event.addListener(drawingManager, 'polygoncomplete', _getCoordinates);
     }
 
-    // Show new marker when move map
-    function showMarkers() {
-     bounds = map.getBounds();
+    // obtém mais marcadores quando move o mapa
+    function _showMarkers() {
+      var bounds, south, south_lat, south_lng, north,
+      north_lat, north_lng, center_lat, center_lng,
+      marker, latLng;
 
-     // south = map.getBounds().getSouthWest();
-     south_lat = map.getBounds().getSouthWest().lat();
-     south_lng = map.getBounds().getSouthWest().lng();
+      bounds = map.getBounds();
 
-     // north = map.getBounds().getNorthEast();
-     north_lat = map.getBounds().getNorthEast().lat();
-     north_lng = map.getBounds().getNorthEast().lng();
+      // south = map.getBounds().getSouthWest();
+      south_lat = map.getBounds().getSouthWest().lat();
+      south_lng = map.getBounds().getSouthWest().lng();
 
-     center_lat = (south_lat + north_lat) / 2;
-     center_lng = (south_lng + north_lng) / 2;
+      // north = map.getBounds().getNorthEast();
+      north_lat = map.getBounds().getNorthEast().lat();
+      north_lng = map.getBounds().getNorthEast().lng();
 
-      // console.warn('center_lat -> ', center_lat);
-      // console.warn('center_lng -> ', center_lng);
+      center_lat = (south_lat + north_lat) / 2;
+      center_lng = (south_lng + north_lng) / 2;
+
+      latLng = {
+        'center_lat': center_lat,
+        'center_lng': center_lng
+      };
+
+      console.warn('Latitude / Longitude: ', latLng);
+
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(center_lat, center_lng),
+        map: map,
+        icon: 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/map-marker-32.png'
+      });
 
       infowindow = new google.maps.InfoWindow({
         content: 'lat: ' + center_lat + ', lng: ' + center_lng,
         maxWidth: 700
       });
 
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(center_lat, center_lng),
-        map: map
-      });
-
-
       google.maps.event.addListener(marker, 'click', function() {
         infowindow.open(map, marker);
       });
     }
+
+    // obtém as coordenadas de acordo com o desenho no mapa
+    function _getCoordinates(polygon) {
+      var coordinates;
+
+      coordinates = (polygon.getPath().getArray());
+
+      console.warn('Coordinates of drawing: ', coordinates);
+    }
     // ====
+
+    $scope.loadMap = function() {
+      // _getLocation();
+
+      // adiciona um user no rootScope pra poder esconder e exibir o header
+      $rootScope.user = true;
+    }
 
     // ====
     // Search into map
@@ -112,4 +168,4 @@ angular.module('hortalivreApp')
       console.log('Feiras');
     }
 
-  });
+  }]);

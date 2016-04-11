@@ -49,7 +49,43 @@ body {
 .navbar-nav {
   height: 80px;
 
-  li { height: 100%; }
+  li {
+    height: 100%;
+
+    &.user-name {
+      font-size: ($fs-normal)+.2;
+      font-weight: $fw-bold;
+      color: #16663b;
+      margin: 30px 10px auto auto;
+    }
+
+    &.mini-avatar-user {
+      cursor: pointer;
+
+      figure {
+        width: 50px;
+        height: 50px;
+        margin: 15px 10px 0 0;
+        overflow: hidden;
+        display: inline-block;
+        vertical-align: middle;
+        @include bdr(100%);
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+
+    .caret {
+      border-top-width: 8px;
+      border-right-width: 7px;
+      border-left-width: 7px;
+      color: #16663b;
+      margin-top: 20px;
+    }
+  }
 
   a {
     line-height: 60px !important;
@@ -82,6 +118,54 @@ body {
 
   img {
     max-width: 100%;
+  }
+}
+
+.dropdown-menu {
+  padding: 0;
+  left: -180px;
+  width: 265px;
+  overflow: hidden;
+  background-color: #16663b;
+  @include bdr(0px 0px 25px 25px);
+
+  li {
+    &:last-child {
+      a {
+        &:after {
+          background-color: pink;
+        }
+      }
+    }
+  }
+
+  a {
+    color: #ffffff !important;
+    font-size: ($fs-normal)+.2 !important;
+    font-weight: $fw-bold !important;
+    display: block !important;
+    height: 50px;
+    text-decoration: none;
+    border-top: 1px solid #ccc;
+    padding: 27px 0 0 30px !important;
+    line-height: 0 !important;
+    position: relative;
+
+    &:hover, &:focus {
+      background-color: #0e4c2b !important;
+      color: #ffffff !important;
+    }
+
+    &:after {
+      content: '';
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      background-color: black;
+      background-repeat: no-repeat;
+    }
   }
 }
 

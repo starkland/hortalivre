@@ -8,7 +8,7 @@
  * Controller of the hortalivreApp
  */
 angular.module('hortalivreApp')
-  .controller('LoginCtrl', function ($scope) {
+  .controller('LoginCtrl', ['$scope', '$location', '$rootScope', function ($scope, $location, $rootScope) {
 
     // ====
     $scope.fbLogin = function() {
@@ -26,9 +26,15 @@ angular.module('hortalivreApp')
     $scope.login = {};
 
     $scope.loginEmail = function() {
-      console.log($scope.login);
+      var params = $scope.login;
+      console.log('Enviando -> ', params);
+
+      // adiciona um user no rootScope pra poder esconder e exibir o header
+      $rootScope.user = true;
+
+      $location.path('/mapa');
     }
     // ====
 
 
-  });
+  }]);
