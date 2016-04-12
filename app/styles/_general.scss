@@ -138,7 +138,8 @@ body {
     &:last-child {
       a {
         &:after {
-          background-color: pink;
+          background-repeat: no-repeat;
+          @include path('icon-exit.svg');
         }
       }
     }
@@ -168,7 +169,7 @@ body {
       position: absolute;
       right: 10px;
       top: 10px;
-      background-color: black;
+      @include path('icon-submenu.svg');
       background-repeat: no-repeat;
     }
   }
