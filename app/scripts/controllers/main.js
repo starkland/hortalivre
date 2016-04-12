@@ -25,7 +25,7 @@ angular.module('hortalivreApp')
     }
 
     // inicia o mapa
-    var userPosition, map, marker, drawingManager, infowindow;
+    var userPosition, map, userMarker, drawingManager, infowindow, userRadius;
 
     function _initMap(position) {
       userPosition = {
@@ -47,21 +47,33 @@ angular.module('hortalivreApp')
         }
       });
 
-      marker = new google.maps.Marker({
+      userMarker = new google.maps.Marker({
         position: userPosition,
         map: map
       });
+
+      userRadius = new google.maps.Circle({
+        map: map,
+        radius: 500,
+        fillColor: '#16663a',
+        fillOpacity: 0.11,
+        strokeOpacity: 0.8,
+        strokeColor: '#16663a',
+        strokeWeight: 1
+      });
+
+      userRadius.bindTo('center', userMarker, 'position');
 
       infowindow = new google.maps.InfoWindow({
         content: 'Marker',
         maxWidth: 700
       });
 
-      google.maps.event.addListener(marker, 'click', function() {
+      google.maps.event.addListener(userMarker, 'click', function() {
         map.setZoom(10);
-        map.setCenter(marker.getPosition());
+        map.setCenter(userMarker.getPosition());
 
-        infowindow.open(map, marker);
+        infowindow.open(map, userMarker);
       });
 
       drawingManager = new google.maps.drawing.DrawingManager({
