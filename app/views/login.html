@@ -1,20 +1,20 @@
 <section class="sc-login">
   <div class="col-xs-12 col-sm-4 col-sm-offset-4">
     <figure class="col-xs-8 col-xs-offset-2 visible-xs">
-      <img src="images/logo.svg" alt="Selo Hortalivre">
+      <img src="images/logo-mobile.svg" alt="Selo Hortalivre">
     </figure>
 
-    <figure class="col-sm-4 col-sm-offset-4 hidden-xs">
-      <img src="images/selo.png" alt="Selo Hortalivre">
+    <figure class="col-sm-4 col-sm-offset-3 hidden-xs">
+      <img src="images/selo.svg" alt="Selo Hortalivre">
     </figure>
 
     <aside class="row btn-wrapper">
       <div class="col-xs-12">
-        <button ng-click="fbLogin()" class="btn btn-secondary small fb col-sm-5">
-        </button>
+        <h3 class="btn-title">entrar</h3>
 
-        <button ng-click="twLogin()" class="btn btn-secondary small tw col-sm-5 col-sm-push-2">
-        </button>
+        <button ng-click="fbLogin()" class="btn btn-secondary small fb col-sm-5"></button>
+
+        <button ng-click="twLogin()" class="btn btn-secondary small tw col-sm-5 col-sm-push-2"></button>
       </div>
     </aside>
 
@@ -32,8 +32,8 @@
         </fieldset>
 
         <fieldset class="form-group">
-          <span class="icon email"></span>
-          <input class="input-primary icon" type="password" placeholder="senha" ng-model="login.password">
+          <span class="icon senha"></span>
+          <input class="input-primary" type="password" placeholder="senha" ng-model="login.password">
         </fieldset>
 
         <button type="submit" class="btn btn-primary small active col-xs-12 col-sm-4 col-sm-offset-4">entrar</button>

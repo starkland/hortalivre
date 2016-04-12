@@ -99,18 +99,11 @@
       height: 20px;
       display: inline-block;
       background-repeat: no-repeat;
-      background-size: 100%;
-
+      background-size: 100% 100%;
       top: 12px;
       left: 15px;
       position: absolute;
       z-index: 1;
-    }
-
-    &.name {
-      &:before {
-        @include path('icon-email.svg');
-      }
     }
 
     &.email {
@@ -121,7 +114,13 @@
 
     &.senha {
       &:before {
-        @include path('icon-email.svg');
+        @include path('icon-password.svg');
+      }
+    }
+
+    &.address {
+      &:before {
+        @include path('icon-address.svg');
       }
     }
   }

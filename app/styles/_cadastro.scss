@@ -21,6 +21,10 @@
     font-weight: $fw-bold;
     margin-bottom: 30px;
   }
+
+  .wrapper-nome-sobrenome {
+    input { padding-left: 20px; }
+  }
 }
 
 
@@ -37,6 +41,10 @@
 @media (min-width: 992px) {
   .btn-title {
     font-size: ($fs-large)+.4;
+  }
+
+  .wrapper-nome-sobrenome {
+    input { padding-left: 40px; }
   }
 }
 

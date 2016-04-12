@@ -95,7 +95,7 @@ body {
     font-weight: $fw-bold;
 
     &:hover {
-      color: $color-primary !important;
+      color: $color-primary;
     }
   }
 
@@ -105,6 +105,11 @@ body {
     line-height: 10px !important;
     color: #fff !important;
     text-decoration: none;
+
+    &:hover {
+      color: #ffffff !important;
+      background-color: $color-secondary !important;
+    }
   }
 }
 

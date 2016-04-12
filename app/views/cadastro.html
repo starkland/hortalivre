@@ -1,11 +1,11 @@
 <section class="sc-cadastro">
   <div class="col-xs-12 col-sm-4 col-sm-offset-4">
     <figure class="col-xs-8 col-xs-offset-2 visible-xs">
-      <img src="images/logo.svg" alt="Selo Hortalivre">
+      <img src="images/logo-mobile.svg" alt="Selo Hortalivre">
     </figure>
 
-    <figure class="col-sm-4 col-sm-offset-4 hidden-xs">
-      <img src="images/selo.png" alt="Selo Hortalivre">
+    <figure class="col-sm-4 col-sm-offset-3 hidden-xs">
+      <img src="images/selo.svg" alt="Selo Hortalivre">
     </figure>
 
     <aside class="row btn-wrapper">
@@ -25,10 +25,17 @@
 
     <form class="row form-primary" ng-submit="cadastroEmail()">
       <div class="col-xs-12">
-        <fieldset class="form-group">
-          <span class="icon name"></span>
-          <input class="input-primary" type="text" placeholder="nome" ng-model="cadastro.name">
-        </fieldset>
+        <div class="row wrapper-nome-sobrenome">
+          <fieldset class="form-group col-sm-6">
+            <span class="icon"></span>
+            <input class="input-primary" type="text" placeholder="nome" ng-model="cadastro.name">
+          </fieldset>
+
+          <fieldset class="form-group col-sm-6">
+            <span class="icon"></span>
+            <input class="input-primary" type="text" placeholder="sobrenome" ng-model="cadastro.sobrenome">
+          </fieldset>
+        </div>
 
         <fieldset class="form-group">
           <span class="icon email"></span>
@@ -38,6 +45,11 @@
         <fieldset class="form-group">
           <span class="icon senha"></span>
           <input class="input-primary icon" type="password" placeholder="senha" ng-model="cadastro.password">
+        </fieldset>
+
+        <fieldset class="form-group">
+          <span class="icon address"></span>
+          <input class="input-primary icon" type="text" placeholder="endereço da minha horta" ng-model="cadastro.address">
         </fieldset>
 
         <fieldset class="form-group">
