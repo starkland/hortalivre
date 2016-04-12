@@ -64,6 +64,42 @@
   h4 { @extend %title-section; }
 
   p { @extend %description-section; }
+
+  a {
+    width: 160px;
+    height: 50px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    font-size: ($fs-normal)+.2;
+    background-repeat: no-repeat;
+    text-indent: -9999px;
+    background-size: 100%;
+    background-color: #ebebeb;
+    @include bdr(100px);
+    margin-right: 20px;
+
+    &:hover {
+      @include transition(background, .2s, 0s, ease-in-out);
+      background-color: #16663b;
+    }
+
+    &.download-app-store {
+      @include path('btn-app-store.svg');
+
+      &:hover {
+        @include path('btn-app-store-hover.svg');
+      }
+    }
+
+    &.download-google-play {
+      @include path('btn-google-play.svg');
+
+      &:hover {
+        @include path('btn-google-play-hover.svg');
+      }
+    }
+  }
 }
 
 .about-section {
