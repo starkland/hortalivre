@@ -25,7 +25,7 @@ angular.module('hortalivreApp')
     }
 
     // inicia o mapa
-    var userPosition, map, userMarker, drawingManager, infowindow, userRadius;
+    var userPosition, map, userMarker, drawingManager, infowindow, userRadius, styles, styledMap;
 
     function _initMap(position) {
       userPosition = {
@@ -35,7 +35,7 @@ angular.module('hortalivreApp')
 
       map = new google.maps.Map(document.getElementById('map-home'), {
         center: userPosition,
-        zoom: 14,
+        zoom: 15,
         mapTypeControl: false,
         panControl: false,
         streetViewControl: false,
@@ -44,12 +44,16 @@ angular.module('hortalivreApp')
         draggable: true,
         zoomControlOptions: {
           style: google.maps.ZoomControlStyle.SMALL
+        },
+        mapTypeControlOptions: {
+          mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
         }
       });
 
       userMarker = new google.maps.Marker({
         position: userPosition,
-        map: map
+        map: map,
+        animation: google.maps.Animation.DROP
       });
 
       userRadius = new google.maps.Circle({
@@ -95,6 +99,132 @@ angular.module('hortalivreApp')
       });
 
       drawingManager.setMap(map);
+
+      styles =  [
+        {
+          "featureType": "landscape",
+          "stylers": [
+          {
+            "saturation": -100
+          },
+          {
+            "lightness": 65
+          },
+          {
+            "visibility": "on"
+          }
+          ]
+        },
+        {
+          "featureType": "poi",
+          "stylers": [
+          {
+            "saturation": -100
+          },
+          {
+            "lightness": 51
+          },
+          {
+            "visibility": "simplified"
+          }
+          ]
+        },
+        {
+          "featureType": "road.highway",
+          "stylers": [
+          {
+            "saturation": -100
+          },
+          {
+            "visibility": "simplified"
+          }
+          ]
+        },
+        {
+          "featureType": "road.arterial",
+          "stylers": [
+          {
+            "saturation": -100
+          },
+          {
+            "lightness": 30
+          },
+          {
+            "visibility": "on"
+          }
+          ]
+        },
+        {
+          "featureType": "road.local",
+          "stylers": [
+          {
+            "saturation": -100
+          },
+          {
+            "lightness": 40
+          },
+          {
+            "visibility": "on"
+          }
+          ]
+        },
+        {
+          "featureType": "transit",
+          "stylers": [
+          {
+            "saturation": -100
+          },
+          {
+            "visibility": "simplified"
+          }
+          ]
+        },
+        {
+          "featureType": "administrative.province",
+          "stylers": [
+          {
+            "visibility": "off"
+          }
+          ]
+        },
+        {
+          "featureType": "water",
+          "elementType": "labels",
+          "stylers": [
+          {
+            "visibility": "on"
+          },
+          {
+            "lightness": -25
+          },
+          {
+            "saturation": -100
+          }
+          ]
+        },
+        {
+          "featureType": "water",
+          "elementType": "geometry",
+          "stylers": [
+          {
+            "hue": "#ffff00"
+          },
+          {
+            "lightness": -25
+          },
+          {
+            "saturation": -97
+          }
+          ]
+        }
+      ];
+
+      styledMap = new google.maps.StyledMapType(styles, {
+        name: "Hortalivre"
+      });
+
+      map.mapTypes.set('map_style', styledMap);
+      map.setMapTypeId('map_style');
 
 
       // Eventos
