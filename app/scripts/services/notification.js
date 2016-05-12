@@ -47,7 +47,7 @@ angular.module('hortalivreApp')
       var params = {
         title: title,
         message: message,
-        icon: '../../images/notification-icon.png'
+        icon: '../../images/selo.png'
       };
 
       if (getStatus() === "unsupported") { return; }
