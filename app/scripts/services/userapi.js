@@ -21,14 +21,13 @@ angular.module('hortalivreApp')
         });
     };
 
-    // obj.checkComplaint = function(params, callback) {
-    //   $http.post(apiUrl + '/api/v1/complaint/' + params)
-    //     .then(function (data) {
-    //       callback(data);
-    //     }, function (error) {
-    //       callback(error);
-    //     });
-    // };
+    obj.authEmail = function(data, callback) {
+      $http.post(apiUrl + '/api/v1/auth/', data, { headers: { 'Content-Type': 'application/json' }}).then(function (data) {
+          callback(data);
+        }, function (error) {
+          callback(error);
+        });
+    };
 
     // obj.getList = function(callback) {
     //   $http.get(apiUrl + '/api/v1/complaint/')

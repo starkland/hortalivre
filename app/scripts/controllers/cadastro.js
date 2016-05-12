@@ -8,7 +8,7 @@
  * Controller of the hortalivreApp
  */
 angular.module('hortalivreApp')
-  .controller('CadastroCtrl', ['$scope', '$http', 'Notification', 'UserApi', 'LocalStorage', '$location', function ($scope, $http, Notification, UserApi, LocalStorage, $location) {
+  .controller('CadastroCtrl', ['$scope', '$http', 'UserApi', 'LocalStorage', '$location', '$rootScope', function ($scope, $http, UserApi, LocalStorage, $location, $rootScope) {
 
     // ====
     $scope.fbCadastro = function() {
@@ -55,10 +55,12 @@ angular.module('hortalivreApp')
         UserApi.create(params, function(response) {
           if (response.status === 201) {
             LocalStorage.SaveUser(response.data);
-            $scope.$emit('user_created');
-            $location.path('/mapa');
 
+            $rootScope.user_logged = true; // altera o header
+            $scope.$emit('user_created');
             $scope.progressbar.complete();
+
+            $location.path('/mapa');
           } else {
             $scope.error.status = response.status;
             $scope.error.type = 'create-user';
@@ -68,7 +70,10 @@ angular.module('hortalivreApp')
         });
       }
     }
+    // ====
 
+    // ====
+    // Autocomplete para pesquisa do endereço
     $scope.autoComplete = function(address) {
       return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
         params: {

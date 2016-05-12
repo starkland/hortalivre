@@ -220,6 +220,16 @@ footer {
   }
 }
 
+.alert {
+  font-size: ($fs-normal);
+  margin-top: 20px;
+
+  a {
+    color: #31708f;
+    font-size: ($fs-normal)
+  }
+}
+
 // ====
 
 

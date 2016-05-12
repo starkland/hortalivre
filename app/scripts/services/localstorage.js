@@ -32,20 +32,20 @@ angular.module('hortalivreApp')
       localStorage.setItem('HORTALIVRE', JSON.stringify(user_storage));
     };
 
-    obj.saveUserPosition = function (obj) {
-      user_position.lat = obj.coords.latitude;
-      user_position.lng = obj.coords.longitude;
-      user_position.timestamp = obj.coords.timestamp;
+    // obj.saveUserPosition = function (obj) {
+    //   user_position.lat = obj.coords.latitude;
+    //   user_position.lng = obj.coords.longitude;
+    //   user_position.timestamp = obj.coords.timestamp;
 
-      localStorage.setItem('HORTALIVRE_POS', JSON.stringify(user_position));
-    };
+    //   localStorage.setItem('HORTALIVRE_POS', JSON.stringify(user_position));
+    // };
 
-    obj.saveFakePosition = function (obj) {
-      fake_position.lat = obj.latitude;
-      fake_position.lng = obj.longitude;
+    // obj.saveFakePosition = function (obj) {
+    //   fake_position.lat = obj.latitude;
+    //   fake_position.lng = obj.longitude;
 
-      localStorage.setItem('HORTALIVRE_POS', JSON.stringify(fake_position));
-    };
+    //   localStorage.setItem('HORTALIVRE_POS', JSON.stringify(fake_position));
+    // };
 
     return obj;
   });

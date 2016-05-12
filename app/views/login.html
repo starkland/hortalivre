@@ -28,15 +28,25 @@
       <div class="col-xs-12">
         <fieldset class="form-group">
           <span class="icon email"></span>
-          <input class="input-primary" type="email" placeholder="e-mail" ng-model="login.email">
+          <input class="input-primary" type="email" placeholder="e-mail" ng-model="login.email" required>
         </fieldset>
 
         <fieldset class="form-group">
           <span class="icon senha"></span>
-          <input class="input-primary" type="password" placeholder="senha" ng-model="login.password">
+          <input class="input-primary" type="password" placeholder="senha" ng-model="login.password" required>
         </fieldset>
 
         <button type="submit" class="btn btn-primary small active col-xs-12 col-sm-4 col-sm-offset-4">entrar</button>
+      </div>
+
+      <div class="col-xs-12">
+        <div ng-if="error.type === 'unauthorized'" class="alert alert-info" role="alert">
+          Parece que você ainda não tem cadastro no <b>Hortalivre</b>. <a ng-href="#/cadastro">Que tal fazer um agora?</a>
+        </div>
+
+        <div ng-if="error.type === 'login-user'" class="alert alert-danger" role="alert">
+          A combinação de <b>e-mail</b> e <b>senha</b> não constam em nossos sistemas!
+        </div>
       </div>
     </form>
 

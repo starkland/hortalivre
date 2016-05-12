@@ -8,7 +8,7 @@
  * Controller of the hortalivreApp
  */
 angular.module('hortalivreApp')
-  .controller('LoginCtrl', ['$scope', '$location', '$rootScope', function ($scope, $location, $rootScope) {
+  .controller('LoginCtrl', ['$scope', '$location', '$rootScope', 'UserApi', 'LocalStorage', function ($scope, $location, $rootScope, UserApi, LocalStorage) {
 
     // ====
     $scope.fbLogin = function() {
@@ -23,16 +23,34 @@ angular.module('hortalivreApp')
     // ====
 
     // ====
+    // Login
     $scope.login = {};
+    $scope.error = {};
 
     $scope.loginEmail = function() {
+      $scope.progressbar.start();
+
       var params = $scope.login;
-      console.log('Enviando -> ', params);
 
-      // adiciona um user no rootScope pra poder esconder e exibir o header
-      $rootScope.user = true;
+      UserApi.authEmail(params, function(response) {
+        if(response.status === 200) {
+          LocalStorage.SaveUser(response.data);
 
-      $location.path('/mapa');
+          $rootScope.user_logged = true; // altera o header
+          $scope.$emit('user_logged');
+          $scope.progressbar.complete();
+
+          $location.path('/mapa');
+        } else if (response.status === 401) {
+          $scope.error.type = 'unauthorized';
+
+          $scope.progressbar.complete();
+        } else {
+          $scope.error.type = 'login-user';
+
+          $scope.progressbar.complete();
+        }
+      })
     }
     // ====
 
