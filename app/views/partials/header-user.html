@@ -17,7 +17,7 @@
         </a>
       </div>
 
-      <div class="collapse navbar-collapse pull-right" id="js-navbar-collapse">
+      <div class="collapse navbar-collapse pull-right" id="js-navbar-collapse" ng-controller="UserCtrl">
         <ul class="nav navbar-nav">
           <li class="user-name">
             pedro borges
@@ -34,7 +34,7 @@
               <li><a title="meu perfil" ng-href="#/perfil">meu perfil</a></li>
               <li><a title="mapa" ng-href="#/mapa">mapa</a></li>
               <li><a title="favoritos" ng-href="#/favoritos">favoritos</a></li>
-              <li><a title="sair" ng-href="#/">sair</a></li>
+              <li><a title="sair" ng-click="logout()">sair</a></li>
             </ul>
           </li>
         </ul>

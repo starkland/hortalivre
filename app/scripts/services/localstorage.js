@@ -19,6 +19,10 @@ angular.module('hortalivreApp')
       return JSON.parse(localStorage.getItem(key));
     };
 
+    obj.remove = function (key) {
+      localStorage.removeItem(key);
+    };
+
     obj.SaveUser = function (obj) {
       user_storage._id = obj._id;
       user_storage.createdAt = obj.createdAt;
@@ -29,7 +33,7 @@ angular.module('hortalivreApp')
       user_storage.geolocation = obj.geolocation;
       user_storage.updatedAt = obj.updatedAt;
 
-      localStorage.setItem('HORTALIVRE', JSON.stringify(user_storage));
+      localStorage.setItem('HRTLVR', JSON.stringify(user_storage));
     };
 
     // obj.saveUserPosition = function (obj) {
