@@ -1,7 +1,6 @@
 <section class="sc-mapa" ng-init="loadMap()">
   <!-- aba com informações  -->
-  <!-- ng-class="{ 'active': markerOpen == true }" -->
-  <div class="col-xs-12 col-sm-3 wrapper-box-map">
+  <div class="col-xs-12 col-sm-3 wrapper-box-map" ng-class="{ 'active': markerInfo }">
     <div class="row user-info">
       <div class="col-xs-12">
         <figure>
@@ -17,7 +16,9 @@
         </div>
 
         <div class="row">
-          <p class="address">{{markerInfo.address}}</p>
+          <div class="col-xs-12">
+            <p class="address">{{markerInfo.address}}</p>
+          </div>
         </div>
       </div>
     </div>

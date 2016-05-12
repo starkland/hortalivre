@@ -42,15 +42,15 @@
     height: 100%;
     z-index: 10;
     margin-top: 0;
-    left: 0;
     text-align: center;
     background-color: #fff;
     @include bsd(1px, 0, 1px, rgba(0, 0, 0, .2));
 
-    // left: -100%;
-    // @include transition(left, .25s, linear, 0s);
+    // left: 0;
+    left: -100%;
+    @include transition(left, .5s, linear, 0s);
 
-    // &.active { left: 0; }
+    &.active { left: 0; }
   }
 
   .user-garden {

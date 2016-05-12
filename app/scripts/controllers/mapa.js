@@ -402,7 +402,8 @@ angular.module('hortalivreApp')
             "geolocation": [arrayMarkers[i].lat, arrayMarkers[i].lng],
             "email": arrayMarkers[i].email,
             "garden": arrayMarkers[i].garden,
-            "type": arrayMarkers[i].type
+            "type": arrayMarkers[i].type,
+            "address": arrayMarkers[i].address
           }
         });
 
@@ -419,10 +420,7 @@ angular.module('hortalivreApp')
             $scope.$emit('marker_click', { marker: marker, id: i });
 
             if (marker.data.type != 'garden') {
-              var string = "<h5>" + marker.data.fullName + "</h5>" +
-              "<p> e-mail: " + "<b>" + marker.data.email + "</b>" + "</p>" +
-              "<p> você encontra: " + "<b>" + marker.data.garden[0].name + "</b>" + ", " + "<b>" + marker.data.garden[1].name + "</b>"  + ", " + "<b>" + marker.data.garden[2].name + "</b>" + ", etc.." +
-              "<p>" + "mais informações: " + "<b>" + "<a href=" + "http://www.google.com.br" + " target='_blank'>link</a>" + "</b>" + "</p>";
+              var string = "<h5>" + marker.data.fullName + "</h5>" + "<p> e-mail: " + "<b>" + marker.data.email + "</b>" + "</p>" + "<p> você encontra: " + "<b>" + marker.data.garden[0].name + "</b>" + ", " + "<b>" + marker.data.garden[1].name + "</b>"  + ", " + "<b>" + marker.data.garden[2].name + "</b>" + ", etc.." + "<p>" + "mais informações: " + "<b>" + "<a href=" + "http://www.google.com.br" + " target='_blank'>link</a>" + "</b>" + "</p>";
 
               $scope.infowindow.setContent(string);
             } else {
@@ -512,9 +510,10 @@ angular.module('hortalivreApp')
     $scope.$on('marker_click', function(event, args) {
       console.log(args.marker.data);
 
-      $scope.markerInfo = args.marker.data;
+      $scope.$apply(function() {
+        $scope.markerInfo = args.marker.data;
+      })
 
-      // $rootScope.markerOpen = $rootScope.markerOpen === false ? true: false;
     });
 
     $scope.viewAllMarkers = function() {
