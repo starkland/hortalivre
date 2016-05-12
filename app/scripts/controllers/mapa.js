@@ -401,7 +401,8 @@ angular.module('hortalivreApp')
             "fullName": arrayMarkers[i].fullName,
             "geolocation": [arrayMarkers[i].lat, arrayMarkers[i].lng],
             "email": arrayMarkers[i].email,
-            "garden": arrayMarkers[i].garden
+            "garden": arrayMarkers[i].garden,
+            "type": arrayMarkers[i].type
           }
         });
 
@@ -472,26 +473,6 @@ angular.module('hortalivreApp')
     // ====
 
 
-    // ====
-    // Pesquisar as feiras
-    $scope.gardenMap = {};
-
-    $scope.searchHortas = function() {
-      $scope.gardenMap.type = 'hortas';
-    };
-
-    $scope.searchFeiras = function() {
-      $scope.gardenMap.type = 'feiras';
-    };
-
-    $scope.search = function() {
-      var params = $scope.gardenMap;
-
-      console.warn('Enviando -> ', params);
-    }
-    // ====
-
-
     $scope.loadMap = function() {
       var ls = LocalStorage.getItem('HRTLVR');
 
@@ -523,12 +504,44 @@ angular.module('hortalivreApp')
     });
 
     $scope.viewAllMarkers = function() {
+      $scope.infowindow.close();
+
       $scope.map.fitBounds($scope.bounds)
+
+      angular.forEach($scope.mapsMarkers, function(i) {
+        i.setVisible(true);
+      })
     };
 
     $scope.backMyLocation = function() {
+      $scope.infowindow.close();
+
       $scope.map.setZoom(14);
       $scope.map.setCenter($scope.userMarker.getPosition());
-    }
+    };
+
+    $scope.searchByGarden = function() {
+      $scope.infowindow.close();
+
+      angular.forEach($scope.mapsMarkers, function(i) {
+        if (i.data.type != 'garden') {
+          i.setVisible(false);
+        } else {
+          i.setVisible(true);
+        }
+      })
+    };
+
+    $scope.searchByFairs = function() {
+      $scope.infowindow.close();
+
+      angular.forEach($scope.mapsMarkers, function(i) {
+        if (i.data.type != 'fairs') {
+          i.setVisible(false);
+        } else {
+          i.setVisible(true);
+        }
+      })
+    };
 
   }]);
