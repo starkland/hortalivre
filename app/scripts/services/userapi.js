@@ -29,6 +29,14 @@ angular.module('hortalivreApp')
         });
     };
 
+    obj.recoverPass = function(data, callback) {
+      $http.post(apiUrl + '/api/v1/users/password_recover/', data, { headers: { 'Content-Type': 'application/json' }}).then(function (data) {
+          callback(data);
+        }, function (error) {
+          callback(error);
+        });
+    };
+
     // obj.getList = function(callback) {
     //   $http.get(apiUrl + '/api/v1/complaint/')
     //     .then(function (result) {
@@ -36,13 +44,6 @@ angular.module('hortalivreApp')
     //     }, function (error) {
     //       callback(error);
     //     });
-    // };
-
-    // obj.sendFeedback = function(data, callback) {
-    //   $http.post('https://formspree.io/taxisangry@gmail.com', data, {headers: {'Accept': 'application/json'}}).then(
-    //     function(data) { callback(data) },
-    //     function(error) { callback(error) }
-    //   );
     // };
 
     return obj;

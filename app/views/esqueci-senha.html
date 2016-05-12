@@ -1,17 +1,37 @@
 <section class="sc-esqueci-senha">
   <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-    <figure>
-        <img src="http://dummyimage.com/165x220/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image">
+    <figure class="col-xs-8 col-xs-offset-2 visible-xs">
+      <img src="images/logo-mobile.svg" alt="Selo Hortalivre">
     </figure>
+
+    <figure class="col-sm-4 col-sm-offset-3 hidden-xs">
+      <img src="images/selo.svg" alt="Selo Hortalivre">
+    </figure>
+
+    <aside class="row btn-wrapper">
+      <div class="col-xs-12">
+        <h3 class="btn-title">recuperar senha</h3>
+      </div>
+    </aside>
 
     <form class="row form-primary" ng-submit="recuperarSenha()">
       <div class="col-xs-12">
         <fieldset class="form-group">
           <span class="icon email"></span>
-          <input class="input-primary" type="email" placeholder="e-mail" ng-model="screen.email">
+          <input class="input-primary" type="email" placeholder="e-mail" ng-model="screen.email" required>
         </fieldset>
 
         <button type="submit" class="btn btn-primary small active">recuperar senha</button>
+      </div>
+
+      <div class="col-xs-12">
+        <div ng-if="error.type === 'not-found'" class="alert alert-danger" role="alert">
+          O <b>e-mail</b> fornecido, parece não ter cadastro no Hortalivre.
+        </div>
+
+        <div ng-if="error.type === 'recover-pass'" class="alert alert-info" role="alert">
+          Algum erro aconteceu no nosso sistema, tente novamente em alguns instantes.
+        </div>
       </div>
     </form>
   </div>
