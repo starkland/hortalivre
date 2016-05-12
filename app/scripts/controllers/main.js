@@ -296,7 +296,7 @@ angular.module('hortalivreApp')
         }
       });
 
-      drawingManager.setMap(map);
+      // drawingManager.setMap(map);
 
       if (args === 'zoom') {
         map.setZoom(4);
@@ -312,7 +312,7 @@ angular.module('hortalivreApp')
       // google.maps.event.addListener(map, 'idle', _showMarkers);
 
       // Permite o usuário desenhar no mapa
-      google.maps.event.addListener(drawingManager, 'polygoncomplete', _getCoordinates);
+      // google.maps.event.addListener(drawingManager, 'polygoncomplete', _getCoordinates);
 
       // setando alguns métodos no $scope
       $scope.map = map;
