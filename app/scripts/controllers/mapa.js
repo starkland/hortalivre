@@ -418,7 +418,17 @@ angular.module('hortalivreApp')
 
             $scope.$emit('marker_click', { marker: marker, id: i });
 
-            $scope.infowindow.setContent(marker.data.fullName);
+            if (marker.data.type != 'garden') {
+              var string = "<h5>" + marker.data.fullName + "</h5>" +
+              "<p> e-mail: " + "<b>" + marker.data.email + "</b>" + "</p>" +
+              "<p> você encontra: " + "<b>" + marker.data.garden[0].name + "</b>" + ", " + "<b>" + marker.data.garden[1].name + "</b>"  + ", " + "<b>" + marker.data.garden[2].name + "</b>" + ", etc.." +
+              "<p>" + "mais informações: " + "<b>" + "<a href=" + "http://www.google.com.br" + " target='_blank'>link</a>" + "</b>" + "</p>";
+
+              $scope.infowindow.setContent(string);
+            } else {
+              $scope.infowindow.setContent(marker.data.fullName);
+            }
+
             $scope.infowindow.open($scope.map, marker);
 
             // centraliza o mapa no marcador clicado
@@ -500,7 +510,11 @@ angular.module('hortalivreApp')
     });
 
     $scope.$on('marker_click', function(event, args) {
-      console.warn(args);
+      console.log(args.marker.data);
+
+      $scope.markerInfo = args.marker.data;
+
+      // $rootScope.markerOpen = $rootScope.markerOpen === false ? true: false;
     });
 
     $scope.viewAllMarkers = function() {

@@ -91,7 +91,7 @@
       }
     }
 
-    h3 { font-size: ($fs-large)+.4; }
+    h3 { font-size: ($fs-medium)+.4; }
 
     .address { font-size: ($fs-normal)+.2; }
   }
@@ -104,7 +104,7 @@
     .list-itens {
       max-height: 295px;
 
-      li { font-size: ($fs-large)+.4; }
+      li { font-size: ($fs-medium)+.4; }
     }
   }
 }
