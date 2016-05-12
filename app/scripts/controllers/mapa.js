@@ -415,12 +415,12 @@ angular.module('hortalivreApp')
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
           return function() {
 
-            // $scope.marker_click = marker;
             $scope.$emit('marker_click', { marker: marker, id: i });
 
             $scope.infowindow.setContent(marker.data.fullName);
             $scope.infowindow.open($scope.map, marker);
 
+            // centraliza o mapa no marcador clicado
             $scope.map.panTo(marker.position);
           }
         })(marker, i));

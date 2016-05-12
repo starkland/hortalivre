@@ -8,7 +8,7 @@
  * Controller of the hortalivreApp
  */
 angular.module('hortalivreApp')
-  .controller('MainCtrl', ['$scope', 'Notification', 'LocalStorage', '$rootScope', function ($scope, Notification, LocalStorage, $rootScope) {
+  .controller('MainCtrl', ['$scope', 'Notification', 'LocalStorage', '$rootScope', '$location', function ($scope, Notification, LocalStorage, $rootScope, $location) {
 
     // ====
     // Método para geolocalização
@@ -400,6 +400,10 @@ angular.module('hortalivreApp')
     $scope.$on('position_ok', function() {
       _initialize();
     });
+
+    $scope.goTo = function(params) {
+      $location.path(params);
+    };
 
 
   }]);

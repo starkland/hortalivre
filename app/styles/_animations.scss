@@ -46,3 +46,18 @@
 .pulse {
   animation: pulse infinite 1.2s linear;
 }
+
+
+// .wrp-controls-map {
+//   &.garden {
+//     button {
+//       animation: move .5s ease-out;
+
+//       &:nth-child(0) { animation-delay: .1s; }
+//       &:nth-child(1) { animation-delay: .2s; }
+//       &:nth-child(2) { animation-delay: .3s; }
+//       &:nth-child(3) { animation-delay: .4s; }
+//       &:nth-child(4) { animation-delay: .5s; }
+//     }
+//   }
+// }
