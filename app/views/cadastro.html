@@ -25,15 +25,20 @@
 
     <form class="row form-primary" ng-submit="cadastroEmail()">
       <div class="col-xs-12">
+        <fieldset class="form-group">
+          <span class="icon"></span>
+          <input class="input-primary" type="text" placeholder="Nome e Sobrenome" ng-model="cadastro.fullName">
+        </fieldset>
+
         <div class="row wrapper-nome-sobrenome">
           <fieldset class="form-group col-sm-6">
-            <span class="icon"></span>
-            <input class="input-primary" type="text" placeholder="nome" ng-model="cadastro.name">
+            <label for="gender-male">Masculino</label>
+            <input type="radio" value="male" name="gender" id="gender-male" class="radio-gender" ng-model="cadastro.gender">
           </fieldset>
 
           <fieldset class="form-group col-sm-6">
-            <span class="icon"></span>
-            <input class="input-primary" type="text" placeholder="sobrenome" ng-model="cadastro.sobrenome">
+            <label for="gender-female">Feminino</label>
+            <input type="radio" value="female" name="gender" id="gender-female" class="radio-gender" ng-model="cadastro.gender">
           </fieldset>
         </div>
 
@@ -49,7 +54,7 @@
 
         <fieldset class="form-group">
           <span class="icon address"></span>
-          <input class="input-primary icon" type="text" placeholder="endereço da minha horta" ng-model="cadastro.address">
+          <input class="input-primary icon" type="text" placeholder="endereço da minha horta" ng-model="cadastro.address" autocomplete="off" uib-typeahead="address for address in autoComplete($viewValue)">
         </fieldset>
 
         <fieldset class="form-group">
@@ -58,6 +63,20 @@
         </fieldset>
 
         <button type="submit" class="btn btn-primary small active col-xs-12 col-sm-4 col-sm-offset-4">cadastrar</button>
+
+        <div class="col-xs-12">
+          <div ng-if="error.type === 'create-user'" class="alert alert-danger" role="alert">
+              Algo deu errado, e parece que foi <b> {{error.status}} </b>!
+          </div>
+
+          <div ng-if="error.type === 'terms'" class="alert alert-danger" role="alert">
+            Você precisa concordar com os <b>termos de uso</b>.
+          </div>
+
+          <div ng-if="error.type === 'address'" class="alert alert-danger" role="alert">
+            Você precisa fornecer um  <b>endereço</b> para o seu cadastro.
+          </div>
+        </div>
       </div>
     </form>
   </div>

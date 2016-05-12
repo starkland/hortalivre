@@ -15,7 +15,11 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui.bootstrap',
+    'ngProgress',
+    'angularMoment',
+    'ngMask'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -67,4 +71,64 @@ angular
       .otherwise({
         redirectTo: '/login'
       });
-  });
+  })
+  .run(['$window', '$rootScope', 'Notification', 'ngProgressFactory', function ($window, $rootScope, Notification, ngProgressFactory) {
+
+    // ====
+    // Offline status
+    $rootScope.online = navigator.onLine;
+
+    $window.addEventListener("offline", function () {
+      $rootScope.$apply(function() {
+        $rootScope.online = false;
+        $rootScope.$emit('network_changed');
+      });
+    }, false);
+
+    $window.addEventListener("online", function () {
+      $rootScope.$apply(function() {
+        $rootScope.online = true;
+        $rootScope.$emit('network_changed');
+      });
+    }, false);
+
+    function _setOnlineFavicon() {
+      var link;
+
+      link = document.createElement('link');
+      link.type = 'image/x-icon';
+      link.rel = 'shortcut icon';
+      link.href = 'https://angrytaxis.com/favicon.ico';
+
+      document.getElementsByTagName('head')[0].appendChild(link);
+    }
+
+    function _setOfflineFavicon() {
+      var link;
+
+      link = document.createElement('link');
+      link.type = 'image/x-icon';
+      link.rel = 'shortcut icon';
+      link.href = 'https://angrytaxis.com/favicon-off.ico';
+
+      document.getElementsByTagName('head')[0].appendChild(link);
+    }
+
+    $rootScope.$on('network_changed', function() {
+      if ($rootScope.online === true) {
+        Notification.show('UHUL!', 'Sua internet voltou a funcionar :)');
+        // _setOnlineFavicon();
+      } else {
+        Notification.show('OPS!', 'Você parece está com problemas de internet :(');
+        // _setOfflineFavicon();
+      }
+    })
+    // ====
+
+    // ====
+    // Barra de progresso
+    $rootScope.progressbar = ngProgressFactory.createInstance();
+    $rootScope.progressbar.setColor('#16663B');
+    $rootScope.progressbar.setHeight('4px');
+    // ====
+  }]);

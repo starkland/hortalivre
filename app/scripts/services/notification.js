@@ -43,12 +43,11 @@ angular.module('hortalivreApp')
 
     var obj = {};
 
-    // status == 'success' || 'error' || 'alert'
-    obj.show = function(status,title, message) {
+    obj.show = function(title, message) {
       var params = {
         title: title,
         message: message,
-        icon: '../../images/icon-'+status+'.png'
+        icon: '../../images/notification-icon.png'
       };
 
       if (getStatus() === "unsupported") { return; }
