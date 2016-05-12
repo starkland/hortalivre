@@ -1,0 +1,50 @@
+[
+  {
+    "id": "1",
+    "createdAt": "2016-05-11T23:57:05.533Z",
+    "email": "thulioph+ds@gmail.com",
+    "fullName": "Thulio Philipe",
+    "favorites": [],
+    "garden": [{"name": "manga"}, {"name": "cupuaçu"}],
+    "geolocation": [ -6.609522, -35.9704801 ],
+    "address": "Damião - State of Paraíba, 58173-000, Brazil",
+    "updatedAt": "2016-05-11T23:57:05.533Z",
+    "type": "garden"
+  },
+  {
+    "id": "1",
+    "createdAt": "2016-05-11T23:57:05.533Z",
+    "email": "feira@gmail.com",
+    "fullName": "Feira de Santana",
+    "favorites": [],
+    "garden": [{"name": "abacate"}, {"name": "caju"}, {"name": "cenoura"}],
+    "geolocation": [ -7.152925, -34.878325 ],
+    "address": "Cristo Redentor, João Pessoa - PB, Brazil",
+    "updatedAt": "2016-05-11T23:57:05.533Z",
+    "type": "fairs"
+  },
+  {
+    "id": "3",
+    "createdAt": "2016-05-11T23:57:05.533Z",
+    "email": "caio-lucas@gmail.com",
+    "fullName": "Caio Lucas",
+    "favorites": [],
+    "garden": [],
+    "geolocation": [ -8.344920, -35.875334 ],
+    "address": "Bezerros, Bezerros - PE, Brazil",
+    "updatedAt": "2016-05-11T23:57:05.533Z",
+    "type": "garden"
+  },
+  {
+    "id": "3",
+    "createdAt": "2016-05-11T23:57:05.533Z",
+    "email": "roger@gmail.com",
+    "fullName": "Roger Alberto",
+    "favorites": [],
+    "garden": [{"name": "jaca"}, {"name": "pitanga"}, {"name": "alho"}, {"name": "laranja"}, {"name": "pinha"}],
+    "geolocation": [ -12.203373, -57.946867 ],
+    "address": "Brasnorte - State of Mato Grosso, Brazil",
+    "updatedAt": "2016-05-11T23:57:05.533Z",
+    "type": "garden"
+  }
+]

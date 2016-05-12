@@ -1,4 +1,10 @@
 <section class="sc-mapa" ng-init="loadMap()">
+
+  <!-- Controles no mapa -->
+  <div ng-show="map" class="hidden-xs wrp-controls-map">
+    <div ng-include src="'views/partials/search-garden.html'"></div>
+  </div>
+
   <div id="map-primary" class="col-xs-12 map-container"></div>
 
   <!--
@@ -37,7 +43,7 @@
   </div>
    -->
 
-  <div class="col-sm-6 col-sm-offset-4 wrapper-search-garden">
+  <!-- <div class="col-sm-6 col-sm-offset-4 wrapper-search-garden">
     <div ng-include src="'views/partials/search-garden.html'"></div>
-  </div>
+  </div> -->
 </section>

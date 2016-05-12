@@ -2,12 +2,23 @@
   + trocar button por inputs
 -->
 
+<button class="all_map popup" data-popup="Mapa completo" ng-click="viewAllMarkers()" title="Ver mapa completo">Ver mapa completo</button>
+
+<button class="my_location popup" ng-click="backMyLocation()" data-popup="Mostrar meu local" title="Mostrar meu local">Mostrar meu local</button>
+
+<button class="horta popup" ng-click="searchHortas()" data-popup="Hortas" title="Hortas">Filtrar por Hortas</button>
+<!-- ng-class="{ 'active' : type == 'hortas' }"  -->
+
+<button class="feira popup" ng-click="searchFeiras()" data-popup="Feiras" title="Feiras">Filtrar por Feiras</button>
+<!-- ng-class="{ 'active' : type == 'feiras' }" -->
+
+<!--
 <aside class="hidden-xs map-more-actions">
-  <button ng-click="searchHortas(); type = 'hortas';" ng-class="{ 'active' : type == 'hortas' }" class="btn btn horta" data-popup="procure pela horta mais próxima">
+  <button ng-click="searchHortas(); type = 'hortas';" ng-class="{ 'active' : type == 'hortas' }" class="btn btn horta" data-popup="Hortas">
     Hortas
   </button>
 
-  <button ng-click="searchFeiras(); type = 'feiras';" ng-class="{ 'active' : type == 'feiras' }" class="btn btn feira" data-popup="procure pela feira mais próxima">
+  <button ng-click="searchFeiras(); type = 'feiras';" ng-class="{ 'active' : type == 'feiras' }" class="btn btn feira" data-popup="Feiras">
     Feiras
   </button>
 
@@ -15,3 +26,4 @@
     <input type="search" placeholder="O que você procura?" ng-model="gardenMap.search" class="input-primary">
   </form>
 </aside>
+ -->
