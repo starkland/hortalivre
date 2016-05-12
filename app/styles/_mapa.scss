@@ -23,8 +23,7 @@
 
 .map-container {
   height: 100%;
-  top: 70px;
-  left: 0;
+  width: 100%;
   z-index: 1;
   position: fixed !important;
 }
@@ -42,7 +41,7 @@
     position: relative;
     height: 100%;
     z-index: 10;
-    margin-top: -30px;
+    margin-top: 0;
     text-align: center;
     background-color: #fff;
     @include bsd(1px, 0, 1px, rgba(0, 0, 0, .2));
@@ -62,9 +61,11 @@
   .sc-mapa {
     .wrapper-search-garden {
       position: fixed;
-      bottom: 80px;
-      left: 0;
+      bottom: 10px;
+      left: 50%;
       z-index: 10;
+      margin-left: -250px;
+      text-align: center;
     }
   }
 }

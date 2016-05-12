@@ -20,12 +20,12 @@
       <div class="collapse navbar-collapse pull-right" id="js-navbar-collapse" ng-controller="UserCtrl">
         <ul class="nav navbar-nav">
           <li class="user-name">
-            pedro borges
+            {{userInfo.fullName}}
           </li>
 
           <li class="mini-avatar-user hidden-xs">
             <figure id="menuPrimary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              <img src="http://dummyimage.com/50x50/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image">
+              <img ng-src="http://dummyimage.com/50x50/4d494d/686a82.gif&text=placeholder+image" alt="{{userInfo.fullName}}">
             </figure>
 
             <span class="caret" id="menuPrimary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></span>

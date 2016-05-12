@@ -1,23 +1,28 @@
 <section class="sc-mapa" ng-init="loadMap()">
-  <div id="map-primary" class="col-sm-9 col-sm-offset-3 map-container"></div>
+  <div id="map-primary" class="col-xs-12 map-container"></div>
 
-  <div class="col-xs-12 col-sm-3 wrapper-box-map">
+  <!--
+  <div class="col-xs-12 col-sm-3 wrapper-box-map" ng-controller="UserCtrl">
     <div class="row user-info">
       <div class="col-xs-12">
         <figure>
-          <img src="http://dummyimage.com/110x110/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image">
+          <img ng-src="http://dummyimage.com/110x110/4d494d/686a82.gif&text=placeholder+image" alt="{{userInfo.fullName}}">
         </figure>
 
-        <h3>thulio philipe</h3>
+        <h3>{{userInfo.fullName}}</h3>
 
         <div class="wrapper-button row">
-          <button ng-click="fbLogin()" class="btn btn-secondary smallest fb col-sm-4 col-sm-offset-2">com facebook</button>
+          <button ng-click="fbLogin()" class="btn btn-secondary smallest fb col-sm-4 col-sm-offset-2">
+            com facebook
+          </button>
 
-          <button ng-click="twLogin()" class="btn btn-secondary smallest tw col-sm-4">com twitter</button>
+          <button ng-click="twLogin()" class="btn btn-secondary smallest tw col-sm-4">
+            com twitter
+          </button>
         </div>
 
         <div class="row">
-          <p class="address">Av. Integração - 571, 081 00000.0000</p>
+          <p class="address">{{userInfo.garden_address}}</p>
         </div>
       </div>
     </div>
@@ -26,15 +31,11 @@
       <h4>itens da horta</h4>
 
       <ul class="list-itens">
-        <li>alface</li>
-        <li>cebolinho</li>
-        <li>tomate</li>
-        <li>alcatrão</li>
-        <li>cenoura</li>
-        <li>pepino</li>
+        <li ng-repeat="item in user_garden">{{item.name}}</li>
       </ul>
     </div>
   </div>
+   -->
 
   <div class="col-sm-6 col-sm-offset-4 wrapper-search-garden">
     <div ng-include src="'views/partials/search-garden.html'"></div>

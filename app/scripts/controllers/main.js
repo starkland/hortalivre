@@ -276,8 +276,6 @@ angular.module('hortalivreApp')
 
       $scope.bounds = new google.maps.LatLngBounds();
 
-      $scope.geocoder = new google.maps.Geocoder();
-
       drawingManager = new google.maps.drawing.DrawingManager({
         drawingControl: true,
         drawingControlOptions: {

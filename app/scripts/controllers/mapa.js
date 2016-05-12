@@ -8,30 +8,52 @@
  * Controller of the hortalivreApp
  */
 angular.module('hortalivreApp')
-  .controller('MapaCtrl', ['$scope', '$rootScope', 'Notification', function ($scope, $rootScope, Notification) {
+  .controller('MapaCtrl', ['$scope', '$rootScope', 'Notification', 'LocalStorage', function ($scope, $rootScope, Notification, LocalStorage) {
 
-    // obtém a localização do usuário
+    // ====
+    // Método para geolocalização
     function _getLocation() {
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(_initMap, error);
+        navigator.geolocation.getCurrentPosition(savePosition, error);
       } else {
-        Notification.show('error', 'Hortalivre', 'Seu browser não suporta geolocalização.')
+        Notification.show('Atenção', 'Geolocalização não é suportado pelo seu navegador.');
       }
     }
 
     function error(error) {
-      console.warn('Error: ', error);
-      Notification.show('error', 'Hortalivre', error);
+      Notification.show('Atenção', error);
     }
 
-    // inicia o mapa
-    var userPosition, map, userMarker, drawingManager, infowindow, styles, styledMap, userRadius;
+    function savePosition(position) {
+      var ls_position, fake_position;
 
-    function _initMap(position) {
-      userPosition = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
+      LocalStorage.SaveUserPosition(position);
+      ls_position = LocalStorage.getItem('HRTLVR_POS');
+
+      if (ls_position != null) {
+        $scope.$emit('position_ok');
+      } else {
+        Notification.show('Atenção', 'É necessário alterar as configurações de privacidade do seu GPS para um perfeito funcionamento do Hortalivre.')
+
+        fake_position = {
+          'latitude': -13.569368,
+          'longitude': -56.5357314
+        };
+
+        LocalStorage.SaveFakePosition(fake_position);
+        $scope.$emit('position_fake');
+      }
+    }
+    // ====
+
+    // ====
+    // Métodos do mapa
+    function _initialize(args) {
+      var ls_position, userPosition, map, userMarker, userRadius, styles, styledMap, drawingManager;
+
+      ls_position = LocalStorage.getItem('HRTLVR_POS');
+
+      userPosition = new google.maps.LatLng(ls_position.lat, ls_position.lng);
 
       map = new google.maps.Map(document.getElementById('map-primary'), {
         center: userPosition,
@@ -42,6 +64,8 @@ angular.module('hortalivreApp')
         zoomControl: true,
         scrollwheel: false,
         draggable: true,
+        zIndex: 100,
+        title: 'Você está aqui',
         zoomControlOptions: {
           style: google.maps.ZoomControlStyle.SMALL
         },
@@ -54,11 +78,7 @@ angular.module('hortalivreApp')
         position: userPosition,
         map: map,
         animation: google.maps.Animation.DROP
-      });
-
-      infowindow = new google.maps.InfoWindow({
-        content: 'Marker',
-        maxWidth: 700
+        // icon: '/images/user-icon.png'
       });
 
       userRadius = new google.maps.Circle({
@@ -71,14 +91,190 @@ angular.module('hortalivreApp')
         strokeWeight: 1
       });
 
+      styles =[
+        {
+          "featureType": "water",
+          "elementType": "geometry",
+          "stylers": [
+          {
+            "color": "#e9e9e9"
+          },
+          {
+            "lightness": 17
+          }
+          ]
+        },
+        {
+          "featureType": "landscape",
+          "elementType": "geometry",
+          "stylers": [
+          {
+            "color": "#CECECE"
+          },
+          {
+            "lightness": 20
+          }
+          ]
+        },
+        {
+          "featureType": "road.highway",
+          "elementType": "geometry.fill",
+          "stylers": [
+          {
+            "color": "#ffffff"
+          },
+          {
+            "lightness": 17
+          }
+          ]
+        },
+        {
+          "featureType": "road.highway",
+          "elementType": "geometry.stroke",
+          "stylers": [
+          {
+            "color": "#ffffff"
+          },
+          {
+            "lightness": 29
+          },
+          {
+            "weight": 0.2
+          }
+          ]
+        },
+        {
+          "featureType": "road.arterial",
+          "elementType": "geometry",
+          "stylers": [
+          {
+            "color": "#ffffff"
+          },
+          {
+            "lightness": 18
+          }
+          ]
+        },
+        {
+          "featureType": "road.local",
+          "elementType": "geometry",
+          "stylers": [
+          {
+            "color": "#ffffff"
+          },
+          {
+            "lightness": 16
+          }
+          ]
+        },
+        {
+          "featureType": "poi",
+          "elementType": "geometry",
+          "stylers": [
+          {
+            "color": "#f5f5f5"
+          },
+          {
+            "lightness": 21
+          }
+          ]
+        },
+        {
+          "featureType": "poi.park",
+          "elementType": "geometry",
+          "stylers": [
+          {
+            "color": "#dedede"
+          },
+          {
+            "lightness": 21
+          }
+          ]
+        },
+        {
+          "elementType": "labels.text.stroke",
+          "stylers": [
+          {
+            "visibility": "on"
+          },
+          {
+            "color": "#ffffff"
+          },
+          {
+            "lightness": 16
+          }
+          ]
+        },
+        {
+          "elementType": "labels.text.fill",
+          "stylers": [
+          {
+            "saturation": 36
+          },
+          {
+            "color": "#333333"
+          },
+          {
+            "lightness": 40
+          }
+          ]
+        },
+        {
+          "elementType": "labels.icon",
+          "stylers": [
+          {
+            "visibility": "off"
+          }
+          ]
+        },
+        {
+          "featureType": "transit",
+          "elementType": "geometry",
+          "stylers": [
+          {
+            "color": "#f2f2f2"
+          },
+          {
+            "lightness": 19
+          }
+          ]
+        },
+        {
+          "featureType": "administrative",
+          "elementType": "geometry.fill",
+          "stylers": [
+          {
+            "color": "#fefefe"
+          },
+          {
+            "lightness": 20
+          }
+          ]
+        },
+        {
+          "featureType": "administrative",
+          "elementType": "geometry.stroke",
+          "stylers": [
+          {
+            "color": "#fefefe"
+          },
+          {
+            "lightness": 17
+          },
+          {
+            "weight": 1.2
+          }
+          ]
+        }
+      ];
+
+      styledMap = new google.maps.StyledMapType(styles, {
+        name: "Horta Map"
+      });
+
       userRadius.bindTo('center', userMarker, 'position');
 
-      google.maps.event.addListener(userMarker, 'click', function() {
-        map.setZoom(10);
-        map.setCenter(marker.getPosition());
-
-        infowindow.open(map, marker);
-      });
+      $scope.bounds = new google.maps.LatLngBounds();
 
       drawingManager = new google.maps.drawing.DrawingManager({
         drawingControl: true,
@@ -100,198 +296,29 @@ angular.module('hortalivreApp')
 
       drawingManager.setMap(map);
 
-      styles =[
-          {
-              "featureType": "water",
-              "elementType": "geometry",
-              "stylers": [
-                  {
-                      "color": "#e9e9e9"
-                  },
-                  {
-                      "lightness": 17
-                  }
-              ]
-          },
-          {
-              "featureType": "landscape",
-              "elementType": "geometry",
-              "stylers": [
-                  {
-                      "color": "#CECECE"
-                  },
-                  {
-                      "lightness": 20
-                  }
-              ]
-          },
-          {
-              "featureType": "road.highway",
-              "elementType": "geometry.fill",
-              "stylers": [
-                  {
-                      "color": "#ffffff"
-                  },
-                  {
-                      "lightness": 17
-                  }
-              ]
-          },
-          {
-              "featureType": "road.highway",
-              "elementType": "geometry.stroke",
-              "stylers": [
-                  {
-                      "color": "#ffffff"
-                  },
-                  {
-                      "lightness": 29
-                  },
-                  {
-                      "weight": 0.2
-                  }
-              ]
-          },
-          {
-              "featureType": "road.arterial",
-              "elementType": "geometry",
-              "stylers": [
-                  {
-                      "color": "#ffffff"
-                  },
-                  {
-                      "lightness": 18
-                  }
-              ]
-          },
-          {
-              "featureType": "road.local",
-              "elementType": "geometry",
-              "stylers": [
-                  {
-                      "color": "#ffffff"
-                  },
-                  {
-                      "lightness": 16
-                  }
-              ]
-          },
-          {
-              "featureType": "poi",
-              "elementType": "geometry",
-              "stylers": [
-                  {
-                      "color": "#f5f5f5"
-                  },
-                  {
-                      "lightness": 21
-                  }
-              ]
-          },
-          {
-              "featureType": "poi.park",
-              "elementType": "geometry",
-              "stylers": [
-                  {
-                      "color": "#dedede"
-                  },
-                  {
-                      "lightness": 21
-                  }
-              ]
-          },
-          {
-              "elementType": "labels.text.stroke",
-              "stylers": [
-                  {
-                      "visibility": "on"
-                  },
-                  {
-                      "color": "#ffffff"
-                  },
-                  {
-                      "lightness": 16
-                  }
-              ]
-          },
-          {
-              "elementType": "labels.text.fill",
-              "stylers": [
-                  {
-                      "saturation": 36
-                  },
-                  {
-                      "color": "#333333"
-                  },
-                  {
-                      "lightness": 40
-                  }
-              ]
-          },
-          {
-              "elementType": "labels.icon",
-              "stylers": [
-                  {
-                      "visibility": "off"
-                  }
-              ]
-          },
-          {
-              "featureType": "transit",
-              "elementType": "geometry",
-              "stylers": [
-                  {
-                      "color": "#f2f2f2"
-                  },
-                  {
-                      "lightness": 19
-                  }
-              ]
-          },
-          {
-              "featureType": "administrative",
-              "elementType": "geometry.fill",
-              "stylers": [
-                  {
-                      "color": "#fefefe"
-                  },
-                  {
-                      "lightness": 20
-                  }
-              ]
-          },
-          {
-              "featureType": "administrative",
-              "elementType": "geometry.stroke",
-              "stylers": [
-                  {
-                      "color": "#fefefe"
-                  },
-                  {
-                      "lightness": 17
-                  },
-                  {
-                      "weight": 1.2
-                  }
-              ]
-          }
-      ];
+      if (args === 'zoom') {
+        map.setZoom(4);
+        userMarker.setMap(null);
+      };
 
-      styledMap = new google.maps.StyledMapType(styles, {
-        name: "Hortalivre"
-      });
-
-      map.mapTypes.set('map_style', styledMap);
-      map.setMapTypeId('map_style');
-
+      // Aplicando as configurações do mapa
+      map.mapTypes.set('horta_map', styledMap);
+      map.setMapTypeId('horta_map');
 
       // Eventos
       // carrega mais marcadores
-      google.maps.event.addListener(map, 'idle', _showMarkers);
+      // google.maps.event.addListener(map, 'idle', _showMarkers);
 
       // Permite o usuário desenhar no mapa
       google.maps.event.addListener(drawingManager, 'polygoncomplete', _getCoordinates);
-    }
+
+      // setando alguns métodos no $scope
+      $scope.map = map;
+      $rootScope.map = map;
+      $scope.userMarker = userMarker;
+
+      $scope.$emit('map_ok');
+    };
 
     // obtém mais marcadores quando move o mapa
     function _showMarkers() {
@@ -330,10 +357,13 @@ angular.module('hortalivreApp')
         maxWidth: 700
       });
 
-      google.maps.event.addListener(marker, 'click', function() {
+      google.maps.event.addListener(marker, 'click', function(e, i) {
+        console.warn('EEE -> ', e);
+        console.warn('III -> ', i);
+
         infowindow.open(map, marker);
       });
-    }
+    };
 
     // obtém as coordenadas de acordo com o desenho no mapa
     function _getCoordinates(polygon) {
@@ -341,33 +371,47 @@ angular.module('hortalivreApp')
 
       coordinates = (polygon.getPath().getArray());
 
-      console.warn('Coordinates of drawing: ', coordinates);
-    }
+      console.warn('Coordenadas que foram desenhadas: ', coordinates);
+    };
     // ====
 
-    $scope.loadMap = function() {
-      _getLocation();
 
-      // adiciona um user no rootScope pra poder esconder e exibir o header
-      $rootScope.user = true;
-    }
-
-
+    // ====
     // Pesquisar as feiras
-    $scope.map = {};
+    $scope.gardenMap = {};
 
     $scope.searchHortas = function() {
-      $scope.map.type = 'hortas';
+      $scope.gardenMap.type = 'hortas';
     };
 
     $scope.searchFeiras = function() {
-      $scope.map.type = 'feiras';
+      $scope.gardenMap.type = 'feiras';
     };
 
     $scope.search = function() {
-      var params = $scope.map;
+      var params = $scope.gardenMap;
 
       console.warn('Enviando -> ', params);
     }
+    // ====
+
+
+    $scope.loadMap = function() {
+      var ls = LocalStorage.getItem('HRTLVR');
+
+      if (ls) {
+        _initialize();
+      } else {
+        _getLocation();
+      }
+    };
+
+    $scope.$on('position_ok', function() {
+      _initialize();
+    });
+
+    $scope.$on('position_fake', function() {
+      _initialize();
+    });
 
   }]);
