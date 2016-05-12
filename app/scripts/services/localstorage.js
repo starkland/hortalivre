@@ -34,6 +34,8 @@ angular.module('hortalivreApp')
       user_storage.updatedAt = obj.updatedAt;
 
       localStorage.setItem('HRTLVR', JSON.stringify(user_storage));
+
+      $rootScope.userInfo = user_storage;
     };
 
     obj.SaveUserPosition = function(obj) {
