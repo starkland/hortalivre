@@ -57,16 +57,19 @@ angular
         templateUrl: 'views/perfil.html',
         controller: 'PerfilCtrl',
         controllerAs: 'perfil'
+        // ,resolve: { loggedin: checkLoggedOut }
       })
       .when('/mapa', {
         templateUrl: 'views/mapa.html',
         controller: 'MapaCtrl',
         controllerAs: 'mapa'
+        // ,resolve: { loggedin: checkLoggedOut }
       })
       .when('/favoritos', {
         templateUrl: 'views/favoritos.html',
         controller: 'FavoritosCtrl',
         controllerAs: 'favoritos'
+        // ,resolve: { loggedin: checkLoggedOut }
       })
       .otherwise({
         redirectTo: '/login'
@@ -132,3 +135,18 @@ angular
     $rootScope.progressbar.setHeight('4px');
     // ====
   }]);
+
+  var checkLoggedOut = function($q, $timeout, $location, $rootScope) {
+    // ====
+    var deferred = $q.defer();
+
+    if ($rootScope.userInfo) {
+      deferred.resolve();
+    } else {
+      $timeout(deferred.reject);
+      return $location.url('/login');
+    }
+
+    return deferred.promise;
+    // ====
+  };

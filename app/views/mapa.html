@@ -2,17 +2,18 @@
   <!-- aba com informações  -->
   <div class="col-xs-12 col-sm-3 wrapper-box-map" ng-class="{ 'active': markerInfo }">
     <div class="row user-info">
-      <div class="col-xs-12">
+      <!-- marcador de usuário -->
+      <div ng-show="markerInfo.fullName" class="col-xs-12">
         <figure>
           <img ng-src="http://dummyimage.com/110x110/4d494d/686a82.gif&text=placeholder+image" alt="{{markerInfo.fullName}}">
         </figure>
 
         <h3>{{markerInfo.fullName}}</h3>
 
-        <div class="wrapper-button row">
-          <button ng-click="goTo()" class="btn btn-secondary smallest fb col-sm-4 col-sm-offset-2">com facebook</button>
+        <div ng-show="markerInfo.fb_link || markerInfo.tw_link" class="wrapper-button row">
+          <button ng-click="link(fb_link)" class="btn btn-secondary smallest fb col-sm-4 col-sm-offset-2">com facebook</button>
 
-          <button ng-click="goTo()" class="btn btn-secondary smallest tw col-sm-4">com twitter</button>
+          <button ng-click="link(tw_link)" class="btn btn-secondary smallest tw col-sm-4">com twitter</button>
         </div>
 
         <div class="row">
@@ -21,9 +22,28 @@
           </div>
         </div>
       </div>
+
+      <!-- marcador de feira -->
+      <div ng-show="markerInfo.title" class="col-xs-12">
+        <figure>
+          <img ng-src="images/marker-fairs.svg" alt="ícone de uma feira">
+        </figure>
+
+        <h3>{{markerInfo.title}}</h3>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <p class="address">{{markerInfo.rating_value}} avaliações</p>
+          </div>
+
+          <div class="col-xs-12">
+            <p class="address"><a ng-href="{{markerInfo.link}}" target="_blank">{{markerInfo.link}}</a></p>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="row user-garden">
+    <div class="row user-garden" ng-show="markerInfo.garden">
       <h4>itens da horta</h4>
 
       <ul class="list-itens">

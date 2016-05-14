@@ -10,6 +10,10 @@
 angular.module('hortalivreApp')
   .controller('MapaCtrl', ['$scope', '$rootScope', 'Notification', 'LocalStorage', 'GardenApi', function ($scope, $rootScope, Notification, LocalStorage, GardenApi) {
 
+    $scope.link = function(param) {
+      link(param)
+    };
+
     // ====
     // Método para geolocalização
     function _getLocation() {
@@ -557,7 +561,6 @@ angular.module('hortalivreApp')
       $scope.$apply(function() {
         $scope.markerInfo = args.marker.data;
       })
-
     });
 
     $scope.viewAllMarkers = function() {
@@ -608,5 +611,12 @@ angular.module('hortalivreApp')
         }
       })
     };
+
+    function link(args) {
+      var win;
+
+      win = window.open(args, '_blank');
+      return win.focus();
+    }
 
   }]);
