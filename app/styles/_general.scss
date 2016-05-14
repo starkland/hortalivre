@@ -2,6 +2,16 @@
 // General Styles
 //
 
+::selection {
+  background-color: $color-secondary;
+  color: #FFFFFF;
+}
+
+::-moz-selection {
+  background-color: $color-secondary;
+  color: #FFFFFF;
+}
+
 %placeholder {
   color: #4a4a4a;
   font-size: ($fs-normal)+.2;
