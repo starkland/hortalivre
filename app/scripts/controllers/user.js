@@ -16,6 +16,8 @@ angular.module('hortalivreApp')
       $rootScope.user_logged = false;
       $location.path('/');
       LocalStorage.remove('HRTLVR');
+
+      delete $rootScope.userInfo;
     };
     // ====
 
