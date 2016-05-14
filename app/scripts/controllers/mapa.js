@@ -383,26 +383,32 @@ angular.module('hortalivreApp')
 
       $scope.infowindow = new google.maps.InfoWindow();
 
-      arrayMarkers = $scope.arr_markers;
+      arrayMarkers = $scope.all_arr;
 
       $scope.mapsMarkers = [];
       $scope.marker_click = '';
+
+      console.warn('arrayMarkers', arrayMarkers);
 
       for(var i = 0; i < arrayMarkers.length; i++ ) {
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(arrayMarkers[i].lat, arrayMarkers[i].lng),
           map: $scope.map,
           clickable: true,
-          title: arrayMarkers[i].fullName,
+          title: arrayMarkers[i].title,
           zIndex: 90,
           icon: _checkIcon(arrayMarkers[i].type),
           animation: google.maps.Animation.DROP,
           data: {
-            "fullName": arrayMarkers[i].fullName,
+            "title": arrayMarkers[i].title,
             "geolocation": [arrayMarkers[i].lat, arrayMarkers[i].lng],
-            "email": arrayMarkers[i].email,
-            "garden": arrayMarkers[i].garden,
             "type": arrayMarkers[i].type,
+            "link": arrayMarkers[i].link,
+            "rating_value": arrayMarkers[i].rating_value,
+
+            "email": arrayMarkers[i].email,
+            "fullName": arrayMarkers[i].fullName,
+            "garden": arrayMarkers[i].garden,
             "address": arrayMarkers[i].address
           }
         });
@@ -420,10 +426,12 @@ angular.module('hortalivreApp')
             $scope.$emit('marker_click', { marker: marker, id: i });
 
             if (marker.data.type != 'garden') {
-              var string = "<h5>" + marker.data.fullName + "</h5>" + "<p> e-mail: " + "<b>" + marker.data.email + "</b>" + "</p>" + "<p> você encontra: " + "<b>" + marker.data.garden[0].name + "</b>" + ", " + "<b>" + marker.data.garden[1].name + "</b>"  + ", " + "<b>" + marker.data.garden[2].name + "</b>" + ", etc.." + "<p>" + "mais informações: " + "<b>" + "<a href=" + "http://www.google.com.br" + " target='_blank'>link</a>" + "</b>" + "</p>";
+              // feiras
+              var string = "<h5>" + marker.data.title + "</h5>" + "<p>Avaliações: " + "<b>" + marker.data.rating_value + "</b>" + "<p>" + "Mais informações: " + "<b>" + "<a href=" + marker.data.link + " target='_blank'>link</a>" + "</b>" + "</p>";
 
               $scope.infowindow.setContent(string);
             } else {
+              // hortas
               $scope.infowindow.setContent(marker.data.fullName);
             }
 
@@ -445,37 +453,64 @@ angular.module('hortalivreApp')
     };
 
     function _getMarkersByApi() {
-      var arr_markers;
+      var arr_gardens, arr_markets, all_arr, params;
 
-      arr_markers = [];
+      arr_gardens = [];
+      arr_markets = [];
 
-      GardenApi.All(function(response) {
+      params = {
+        lat: '-8.0464492',
+        lng: '-34.9324883'
+      };
+
+      GardenApi.All(params, function(response) {
+        var gardens, markets;
+
         if (response.status === 200) {
-          if (response.data.length > 0) {
-            var result = response.data;
+          gardens = response.data.gardens;
+          markets = response.data.markets;
 
-            for (var i = 0; i < result.length; i++) {
-              arr_markers.push({
-                id: result[i].id,
-                email: result[i].email,
-                fullName: result[i].fullName,
-                lat: result[i].geolocation[0],
-                lng: result[i].geolocation[1],
-                type: result[i].type,
-                address: result[i].address,
-                garden: result[i].garden
+          if (gardens.length > 0){
+            angular.forEach(gardens, function(i) {
+              arr_gardens.push({
+                id: i.id,
+                lat: i.geolocation[1],
+                lng: i.geolocation[0],
+                garden: i.garden,
+                type: 'garden',
+
+                email: 'luizinho@gmail.com',
+                fullName: 'Luizinho boy',
+                address: 'Av cruz de rebouças, 1222, TIJIPIÓ - PE'
               })
-            }
+            })
+          } else { console.warn('nenhuma horta') }
 
-            $scope.arr_markers = arr_markers;
+          if (markets.length > 0){
+            angular.forEach(markets, function(i) {
+              arr_markets.push({
+                id: i.id,
+                title: i.title,
+                lat: i.geolocation[1],
+                lng: i.geolocation[0],
+                rating_value: i.rating_value,
+                type: i.type,
+                link: i.link
+              })
+            })
+          } else { console.warn('nenhuma feira') }
 
-            $scope.$emit('pins_ok');
-          } else {
-            Notification.show('Atenção', 'Ainda não temos nenhum usuário cadastrado.');
-          }
+          all_arr = arr_gardens.concat(arr_markets);
+
+          $scope.arr_gardens = arr_gardens;
+          $scope.arr_markets = arr_markets;
+          $scope.all_arr = all_arr;
+
+          $scope.$emit('pins_ok');
         } else {
           Notification.show('Atenção', 'Tivemos um problema no nosso servidor, tente em instantes.');
         }
+
       });
     };
     // ====
@@ -557,7 +592,7 @@ angular.module('hortalivreApp')
       $scope.infowindow.close();
 
       angular.forEach($scope.mapsMarkers, function(i) {
-        if (i.data.type != 'fairs') {
+        if (i.data.type != 'feira') {
           i.setVisible(false);
         } else {
           i.setVisible(true);
