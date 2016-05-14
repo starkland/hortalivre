@@ -453,15 +453,25 @@ angular.module('hortalivreApp')
     };
 
     function _getMarkersByApi() {
-      var arr_gardens, arr_markets, all_arr, params;
+      var arr_gardens, arr_markets, all_arr, params, myLocation, fakePosition;
 
       arr_gardens = [];
       arr_markets = [];
 
-      params = {
-        lat: '-8.0464492',
-        lng: '-34.9324883'
-      };
+      myLocation = LocalStorage.getItem('HRTLVR_POS');
+      fakePosition = LocalStorage.getItem('HRTLVR_POS_FAKE');
+
+      if (myLocation != null) {
+        params = {
+          lat: myLocation.lat,
+          lng: myLocation.lng
+        }
+      } else {
+        params = {
+          lat: fakePosition.lat,
+          lng: fakePosition.lng
+        }
+      }
 
       GardenApi.All(params, function(response) {
         var gardens, markets;
@@ -510,7 +520,6 @@ angular.module('hortalivreApp')
         } else {
           Notification.show('Atenção', 'Tivemos um problema no nosso servidor, tente em instantes.');
         }
-
       });
     };
     // ====
