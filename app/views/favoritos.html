@@ -5,95 +5,27 @@
         <h2 class="section-title">favoritos</h2>
       </div>
 
-      <aside class="col-xs-12 col-sm-3 col-sm-offset-1">
+      <aside ng-repeat="item in favorites" class="col-xs-12 col-sm-3 col-sm-offset-1">
         <figure>
-          <img src="http://dummyimage.com/165x165/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image">
+          <img ng-src="{{item.image}}" alt="imagem de {{item.name}}">
         </figure>
 
-        <h3>pedro borges</h3>
+        <h3>{{item.name}}</h3>
 
         <div class="row wrapper-button">
-          <button class="btn btn-secondary smallest fb col-sm-4 col-sm-offset-1">com facebook</button>
-          <button class="btn btn-secondary smallest tw col-sm-4">com twitter</button>
+          <button ng-click="link(item.fb_link)" class="btn btn-secondary smallest fb col-sm-4 col-sm-offset-1">com facebook</button>
+          <button ng-click="link(item.tw_link)" class="btn btn-secondary smallest tw col-sm-4">com twitter</button>
         </div>
 
-        <p>Av. Integração - 571 <br> 081 00000.0000 </p>
+        <p>
+          {{item.address}} <br>
+          <a ng-href="tel:{{item.phone}}">{{item.phone}}</a>
+        </p>
       </aside>
 
-      <aside class="col-xs-12 col-sm-3 col-sm-offset-1">
-        <figure>
-          <img src="http://dummyimage.com/165x165/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image">
-        </figure>
-
-        <h3>thulio philipe</h3>
-
-        <div class="row wrapper-button">
-          <button class="btn btn-secondary smallest fb col-sm-4 col-sm-offset-1">com facebook</button>
-          <button class="btn btn-secondary smallest tw col-sm-4">com twitter</button>
-        </div>
-
-        <p>Av. Integração - 571 <br> 081 00000.0000 </p>
-      </aside>
-
-      <aside class="col-xs-12 col-sm-3 col-sm-offset-1">
-        <figure>
-          <img src="http://dummyimage.com/165x165/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image">
-        </figure>
-
-        <h3>julio melo</h3>
-
-        <div class="row wrapper-button">
-          <button class="btn btn-secondary smallest fb col-sm-4 col-sm-offset-1">com facebook</button>
-          <button class="btn btn-secondary smallest tw col-sm-4">com twitter</button>
-        </div>
-
-        <p>Av. Integração - 571 <br> 081 00000.0000 </p>
-      </aside>
-
-      <aside class="col-xs-12 col-sm-3 col-sm-offset-1">
-        <figure>
-          <img src="http://dummyimage.com/165x165/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image">
-        </figure>
-
-        <h3>pedro borges</h3>
-
-        <div class="row wrapper-button">
-          <button class="btn btn-secondary smallest fb col-sm-4 col-sm-offset-1">com facebook</button>
-          <button class="btn btn-secondary smallest tw col-sm-4">com twitter</button>
-        </div>
-
-        <p>Av. Integração - 571 <br> 081 00000.0000 </p>
-      </aside>
-
-      <aside class="col-xs-12 col-sm-3 col-sm-offset-1">
-        <figure>
-          <img src="http://dummyimage.com/165x165/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image">
-        </figure>
-
-        <h3>thulio philipe</h3>
-
-        <div class="row wrapper-button">
-          <button class="btn btn-secondary smallest fb col-sm-4 col-sm-offset-1">com facebook</button>
-          <button class="btn btn-secondary smallest tw col-sm-4">com twitter</button>
-        </div>
-
-        <p>Av. Integração - 571 <br> 081 00000.0000 </p>
-      </aside>
-
-      <aside class="col-xs-12 col-sm-3 col-sm-offset-1">
-        <figure>
-          <img src="http://dummyimage.com/165x165/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image">
-        </figure>
-
-        <h3>julio melo</h3>
-
-        <div class="row wrapper-button">
-          <button class="btn btn-secondary smallest fb col-sm-4 col-sm-offset-1">com facebook</button>
-          <button class="btn btn-secondary smallest tw col-sm-4">com twitter</button>
-        </div>
-
-        <p>Av. Integração - 571 <br> 081 00000.0000 </p>
-      </aside>
+      <div class="col-xs-12" ng-show="favorites.length <= 0">
+        <div class="alert alert-info">Você ainda não possui nenhum favorito.</div>
+      </div>
     </div>
   </div>
 </section>
