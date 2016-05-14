@@ -2,10 +2,10 @@
   <div class="col-xs-12 col-sm-6 col-sm-offset-3 wrapper-box-profile">
     <div class="row user-info">
       <figure>
-        <img src="http://dummyimage.com/110x110/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image">
+        <img ng-src="{{userInfo.image}}" alt="{{userInfo.fullName}}">
       </figure>
 
-      <h3>thulio philipe</h3>
+      <h3>{{userInfo.fullName}}</h3>
 
       <div class="row">
         <p class="address">Av. Integração - 571, 081 00000.0000</p>
@@ -15,13 +15,8 @@
     <div class="row user-garden">
       <h4>itens da horta</h4>
 
-      <ul class="list-itens">
-        <li>alface</li>
-        <li>cebolinho</li>
-        <li>tomate</li>
-        <li>alcatrão</li>
-        <li>cenoura</li>
-        <li>pepino</li>
+      <ul class="list-itens" ng-repeat="garden in userInfo.garden">
+        <li>{{garden.item}}</li>
       </ul>
 
       <button class="btn btn-primary big"><span>+</span> adicionar item</button>

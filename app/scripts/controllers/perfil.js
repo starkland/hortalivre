@@ -8,10 +8,9 @@
  * Controller of the hortalivreApp
  */
 angular.module('hortalivreApp')
-  .controller('PerfilCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('PerfilCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+
+    // console.warn('$scope', $scope);
+    // console.warn('$rootScope', $rootScope);
+
+  }]);
