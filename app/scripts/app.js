@@ -57,19 +57,19 @@ angular
         templateUrl: 'views/perfil.html',
         controller: 'PerfilCtrl',
         controllerAs: 'perfil'
-        // ,resolve: { loggedin: checkLoggedOut }
+        ,resolve: { loggedin: checkLoggedOut }
       })
       .when('/mapa', {
         templateUrl: 'views/mapa.html',
         controller: 'MapaCtrl',
         controllerAs: 'mapa'
-        // ,resolve: { loggedin: checkLoggedOut }
+        ,resolve: { loggedin: checkLoggedOut }
       })
       .when('/favoritos', {
         templateUrl: 'views/favoritos.html',
         controller: 'FavoritosCtrl',
         controllerAs: 'favoritos'
-        // ,resolve: { loggedin: checkLoggedOut }
+        ,resolve: { loggedin: checkLoggedOut }
       })
       .otherwise({
         redirectTo: '/login'
