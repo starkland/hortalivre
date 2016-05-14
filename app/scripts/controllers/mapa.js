@@ -517,13 +517,21 @@ angular.module('hortalivreApp')
     });
 
     $scope.viewAllMarkers = function() {
+      var element = $('.wrapper-box-map').hasClass('active');
+
+      if (element != false) {
+        $('.wrapper-box-map').toggleClass('active');
+      }
+
       $scope.infowindow.close();
 
       $scope.map.fitBounds($scope.bounds)
 
       angular.forEach($scope.mapsMarkers, function(i) {
         i.setVisible(true);
-      })
+      });
+
+      delete $scope.markerInfo;
     };
 
     $scope.backMyLocation = function() {

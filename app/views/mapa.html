@@ -28,6 +28,9 @@
 
       <ul class="list-itens">
         <li ng-repeat="item in markerInfo.garden">{{item.name}}</li>
+        <li ng-show="markerInfo.garden <= 0">
+          {{markerInfo.fullName}} ainda não possui nenhum item na horta.
+        </li>
       </ul>
     </div>
   </div>
