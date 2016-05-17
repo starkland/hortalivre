@@ -23,6 +23,7 @@ angular.module('hortalivreApp')
 
     obj.authEmail = function(data, callback) {
       $http.post(apiUrl + '/api/v1/auth/', data, { headers: { 'Content-Type': 'application/json' }}).then(function (data) {
+          sessionStorage.setItem('authorization', data.headers()['authorization']);
           callback(data);
         }, function (error) {
           callback(error);
