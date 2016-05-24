@@ -17,28 +17,19 @@ angular.module('hortalivreApp')
     };
 
     function getAllFavorites() {
-      // FavoriteApi.All(function(response) {
-      //   // console.log(response)
-      // })
+      var favorites;
 
-      $scope.favorites = [
-        {
-          image: 'http://dummyimage.com/165x165/4d494d/686a82.gif&text=placeholder+image',
-          name: 'pedro borges',
-          address: 'Av da consolação, algum lugar - PT',
-          phone: '081 00000.0000',
-          fb_link: 'http://www.facebook.com',
-          tw_link: 'http://www.twitter.com'
-        },
-        {
-          image: 'http://dummyimage.com/165x165/4d494d/686a82.gif&text=placeholder+image',
-          name: 'pedro borges 2',
-          address: 'Av da consolação, algum lugar - PT',
-          phone: '081 00000.0000',
-          fb_link: 'http://www.facebook.com',
-          tw_link: 'http://www.twitter.com'
+      FavoriteApi.All(function(response) {
+        if (response.status === 200) {
+          favorites = response.data.favorites;
+
+          if (favorites.length > 0) {
+            $scope.favorites = favorites;
+          } else {
+            Notification.show('Atenção', 'Você ainda não possui nenhum usuário favorito.');
+          }
         }
-      ]
+      })
     }
 
     function link(args) {

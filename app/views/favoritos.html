@@ -5,12 +5,13 @@
         <h2 class="section-title">favoritos</h2>
       </div>
 
-      <aside ng-repeat="item in favorites" class="col-xs-12 col-sm-3 col-sm-offset-1">
+      <aside ng-repeat="item in favorites" class="col-xs-12 col-sm-4">
         <figure>
-          <img ng-src="{{item.image}}" alt="imagem de {{item.name}}">
+          <img src="http://dummyimage.com/165x165/4d494d/686a82.gif&text=placeholder+image" alt="">
+          <!-- <img ng-src="{{item.image}}" alt="imagem de {{item.fullName}}"> -->
         </figure>
 
-        <h3>{{item.name}}</h3>
+        <h3>{{item.fullName}}</h3>
 
         <div class="row wrapper-button">
           <button ng-click="link(item.fb_link)" class="btn btn-secondary smallest fb col-sm-4 col-sm-offset-1">com facebook</button>
@@ -18,7 +19,7 @@
         </div>
 
         <p>
-          {{item.address}} <br>
+          <a href="mailto:{{item.email}}">{{item.email}}</a><br>
           <a ng-href="tel:{{item.phone}}">{{item.phone}}</a>
         </p>
       </aside>
