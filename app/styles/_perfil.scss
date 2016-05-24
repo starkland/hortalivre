@@ -17,6 +17,7 @@
 .user-info {
   figure {
     margin-top: 20px;
+    position: relative;
 
     img {
       height: 110px;
@@ -32,15 +33,39 @@
     font-size: ($fs-medium)+.7;
   }
 
-  button {
-    margin-bottom: 10px;
-  }
+  button { margin-bottom: 10px; }
 
   .address {
     font-weight: $fw-light;
     font-size: $fs-normal;
     color: $color-primary;
     word-break: break-all;
+  }
+
+  .btn-add-favorite {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    button {
+      width: 35px;
+      height: 35px;
+      outline: none;
+      border: none;
+      @include apr(none);
+
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-color: transparent;
+      background-position: center center;
+      @include path('icon-favorite.svg');
+
+      @include transition(background, .25s, linear, 0s);
+
+      &:active, &:hover {
+        @include path('icon-favorite-active.svg');
+      }
+    }
   }
 }
 

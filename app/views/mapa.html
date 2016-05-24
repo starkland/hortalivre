@@ -6,6 +6,9 @@
       <div ng-show="markerInfo.fullName" class="col-xs-12">
         <figure>
           <img ng-src="http://dummyimage.com/110x110/4d494d/686a82.gif&text=placeholder+image" alt="{{markerInfo.fullName}}">
+          <figcaption class="btn-add-favorite">
+            <button title="Adicione este usuário como favorito!" ng-click="addToFavorite(markerInfo.id)"></button>
+          </figcaption>
         </figure>
 
         <h3>{{markerInfo.fullName}}</h3>

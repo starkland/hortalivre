@@ -8,7 +8,7 @@
  * Controller of the hortalivreApp
  */
 angular.module('hortalivreApp')
-  .controller('MapaCtrl', ['$scope', '$rootScope', 'Notification', 'LocalStorage', 'GardenApi', function ($scope, $rootScope, Notification, LocalStorage, GardenApi) {
+  .controller('MapaCtrl', ['$scope', '$rootScope', 'Notification', 'LocalStorage', 'GardenApi', 'UserApi', 'FavoriteApi', function ($scope, $rootScope, Notification, LocalStorage, GardenApi, UserApi, FavoriteApi) {
 
     $scope.link = function(param) {
       link(param)
@@ -34,7 +34,7 @@ angular.module('hortalivreApp')
       LocalStorage.SaveUserPosition(position);
       ls_position = LocalStorage.getItem('HRTLVR_POS');
 
-      if (ls_position != null) {
+      if (ls_position !== null) {
         $scope.$emit('position_ok');
       } else {
         Notification.show('Atenção', 'É necessário alterar as configurações de privacidade do seu GPS para um perfeito funcionamento do Hortalivre.')
@@ -413,7 +413,8 @@ angular.module('hortalivreApp')
             "email": arrayMarkers[i].email,
             "fullName": arrayMarkers[i].fullName,
             "garden": arrayMarkers[i].garden,
-            "address": arrayMarkers[i].address
+            "address": arrayMarkers[i].address,
+            "id": arrayMarkers[i].id
           }
         });
 
@@ -429,7 +430,7 @@ angular.module('hortalivreApp')
 
             $scope.$emit('marker_click', { marker: marker, id: i });
 
-            if (marker.data.type != 'garden') {
+            if (marker.data.type !== 'garden') {
               // feiras
               var string = "<h5>" + marker.data.title + "</h5>" + "<p>Avaliações: " + "<b>" + marker.data.rating_value + "</b>" + "<p>" + "Mais informações: " + "<b>" + "<a href=" + marker.data.link + " target='_blank'>link</a>" + "</b>" + "</p>";
 
@@ -465,7 +466,7 @@ angular.module('hortalivreApp')
       myLocation = LocalStorage.getItem('HRTLVR_POS');
       fakePosition = LocalStorage.getItem('HRTLVR_POS_FAKE');
 
-      if (myLocation != null) {
+      if (myLocation !== null) {
         params = {
           lat: myLocation.lat,
           lng: myLocation.lng
@@ -487,14 +488,13 @@ angular.module('hortalivreApp')
           if (gardens.length > 0){
             angular.forEach(gardens, function(i) {
               arr_gardens.push({
-                id: i.id,
+                id: i._id,
                 lat: i.geolocation[1],
                 lng: i.geolocation[0],
                 garden: i.garden,
                 type: 'garden',
-
-                email: 'luizinho@gmail.com',
-                fullName: 'Luizinho boy',
+                email: i.email,
+                fullName: i.fullName,
                 address: 'Av cruz de rebouças, 1222, TIJIPIÓ - PE'
               })
             })
@@ -503,7 +503,7 @@ angular.module('hortalivreApp')
           if (markets.length > 0){
             angular.forEach(markets, function(i) {
               arr_markets.push({
-                id: i.id,
+                id: i._id,
                 title: i.title,
                 lat: i.geolocation[1],
                 lng: i.geolocation[0],
@@ -566,7 +566,7 @@ angular.module('hortalivreApp')
     $scope.viewAllMarkers = function() {
       var element = $('.wrapper-box-map').hasClass('active');
 
-      if (element != false) {
+      if (element !== false) {
         $('.wrapper-box-map').toggleClass('active');
       }
 
@@ -592,7 +592,7 @@ angular.module('hortalivreApp')
       $scope.infowindow.close();
 
       angular.forEach($scope.mapsMarkers, function(i) {
-        if (i.data.type != 'garden') {
+        if (i.data.type !== 'garden') {
           i.setVisible(false);
         } else {
           i.setVisible(true);
@@ -604,7 +604,7 @@ angular.module('hortalivreApp')
       $scope.infowindow.close();
 
       angular.forEach($scope.mapsMarkers, function(i) {
-        if (i.data.type != 'feira') {
+        if (i.data.type !== 'feira') {
           i.setVisible(false);
         } else {
           i.setVisible(true);
@@ -617,6 +617,29 @@ angular.module('hortalivreApp')
 
       win = window.open(args, '_blank');
       return win.focus();
+    }
+
+    $scope.addToFavorite = function(id) {
+      var params = { favID: id };
+
+      FavoriteApi.Add(params, function(response) {
+        if (response.status === 201) {
+          Notification.show('Atenção', 'O usuário foi adicionado aos favoritos.');
+
+          UserApi.lookup(function(response) {
+            if (response.status === 200) {
+              LocalStorage.SaveUser(response.data);
+            } else {
+              console.warn('lookup: ', response);
+              Notification.show('Atenção', 'Tivemos um problema no nosso servidor. Tente novamente em instantes.');
+            }
+          })
+
+        } else {
+          console.warn('favorites: ', response);
+          Notification.show('Atenção', 'Tivemos um problema ao adicionar o usuário como favorito. Tente novamente em instantes.');
+        }
+      })
     }
 
   }]);

@@ -38,6 +38,14 @@ angular.module('hortalivreApp')
         });
     };
 
+    obj.lookup = function(callback) {
+      $http.get(apiUrl + '/api/v1/me/', { headers: { 'Content-Type': 'application/json', 'Authorization': sessionStorage.getItem('authorization') }}).then(function (data) {
+          callback(data);
+        }, function (error) {
+          callback(error);
+        });
+    };
+
     return obj;
 
   });
