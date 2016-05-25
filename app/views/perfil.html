@@ -2,7 +2,8 @@
   <div class="col-xs-12 col-sm-6 col-sm-offset-3 wrapper-box-profile">
     <div class="row user-info">
       <figure>
-        <img ng-src="{{userInfo.image}}" alt="{{userInfo.fullName}}">
+        <img src="http://dummyimage.com/165x165/4d494d/686a82.gif&text=placeholder+image" alt="">
+        <!-- <img ng-src="{{userInfo.image}}" alt="{{userInfo.fullName}}"> -->
       </figure>
 
       <h3>{{userInfo.fullName}}</h3>
@@ -13,13 +14,24 @@
     </div>
 
     <div class="row user-garden">
-      <h4>itens da horta</h4>
+      <h4>minha horta</h4>
 
-      <ul class="list-itens" ng-repeat="garden in userInfo.garden">
-        <li>{{garden.item}}</li>
+      <ul class="list-itens">
+        <li ng-repeat="garden in userInfo.garden">
+          {{garden.item}} <span class="trash" title="Clique para deletar este ítem de sua horta." ng-click="removeItem(garden._id)"></span>
+        </li>
       </ul>
 
-      <button class="btn btn-primary big"><span>+</span> adicionar item</button>
+      <div class="col-xs-12" ng-show="userInfo.garden.length <= 0">
+        <div class="alert alert-info">Você ainda não possui nenhum ítem na sua horta.</div>
+      </div>
+
+      <!-- inputs -->
+      <div class="wrp-inputs" ng-repeat="input in inputs">
+        <input class="input-primary" type="text" placeholder="{{input.inPlaceholder}}" ng-model="input.inMode">
+      </div>
+
+      <button ng-click="addInput()" class="btn btn-primary big"><span>+</span> adicionar item</button>
     </div>
   </div>
 </section>

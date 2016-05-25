@@ -88,14 +88,42 @@
       border-bottom: 1px solid $border-primary;
       font-weight: $fw-bold;
       padding: 10px 0;
+      position: relative;
 
-      &:last-child {
-        border-bottom: none;
+      &:last-child { border-bottom: none; }
+
+      @include transition(color, .25s, 0s, linear);
+
+      &:hover {
+        color: $color-secondary;
+      }
+
+      span {
+        width: 22px;
+        height: 26px;
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        cursor: pointer;
+
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: center center;
+        @include path('icon-trash.svg');
+
+        @include transition(background, .15s, .2s, linear);
+
+        &:hover { @include path('icon-trash-active.svg'); }
       }
     }
   }
 }
 
+.wrp-inputs {
+  input {
+    margin-bottom: 20px;
+  }
+}
 
 // ====
 

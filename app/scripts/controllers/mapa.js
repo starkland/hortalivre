@@ -636,7 +636,7 @@ angular.module('hortalivreApp')
           })
 
         } else {
-          console.warn('favorites: ', response);
+          console.warn('status: ', response.status);
           Notification.show('Atenção', 'Tivemos um problema ao adicionar o usuário como favorito. Tente novamente em instantes.');
         }
       })
