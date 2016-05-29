@@ -8,22 +8,24 @@
  * Controller of the hortalivreApp
  */
 angular.module('hortalivreApp')
-  .controller('LoginCtrl', ['$scope', '$location', '$rootScope', 'UserApi', 'LocalStorage', function ($scope, $location, $rootScope, UserApi, LocalStorage) {
+  .controller('LoginCtrl', ['$scope', '$location', '$rootScope', 'UserApi', 'LocalStorage', 'Notification', function ($scope, $location, $rootScope, UserApi, LocalStorage, Notification) {
 
     // ====
+    // Login facebook
     $scope.fbLogin = function() {
-      console.log('Facebook')
+      facebookLogin();
     }
     // ====
 
     // ====
+    // Login Twiteer
     $scope.twLogin = function() {
       console.log('Twitter')
     }
     // ====
 
     // ====
-    // Login
+    // Login email
     $scope.login = {};
     $scope.error = {};
 
@@ -54,5 +56,23 @@ angular.module('hortalivreApp')
     }
     // ====
 
+    // ====
+    function facebookLogin() {
+      var user_fb_data = {};
+
+      UserApi.authFacebook(function(result) {
+        user_fb_data.email = result.user_fb_data.email;
+        user_fb_data.gender = result.user_fb_data.gender;
+        user_fb_data.id = result.user_fb_data.id;
+        user_fb_data.name = result.user_fb_data.name;
+        user_fb_data.picture = result.user_fb_data.picture.data.url;
+
+        console.warn(user_fb_data);
+
+        // envia pra api os dados e autentica o usuário
+      });
+
+    }
+    // ====
 
   }]);

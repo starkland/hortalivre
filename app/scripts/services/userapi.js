@@ -8,7 +8,7 @@
  * Service in the hortalivreApp.
  */
 angular.module('hortalivreApp')
-  .service('UserApi', function ($http, ApiConfig) {
+  .service('UserApi', function ($http, ApiConfig, $facebook) {
 
     var obj = {};
     var apiUrl = ApiConfig.API_URL;
@@ -54,7 +54,6 @@ angular.module('hortalivreApp')
         });
     };
 
-
     obj.removeItemOfMyGarden = function(data, callback) {
       var obj = data;
       var config = {
@@ -70,6 +69,23 @@ angular.module('hortalivreApp')
         }, function (error) {
           callback(error);
         });
+    };
+
+    obj.authFacebook = function(callback) {
+      var params = {};
+
+      $facebook.login().then(function(data) {
+        params.access_token = data.authResponse.accessToken
+
+        if (data.status === 'connected') {
+          $facebook.api('me', { fields: 'name,email,gender,ids_for_business,picture' }).then(function(response) {
+            params.user_fb_data = response;
+            callback(params);
+          })
+        } else {
+          console.warn('Não conseguimos nos conecta ao facebook, tente novamente em alguns instantes!')
+        }
+      });
     };
 
     return obj;

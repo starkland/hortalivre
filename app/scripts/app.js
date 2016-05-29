@@ -19,9 +19,10 @@ angular
     'ui.bootstrap',
     'ngProgress',
     'angularMoment',
-    'ngMask'
+    'ngMask',
+    'ngFacebook'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $facebookProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -57,23 +58,25 @@ angular
         templateUrl: 'views/perfil.html',
         controller: 'PerfilCtrl',
         controllerAs: 'perfil'
-        ,resolve: { loggedin: checkLoggedOut }
+        // ,resolve: { loggedin: checkLoggedOut }
       })
       .when('/mapa', {
         templateUrl: 'views/mapa.html',
         controller: 'MapaCtrl',
         controllerAs: 'mapa'
-        ,resolve: { loggedin: checkLoggedOut }
+        // ,resolve: { loggedin: checkLoggedOut }
       })
       .when('/favoritos', {
         templateUrl: 'views/favoritos.html',
         controller: 'FavoritosCtrl',
         controllerAs: 'favoritos'
-        ,resolve: { loggedin: checkLoggedOut }
+        // ,resolve: { loggedin: checkLoggedOut }
       })
       .otherwise({
         redirectTo: '/login'
       });
+
+    $facebookProvider.setAppId('351112045059351');
   })
   .run(['$window', '$rootScope', 'Notification', 'ngProgressFactory', function ($window, $rootScope, Notification, ngProgressFactory) {
 
@@ -134,6 +137,11 @@ angular
     $rootScope.progressbar.setColor('#16663B');
     $rootScope.progressbar.setHeight('4px');
     // ====
+
+    // ====
+    // Facebook access
+    // ====
+
   }]);
 
   var checkLoggedOut = function($q, $timeout, $location, $rootScope) {

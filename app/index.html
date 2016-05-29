@@ -102,6 +102,20 @@
        ga('send', 'pageview');
     </script>
 
+    <!-- Facebook -->
+    <script async>
+      (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {
+              return;
+          }
+          js = d.createElement(s);
+          js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -118,6 +132,7 @@
     <script src="bower_components/angular-moment/angular-moment.js"></script>
     <script src="bower_components/ngprogress/build/ngprogress.min.js"></script>
     <script src="bower_components/ngMask/dist/ngMask.js"></script>
+    <script src="bower_components/ng-facebook/ngFacebook.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
