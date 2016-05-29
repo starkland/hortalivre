@@ -8,7 +8,7 @@
  * Controller of the hortalivreApp
  */
 angular.module('hortalivreApp')
-  .controller('LoginCtrl', ['$scope', '$location', '$rootScope', 'UserApi', 'LocalStorage', 'Notification', function ($scope, $location, $rootScope, UserApi, LocalStorage, Notification) {
+  .controller('LoginCtrl', ['$scope', '$location', '$rootScope', 'UserApi', 'LocalStorage', 'Notification', '$twitterApi',function ($scope, $location, $rootScope, UserApi, LocalStorage, Notification, $twitterApi) {
 
     // ====
     // Login facebook
@@ -20,7 +20,7 @@ angular.module('hortalivreApp')
     // ====
     // Login Twiteer
     $scope.twLogin = function() {
-      console.log('Twitter')
+      twitterLogin();
     }
     // ====
 
@@ -71,7 +71,18 @@ angular.module('hortalivreApp')
 
         // envia pra api os dados e autentica o usuário
       });
+    }
+    // ====
 
+    // ====
+    function twitterLogin() {
+      OAuth.initialize('VrRWgnnAU3aUm5PNeaBM42oj5Cs');
+
+      OAuth.popup('twitter').done(function(result) {
+        console.log(result);
+      }).fail(function (err) {
+        console.log(err);
+      });
     }
     // ====
 

@@ -20,7 +20,8 @@ angular
     'ngProgress',
     'angularMoment',
     'ngMask',
-    'ngFacebook'
+    'ngFacebook',
+    'ngTwitter'
   ])
   .config(function ($routeProvider, $facebookProvider) {
     $routeProvider

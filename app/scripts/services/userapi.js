@@ -88,6 +88,20 @@ angular.module('hortalivreApp')
       });
     };
 
+    obj.authTwitter = function(callback) {
+      var params = {};
+
+      OAuth.initialize('PipsrkWTsVTTgA_JmxlldSqEQTA');
+
+      OAuth.popup('twitter', function(err) {
+        if (err) { console.log('error tw', err) }
+      }).done(function(result) {
+        result.me().done(function(data) {
+          console.log(data);
+        });
+      })
+    };
+
     return obj;
 
   });
