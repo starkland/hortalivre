@@ -137,11 +137,6 @@ angular
     $rootScope.progressbar.setColor('#16663B');
     $rootScope.progressbar.setHeight('4px');
     // ====
-
-    // ====
-    // Facebook access
-    // ====
-
   }]);
 
   var checkLoggedOut = function($q, $timeout, $location, $rootScope) {
