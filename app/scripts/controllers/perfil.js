@@ -26,13 +26,13 @@ angular.module('hortalivreApp')
               console.warn('status: ', response.status);
               Notification.show('Atenção', 'Tivemos um problema no nosso servidor. Tente novamente em instantes.');
             }
-          })
+          });
         } else {
           console.warn('status: ', response.status);
           Notification.show('Atenção', 'Tivemos um problema para remover este ítem, tente novamente em alguns minutos.');
         }
       });
-    }
+    };
 
     // ====
     $scope.novoItem = {};
@@ -41,7 +41,7 @@ angular.module('hortalivreApp')
       var params = $scope.novoItem;
 
       addItemToGarden(params);
-    }
+    };
     // ====
 
     // ====
@@ -58,7 +58,7 @@ angular.module('hortalivreApp')
               console.warn('status: ', response.status);
               Notification.show('Atenção', 'Tivemos um problema no nosso servidor. Tente novamente em instantes.');
             }
-          })
+          });
         } else {
           console.warn('status: ', response.status);
           Notification.show('Atenção', 'Tivemos um problema para remover este ítem, tente novamente em alguns minutos.');
