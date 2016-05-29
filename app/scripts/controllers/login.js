@@ -8,20 +8,20 @@
  * Controller of the hortalivreApp
  */
 angular.module('hortalivreApp')
-  .controller('LoginCtrl', ['$scope', '$location', '$rootScope', 'UserApi', 'LocalStorage', 'Notification', '$twitterApi',function ($scope, $location, $rootScope, UserApi, LocalStorage, Notification, $twitterApi) {
+  .controller('LoginCtrl', ['$scope', '$location', '$rootScope', 'UserApi', 'LocalStorage', 'Notification', function ($scope, $location, $rootScope, UserApi, LocalStorage, Notification) {
 
     // ====
     // Login facebook
     $scope.fbLogin = function() {
       facebookLogin();
-    }
+    };
     // ====
 
     // ====
     // Login Twiteer
     $scope.twLogin = function() {
       twitterLogin();
-    }
+    };
     // ====
 
     // ====
@@ -53,7 +53,7 @@ angular.module('hortalivreApp')
           $scope.progressbar.complete();
         }
       })
-    }
+    };
     // ====
 
     // ====
@@ -76,12 +76,8 @@ angular.module('hortalivreApp')
 
     // ====
     function twitterLogin() {
-      OAuth.initialize('VrRWgnnAU3aUm5PNeaBM42oj5Cs');
-
-      OAuth.popup('twitter').done(function(result) {
+      UserApi.authTwitter(function(result) {
         console.log(result);
-      }).fail(function (err) {
-        console.log(err);
       });
     }
     // ====

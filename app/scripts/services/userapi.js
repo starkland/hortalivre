@@ -75,15 +75,15 @@ angular.module('hortalivreApp')
       var params = {};
 
       $facebook.login().then(function(data) {
-        params.access_token = data.authResponse.accessToken
+        params.access_token = data.authResponse.accessToken;
 
         if (data.status === 'connected') {
           $facebook.api('me', { fields: 'name,email,gender,ids_for_business,picture' }).then(function(response) {
             params.user_fb_data = response;
             callback(params);
-          })
+          });
         } else {
-          console.warn('Não conseguimos nos conecta ao facebook, tente novamente em alguns instantes!')
+          console.warn('Não conseguimos nos conecta ao facebook, tente novamente em alguns instantes!');
         }
       });
     };
@@ -91,15 +91,13 @@ angular.module('hortalivreApp')
     obj.authTwitter = function(callback) {
       var params = {};
 
-      OAuth.initialize('PipsrkWTsVTTgA_JmxlldSqEQTA');
+      OAuth.initialize('VrRWgnnAU3aUm5PNeaBM42oj5Cs');
 
-      OAuth.popup('twitter', function(err) {
-        if (err) { console.log('error tw', err) }
-      }).done(function(result) {
-        result.me().done(function(data) {
-          console.log(data);
-        });
-      })
+      OAuth.popup('twitter').done(function(result) {
+        console.log(result);
+      }).fail(function (err) {
+        console.log(err);
+      });
     };
 
     return obj;
