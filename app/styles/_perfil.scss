@@ -78,8 +78,7 @@
   .list-itens {
     margin: 20px auto 40px auto;
     padding-left: 0;
-    max-height: 265px;
-    overflow: auto;
+    height: auto;
 
     li {
       font-size: ($fs-medium)+.7;
@@ -157,8 +156,6 @@
     h4 {  font-size: ($fs-medium)+.2; }
 
     .list-itens {
-      max-height: 295px;
-
       li { font-size: ($fs-medium)+.4; }
     }
   }

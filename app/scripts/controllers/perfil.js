@@ -14,13 +14,11 @@ angular.module('hortalivreApp')
       var params = { itemID: id };
 
       UserApi.removeItemOfMyGarden(params, function(response) {
-        console.log('retorno da fn', response);
-
         if (response.status === 200) {
           Notification.show('Atenção', 'Item removido com sucesso!');
 
           UserApi.lookup(function(response) {
-            console.log('retornou isso de lookup', response);
+            // console.log('retornou isso de lookup', response);
 
             if (response.status === 200) {
               LocalStorage.SaveUser(response.data);
@@ -37,14 +35,36 @@ angular.module('hortalivreApp')
     }
 
     // ====
-    $scope.inputs = [];
+    $scope.novoItem = {};
 
-    $scope.addInput = function() {
-      $scope.inputs.push({
-        inPlaceholder: "nome",
-        inModel: ""
+    $scope.addItemToGarden = function() {
+      var params = $scope.novoItem;
+
+      addItemToGarden(params);
+    }
+    // ====
+
+    // ====
+    // funções
+    function addItemToGarden(params) {
+      UserApi.addItemToMyGarden(params, function(response) {
+        if(response.status === 201) {
+          Notification.show('Atenção', 'Item adicionado com sucesso!');
+
+          UserApi.lookup(function(response) {
+            if (response.status === 200) {
+              LocalStorage.SaveUser(response.data);
+            } else {
+              console.warn('status: ', response.status);
+              Notification.show('Atenção', 'Tivemos um problema no nosso servidor. Tente novamente em instantes.');
+            }
+          })
+        } else {
+          console.warn('status: ', response.status);
+          Notification.show('Atenção', 'Tivemos um problema para remover este ítem, tente novamente em alguns minutos.');
+        }
       });
-    };
+    }
     // ====
 
   }]);

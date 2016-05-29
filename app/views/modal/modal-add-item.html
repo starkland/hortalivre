@@ -1,0 +1,22 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-add-item">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Adicionar item</h4>
+      </div>
+
+      <div class="modal-body">
+        <form>
+          <input type="text" class="input-primary" placeholder="Digite o nome de um ítem da sua horta"
+            ng-model="novoItem.item">
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button> -->
+        <button type="submit" class="btn btn-primary" data-dismiss="modal" ng-click="addItemToGarden()">adicionar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

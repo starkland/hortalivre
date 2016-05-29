@@ -23,18 +23,16 @@
       </ul>
 
       <div class="col-xs-12" ng-show="userInfo.garden.length <= 0">
-        <div class="alert alert-info">Você ainda não possui nenhum ítem na sua horta.</div>
+        <div class="alert alert-info">
+          Você ainda não possui nenhum ítem na sua horta.
+        </div>
       </div>
 
-      <!-- inputs -->
-      <div class="wrp-inputs" ng-repeat="input in inputs">
-        <input class="input-primary" type="text" placeholder="{{input.inPlaceholder}}" ng-model="input.inMode">
-      </div>
-
-      <button ng-click="addInput()" class="btn btn-primary big"><span>+</span> adicionar item</button>
+      <button data-toggle="modal" data-target="#modal-add-item" class="btn btn-primary big"><span>+</span> adicionar item {{inModel}}</button>
     </div>
   </div>
 </section>
 
 <!-- Footer -->
 <div ng-include src="'views/partials/footer.html'"></div>
+<div ng-include src="'views/modal/modal-add-item.html'"></div>

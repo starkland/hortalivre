@@ -46,6 +46,14 @@ angular.module('hortalivreApp')
         });
     };
 
+    obj.addItemToMyGarden = function(data, callback) {
+      $http.post(apiUrl + '/api/v1/garden/', data, { headers: { 'Content-Type': 'application/json', 'Authorization': sessionStorage.getItem('authorization') }}).then(function (data) {
+          callback(data);
+        }, function (error) {
+          callback(error);
+        });
+    };
+
 
     obj.removeItemOfMyGarden = function(data, callback) {
       var obj = data;
