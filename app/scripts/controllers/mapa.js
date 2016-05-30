@@ -10,9 +10,16 @@
 angular.module('hortalivreApp')
   .controller('MapaCtrl', ['$scope', '$rootScope', 'Notification', 'LocalStorage', 'GardenApi', 'UserApi', 'FavoriteApi', function ($scope, $rootScope, Notification, LocalStorage, GardenApi, UserApi, FavoriteApi) {
 
-    $scope.link = function(param) {
-      link(param)
-    };
+    // ====
+    $scope.link = function(param) { link(param); };
+
+    function link(args) {
+      var win;
+
+      win = window.open(args, '_blank');
+      return win.focus();
+    }
+    // ====
 
     // ====
     // Método para geolocalização
@@ -24,8 +31,8 @@ angular.module('hortalivreApp')
       }
     }
 
-    function error(error) {
-      Notification.show('Atenção', error);
+    function error(err) {
+      Notification.show('Atenção', err);
     }
 
     function savePosition(position) {
@@ -37,7 +44,7 @@ angular.module('hortalivreApp')
       if (ls_position !== null) {
         $scope.$emit('position_ok');
       } else {
-        Notification.show('Atenção', 'É necessário alterar as configurações de privacidade do seu GPS para um perfeito funcionamento do Hortalivre.')
+        Notification.show('Atenção', 'É necessário alterar as configurações de privacidade do seu GPS para um perfeito funcionamento do Hortalivre.');
 
         fake_position = {
           'latitude': -13.569368,
@@ -304,7 +311,7 @@ angular.module('hortalivreApp')
       if (args === 'zoom') {
         map.setZoom(4);
         userMarker.setMap(null);
-      };
+      }
 
       // Aplicando as configurações do mapa
       map.mapTypes.set('horta_map', styledMap);
@@ -323,65 +330,65 @@ angular.module('hortalivreApp')
       $scope.userMarker = userMarker;
 
       $scope.$emit('hortamap_ok');
-    };
+    }
 
     // obtém mais marcadores quando move o mapa
-    function _showMarkers() {
-      var bounds, south, south_lat, south_lng, north,
-      north_lat, north_lng, center_lat, center_lng,
-      marker, latLng;
+    // function _showMarkers() {
+    //   var bounds, south, south_lat, south_lng, north,
+    //   north_lat, north_lng, center_lat, center_lng,
+    //   marker, latLng;
 
-      bounds = map.getBounds();
+    //   bounds = map.getBounds();
 
-      // south = map.getBounds().getSouthWest();
-      south_lat = map.getBounds().getSouthWest().lat();
-      south_lng = map.getBounds().getSouthWest().lng();
+    //   // south = map.getBounds().getSouthWest();
+    //   south_lat = map.getBounds().getSouthWest().lat();
+    //   south_lng = map.getBounds().getSouthWest().lng();
 
-      // north = map.getBounds().getNorthEast();
-      north_lat = map.getBounds().getNorthEast().lat();
-      north_lng = map.getBounds().getNorthEast().lng();
+    //   // north = map.getBounds().getNorthEast();
+    //   north_lat = map.getBounds().getNorthEast().lat();
+    //   north_lng = map.getBounds().getNorthEast().lng();
 
-      center_lat = (south_lat + north_lat) / 2;
-      center_lng = (south_lng + north_lng) / 2;
+    //   center_lat = (south_lat + north_lat) / 2;
+    //   center_lng = (south_lng + north_lng) / 2;
 
-      latLng = {
-        'center_lat': center_lat,
-        'center_lng': center_lng
-      };
+    //   latLng = {
+    //     'center_lat': center_lat,
+    //     'center_lng': center_lng
+    //   };
 
-      console.warn('Latitude / Longitude: ', latLng);
+    //   console.warn('Latitude / Longitude: ', latLng);
 
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(center_lat, center_lng),
-        map: map,
-        icon: 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/map-marker-32.png'
-      });
+    //   marker = new google.maps.Marker({
+    //     position: new google.maps.LatLng(center_lat, center_lng),
+    //     map: map,
+    //     icon: 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/map-marker-32.png'
+    //   });
 
-      infowindow = new google.maps.InfoWindow({
-        content: 'lat: ' + center_lat + ', lng: ' + center_lng,
-        maxWidth: 700
-      });
+    //   infowindow = new google.maps.InfoWindow({
+    //     content: 'lat: ' + center_lat + ', lng: ' + center_lng,
+    //     maxWidth: 700
+    //   });
 
-      google.maps.event.addListener(marker, 'click', function(e, i) {
-        console.warn('EEE -> ', e);
-        console.warn('III -> ', i);
+    //   google.maps.event.addListener(marker, 'click', function(e, i) {
+    //     console.warn('EEE -> ', e);
+    //     console.warn('III -> ', i);
 
-        infowindow.open(map, marker);
-      });
-    };
+    //     infowindow.open(map, marker);
+    //   });
+    // }
 
     // obtém as coordenadas de acordo com o desenho no mapa
-    function _getCoordinates(polygon) {
-      var coordinates;
+    // function _getCoordinates(polygon) {
+    //   var coordinates;
 
-      coordinates = (polygon.getPath().getArray());
+    //   coordinates = (polygon.getPath().getArray());
 
-      console.warn('Coordenadas que foram desenhadas: ', coordinates);
-    };
+    //   console.warn('Coordenadas que foram desenhadas: ', coordinates);
+    // }
 
     // obtém todos os marcadores e insere no mapa
     function _addMarkers() {
-      var arrayMarkers, infoWindow, marker;
+      var arrayMarkers, marker;
 
       arrayMarkers = [];
 
@@ -444,10 +451,10 @@ angular.module('hortalivreApp')
 
             // centraliza o mapa no marcador clicado
             $scope.map.panTo(marker.position);
-          }
+          };
         })(marker, i));
       }
-    };
+    }
 
     function _checkIcon(type) {
       if (type === 'garden') {
@@ -455,10 +462,10 @@ angular.module('hortalivreApp')
       } else {
         return '../../images/marker-fairs.svg';
       }
-    };
+    }
 
     function _getMarkersByApi() {
-      var arr_gardens, arr_markets, all_arr, params, myLocation, fakePosition;
+      var arr_gardens, arr_markets, all_arr;
 
       arr_gardens = [];
       arr_markets = [];
@@ -481,9 +488,9 @@ angular.module('hortalivreApp')
                 email: i.email,
                 fullName: i.fullName,
                 address: 'Av cruz de rebouças, 1222, TIJIPIÓ - PE'
-              })
-            })
-          } else { console.warn('nenhuma horta') }
+              });
+            });
+          } else { console.warn('nenhuma horta'); }
 
           if (markets.length > 0){
             angular.forEach(markets, function(i) {
@@ -495,9 +502,9 @@ angular.module('hortalivreApp')
                 rating_value: i.rating_value,
                 type: i.type,
                 link: i.link
-              })
-            })
-          } else { console.warn('nenhuma feira') }
+              });
+            });
+          } else { console.warn('nenhuma feira'); }
 
           all_arr = arr_gardens.concat(arr_markets);
 
@@ -510,7 +517,7 @@ angular.module('hortalivreApp')
           Notification.show('Atenção', 'Tivemos um problema no nosso servidor, tente em instantes.');
         }
       });
-    };
+    }
     // ====
 
 
@@ -545,9 +552,11 @@ angular.module('hortalivreApp')
 
       $scope.$apply(function() {
         $scope.markerInfo = args.marker.data;
-      })
+      });
     });
 
+    // ====
+    // float buttons do mapa
     $scope.viewAllMarkers = function() {
       var element = $('.wrapper-box-map').hasClass('active');
 
@@ -557,7 +566,7 @@ angular.module('hortalivreApp')
 
       $scope.infowindow.close();
 
-      $scope.map.fitBounds($scope.bounds)
+      $scope.map.fitBounds($scope.bounds);
 
       angular.forEach($scope.mapsMarkers, function(i) {
         i.setVisible(true);
@@ -582,7 +591,7 @@ angular.module('hortalivreApp')
         } else {
           i.setVisible(true);
         }
-      })
+      });
     };
 
     $scope.searchByFairs = function() {
@@ -594,16 +603,12 @@ angular.module('hortalivreApp')
         } else {
           i.setVisible(true);
         }
-      })
+      });
     };
+    // ====
 
-    function link(args) {
-      var win;
-
-      win = window.open(args, '_blank');
-      return win.focus();
-    }
-
+    // ====
+    // adicionar aos favoritos
     $scope.addToFavorite = function(id) {
       var params = { favID: id };
 
@@ -618,13 +623,14 @@ angular.module('hortalivreApp')
               console.warn('lookup: ', response);
               Notification.show('Atenção', 'Tivemos um problema no nosso servidor. Tente novamente em instantes.');
             }
-          })
+          });
 
         } else {
           console.warn('status: ', response.status);
           Notification.show('Atenção', 'Tivemos um problema ao adicionar o usuário como favorito. Tente novamente em instantes.');
         }
-      })
-    }
+      });
+    };
+    // ====
 
   }]);
