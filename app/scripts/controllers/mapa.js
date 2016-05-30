@@ -315,7 +315,7 @@ angular.module('hortalivreApp')
       // google.maps.event.addListener(map, 'idle', _showMarkers);
 
       // Permite o usuário desenhar no mapa
-      google.maps.event.addListener(drawingManager, 'polygoncomplete', _getCoordinates);
+      // google.maps.event.addListener(drawingManager, 'polygoncomplete', _getCoordinates);
 
       // setando alguns métodos no $scope
       $scope.map = map;
@@ -392,7 +392,7 @@ angular.module('hortalivreApp')
       $scope.mapsMarkers = [];
       $scope.marker_click = '';
 
-      console.warn('arrayMarkers', arrayMarkers);
+      // console.warn('arrayMarkers', arrayMarkers);
 
       for(var i = 0; i < arrayMarkers.length; i++ ) {
         marker = new google.maps.Marker({
@@ -463,22 +463,7 @@ angular.module('hortalivreApp')
       arr_gardens = [];
       arr_markets = [];
 
-      myLocation = LocalStorage.getItem('HRTLVR_POS');
-      fakePosition = LocalStorage.getItem('HRTLVR_POS_FAKE');
-
-      if (myLocation !== null) {
-        params = {
-          lat: myLocation.lat,
-          lng: myLocation.lng
-        }
-      } else {
-        params = {
-          lat: fakePosition.lat,
-          lng: fakePosition.lng
-        }
-      }
-
-      GardenApi.All(params, function(response) {
+      GardenApi.All(function(response) {
         var gardens, markets;
 
         if (response.status === 200) {
@@ -548,7 +533,7 @@ angular.module('hortalivreApp')
     });
 
     $scope.$on('hortamap_ok', function() {
-      _getMarkersByApi()
+      _getMarkersByApi();
     });
 
     $scope.$on('pins_ok', function() {

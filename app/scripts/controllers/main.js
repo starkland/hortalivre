@@ -8,7 +8,7 @@
  * Controller of the hortalivreApp
  */
 angular.module('hortalivreApp')
-  .controller('MainCtrl', ['$scope', 'Notification', 'LocalStorage', '$rootScope', '$location', '$timeout', function ($scope, Notification, LocalStorage, $rootScope, $location, $timeout) {
+  .controller('MainCtrl', ['$scope', 'Notification', 'LocalStorage', '$rootScope', '$location', '$timeout', 'GardenApi', function ($scope, Notification, LocalStorage, $rootScope, $location, $timeout, GardenApi) {
 
     // ====
     // Método para geolocalização
@@ -324,7 +324,9 @@ angular.module('hortalivreApp')
     function _showMarkers() {
       var bounds, south, south_lat, south_lng, north,
       north_lat, north_lng, center_lat, center_lng,
-      marker, latLng;
+      marker, latLng, map;
+
+      map = $scope.map;
 
       bounds = map.getBounds();
 
@@ -340,26 +342,53 @@ angular.module('hortalivreApp')
       center_lng = (south_lng + north_lng) / 2;
 
       latLng = {
-        'center_lat': center_lat,
-        'center_lng': center_lng
+        'lat': center_lat,
+        'lng': center_lng
       };
 
-      console.warn('Latitude / Longitude: ', latLng);
+      var arrMarkets = [];
 
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(center_lat, center_lng),
-        map: map,
-        icon: 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/map-marker-32.png'
+      // return console.warn('latLng: ', latLng);
+
+      GardenApi.ByLatLng(latLng, function(response) {
+        var markets;
+
+        if (response.status === 200) {
+          markets = response.data.markets;
+
+          if (markets.length > 0){
+            angular.forEach(markets, function(i) {
+              arrMarkets.push({
+                title: i.title,
+                lat: i.geolocation[1],
+                lng: i.geolocation[0],
+                type: i.type
+              })
+            })
+          } else { console.warn('nenhuma feira') }
+
+          $scope.arr_markets = arrMarkets;
+
+          $scope.$emit('pins_ok');
+        } else {
+          Notification.show('Atenção', 'Tivemos um problema no nosso servidor, tente em instantes.');
+        }
       });
 
-      infowindow = new google.maps.InfoWindow({
-        content: 'lat: ' + center_lat + ', lng: ' + center_lng,
-        maxWidth: 700
-      });
+      // marker = new google.maps.Marker({
+      //   position: new google.maps.LatLng(center_lat, center_lng),
+      //   map: map,
+      //   icon: 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/map-marker-32.png'
+      // });
 
-      google.maps.event.addListener(marker, 'click', function() {
-        infowindow.open(map, marker);
-      });
+      // infowindow = new google.maps.InfoWindow({
+      //   content: 'lat: ' + center_lat + ', lng: ' + center_lng,
+      //   maxWidth: 700
+      // });
+
+      // google.maps.event.addListener(marker, 'click', function() {
+      //   infowindow.open(map, marker);
+      // });
     };
 
     // obtém as coordenadas de acordo com o desenho no mapa
@@ -370,9 +399,122 @@ angular.module('hortalivreApp')
 
       console.warn('Coordenadas que foram desenhadas: ', coordinates);
     };
+
+    // obtém os marcadores da api
+    function _getMarkersByApi() {
+      var arr_markets, all_arr, params, myLocation, fakePosition;
+
+      arr_markets = [];
+
+      myLocation = LocalStorage.getItem('HRTLVR_POS');
+      fakePosition = LocalStorage.getItem('HRTLVR_POS_FAKE');
+
+      if (myLocation !== null) {
+        params = {
+          lat: myLocation.lat,
+          lng: myLocation.lng
+        }
+      } else {
+        params = {
+          lat: fakePosition.lat,
+          lng: fakePosition.lng
+        }
+      }
+
+      GardenApi.ByLatLng(params, function(response) {
+        var markets;
+
+        if (response.status === 200) {
+          markets = response.data.markets;
+
+          if (markets.length > 0){
+            angular.forEach(markets, function(i) {
+              arr_markets.push({
+                title: i.title,
+                lat: i.geolocation[1],
+                lng: i.geolocation[0],
+                type: i.type
+              })
+            })
+          } else { console.warn('nenhuma feira') }
+
+          $scope.arr_markets = arr_markets;
+
+          $scope.$emit('pins_ok');
+        } else {
+          Notification.show('Atenção', 'Tivemos um problema no nosso servidor, tente em instantes.');
+        }
+      });
+    };
+
+    // adiciona os marcadores ao mapa
+    function _addMarkers() {
+      var arrayMarkers, infoWindow, marker;
+
+      arrayMarkers = [];
+
+      $scope.infowindow = new google.maps.InfoWindow();
+
+      arrayMarkers = $scope.arr_markets;
+
+      $scope.mapsMarkers = [];
+
+      for(var i = 0; i < arrayMarkers.length; i++ ) {
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(arrayMarkers[i].lat, arrayMarkers[i].lng),
+          map: $scope.map,
+          clickable: true,
+          title: arrayMarkers[i].title,
+          zIndex: 90,
+          icon: _checkIcon(arrayMarkers[i].type),
+          animation: google.maps.Animation.DROP,
+          data: {
+            "title": arrayMarkers[i].title,
+            "geolocation": [arrayMarkers[i].lat, arrayMarkers[i].lng],
+            "type": arrayMarkers[i].type
+          }
+        });
+
+        $scope.mapsMarkers.push(marker);
+
+        // agrupa os marcadores na view
+        $scope.bounds.extend(new google.maps.LatLng(arrayMarkers[i].lat, arrayMarkers[i].lng));
+        $scope.map.fitBounds($scope.bounds);
+
+        // Infowindow com o título da denúncia
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+
+            if (marker.data.type !== 'garden') {
+              // feiras
+              var string = "<h5>" + marker.data.title + "</h5>";
+
+              $scope.infowindow.setContent(string);
+            } else {
+              // hortas
+              $scope.infowindow.setContent(marker.data.fullName);
+            }
+
+            $scope.infowindow.open($scope.map, marker);
+
+            // centraliza o mapa no marcador clicado
+            $scope.map.panTo(marker.position);
+          }
+        })(marker, i));
+      }
+    };
+
+    // altera o marcador de acordo com o tipo
+    function _checkIcon(type) {
+      if (type === 'garden') {
+        return '../../images/marker-garden.svg';
+      } else {
+        return '../../images/marker-fairs.svg';
+      }
+    };
     // ====
 
-
+    // ====
     $scope.loadMap = function() {
       var ls = LocalStorage.getItem('HRTLVR_POS');
       var fake_pos = LocalStorage.getItem('HRTLVR_POS_FAKE');
@@ -386,13 +528,14 @@ angular.module('hortalivreApp')
       }
     };
 
-    $scope.$on('position_ok', function() {
-      _initialize();
+    $scope.$on('map_ok', function() {
+      _getMarkersByApi();
     });
 
-    $scope.$on('position_fake', function() {
-      _initialize();
-    });
+    $scope.$on('pins_ok', function() {
+      _addMarkers();
+    })
+    // ====
 
     $scope.goTo = function(params) {
       $location.path(params);
