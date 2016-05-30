@@ -21,7 +21,7 @@ angular.module('hortalivreApp')
     }
 
     function error(error) {
-      Notification.show('Atenção', error);
+      Notification.show('Atenção', 'Não conseguimos obter a sua localização, atualize a página para tentarmos novamente :)');
     }
 
     function savePosition(position) {
