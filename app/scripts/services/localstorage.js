@@ -24,15 +24,6 @@ angular.module('hortalivreApp')
     };
 
     obj.SaveUser = function(obj) {
-      // user_storage._id = obj._id;
-      // user_storage.createdAt = obj.createdAt;
-      // user_storage.email = obj.email;
-      // user_storage.favorites = obj.favorites;
-      // user_storage.fullName = obj.fullName;
-      // user_storage.garden = obj.garden;
-      // user_storage.geolocation = obj.geolocation;
-      // user_storage.updatedAt = obj.updatedAt;
-
       user_storage = obj;
 
       localStorage.setItem('HRTLVR', JSON.stringify(user_storage));
