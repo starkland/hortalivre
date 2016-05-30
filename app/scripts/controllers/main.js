@@ -57,7 +57,7 @@ angular.module('hortalivreApp')
 
       map = new google.maps.Map(document.getElementById('map-home'), {
         center: userPosition,
-        zoom: 15,
+        zoom: 12,
         mapTypeControl: false,
         panControl: false,
         streetViewControl: false,
@@ -478,8 +478,8 @@ angular.module('hortalivreApp')
         $scope.mapsMarkers.push(marker);
 
         // agrupa os marcadores na view
-        $scope.bounds.extend(new google.maps.LatLng(arrayMarkers[i].lat, arrayMarkers[i].lng));
-        $scope.map.fitBounds($scope.bounds);
+        // $scope.bounds.extend(new google.maps.LatLng(arrayMarkers[i].lat, arrayMarkers[i].lng));
+        // $scope.map.fitBounds($scope.bounds);
 
         // Infowindow com o título da denúncia
         google.maps.event.addListener(marker, 'click', (function(marker, i) {

@@ -1,15 +1,15 @@
 <!-- desktop -->
 <section class="hidden-xs sc-home desktop" ng-init="loadMap()">
   <aside class="map-section">
-    <div id="map-home" class="map-home"></div>
+    <div id="map-home" class="map-home" ng-class="{ 'active': findGarden }"></div>
 
     <div class="container">
       <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
-          <div class="map-content">
+          <div class="map-content" ng-class="{ 'active': findGarden }">
             <h3>olá, seja bem-vindo <br> a maior horta online do Brasil</h3>
 
-            <button ng-click="goTo('login')" class="btn btn-primary big col-sm-4 col-sm-offset-4">procurar horta</button>
+            <button ng-click="findGarden = true" class="btn btn-primary big col-sm-4 col-sm-offset-4">procurar horta</button>
           </div>
         </div>
       </div>
