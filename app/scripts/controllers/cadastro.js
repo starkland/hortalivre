@@ -39,6 +39,7 @@ angular.module('hortalivreApp')
 
         params.lat = $scope.formatted_address_location.lat.toString();
         params.lng = $scope.formatted_address_location.lng.toString();
+        params.fullAddress = $scope.formatted_address;
       } else {
         $scope.error.type = 'address';
         return $scope.progressbar.complete();
