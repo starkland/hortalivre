@@ -520,9 +520,13 @@ angular.module('hortalivreApp')
       var fake_pos = LocalStorage.getItem('HRTLVR_POS_FAKE');
 
       if (ls) {
-        $timeout(_initialize(ls), 500);
+        $timeout(function() {
+          _initialize(ls);
+        }, 3000);
       } else if (fake_pos) {
-        $timeout(_initialize(fake_pos), 500);
+        $timeout(function() {
+          _initialize(fake_pos);
+        }, 3000);
       } else {
         _getLocation();
       }
