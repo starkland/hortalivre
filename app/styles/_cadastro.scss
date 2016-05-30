@@ -27,6 +27,72 @@
   }
 }
 
+%radio-checked {
+  background-color: $color-secondary;
+  color: $border-primary;
+}
+
+.radio-wrapper {
+  label {
+    display: block;
+    width: 100%;
+    line-height: 45px;
+    text-align: center;
+    cursor: pointer;
+    background-color: $border-primary;
+
+    @include bdr(40px);
+    @include transition(background, .25s, 0s, linear);
+
+    &:hover { @extend %radio-checked; }
+  }
+
+  input {
+    opacity: 0;
+
+    &:checked {
+      ~ label { @extend %radio-checked; }
+    }
+  }
+}
+
+.form-cadastro {
+  .dropdown-menu {
+    display: block;
+    width: 100%;
+    // height: auto;
+    height: 90px;
+
+    a {
+      font-size: ($fs-normal) !important;
+      font-weight: $fw-light !important;
+      background-color: #0e4c2b !important;
+    }
+  }
+}
+
+.checkbox-primary {
+  width: 20px;
+  height: 20px;
+  border: solid 2px #ebebeb;
+  display: inline-block;
+  margin-right: 20px;
+  background-color: transparent;
+
+  @include bdr(100%);
+  @include apr(none);
+  @include transition(background, .25s, 0s, linear);
+
+  &:checked, &:focus, &:active {
+    background-color: $color-secondary;;
+  }
+
+  & ~ label {
+    vertical-align: top;
+    display: inline-block;
+    line-height: 30px;
+  }
+}
 
 // ====
 
