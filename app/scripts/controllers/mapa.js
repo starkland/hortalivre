@@ -530,7 +530,7 @@ angular.module('hortalivreApp')
 
 
     $scope.loadMap = function() {
-      var ls = LocalStorage.getItem('HRTLVR');
+      var ls = LocalStorage.getItem('HRTLVR_POS');
 
       if (ls) {
         _initialize();

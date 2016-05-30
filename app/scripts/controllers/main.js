@@ -8,7 +8,7 @@
  * Controller of the hortalivreApp
  */
 angular.module('hortalivreApp')
-  .controller('MainCtrl', ['$scope', 'Notification', 'LocalStorage', '$rootScope', '$location', function ($scope, Notification, LocalStorage, $rootScope, $location) {
+  .controller('MainCtrl', ['$scope', 'Notification', 'LocalStorage', '$rootScope', '$location', '$timeout', function ($scope, Notification, LocalStorage, $rootScope, $location, $timeout) {
 
     // ====
     // Método para geolocalização
@@ -51,9 +51,9 @@ angular.module('hortalivreApp')
     function _initialize(args) {
       var ls_position, userPosition, map, userMarker, userRadius, styles, styledMap, drawingManager;
 
-      ls_position = LocalStorage.getItem('HRTLVR_POS');
-
-      userPosition = new google.maps.LatLng(ls_position.lat, ls_position.lng);
+      if (typeof args === 'object') {
+        userPosition = new google.maps.LatLng(args.lat, args.lng);
+      }
 
       map = new google.maps.Map(document.getElementById('map-home'), {
         center: userPosition,
@@ -373,37 +373,29 @@ angular.module('hortalivreApp')
     // ====
 
 
-    // ====
-    // Pesquisar as feiras
-    $scope.gardenMap = {};
-
-    $scope.searchHortas = function() {
-      $scope.gardenMap.type = 'hortas';
-    };
-
-    $scope.searchFeiras = function() {
-      $scope.gardenMap.type = 'feiras';
-    };
-
-    $scope.search = function() {
-      var params = $scope.gardenMap;
-
-      console.warn('Enviando -> ', params);
-    }
-    // ====
-
-
     $scope.loadMap = function() {
-      _getLocation();
+      var ls = LocalStorage.getItem('HRTLVR_POS');
+      var fake_pos = LocalStorage.getItem('HRTLVR_POS_FAKE');
+
+      if (ls) {
+        $timeout(_initialize(ls), 500);
+      } else if (fake_pos) {
+        $timeout(_initialize(fake_pos), 500);
+      } else {
+        _getLocation();
+      }
     };
 
     $scope.$on('position_ok', function() {
       _initialize();
     });
 
+    $scope.$on('position_fake', function() {
+      _initialize();
+    });
+
     $scope.goTo = function(params) {
       $location.path(params);
     };
-
 
   }]);
