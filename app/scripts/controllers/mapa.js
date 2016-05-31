@@ -494,7 +494,7 @@ angular.module('hortalivreApp')
       params = latLng;
 
       GardenApi.ByLatLng(params, function(response) {
-        console.warn('response', response);
+        // console.warn('response', response);
 
         var gardens, markets, arr_gardens, arr_markets, all_arr;
 
@@ -540,7 +540,7 @@ angular.module('hortalivreApp')
           $scope.arr_markets = arr_markets;
           $scope.all_arr = all_arr;
 
-          console.warn('aqui caralho de asa voador', all_arr);
+          // console.warn('aqui caralho de asa voador', all_arr);
 
           $scope.$emit('pins_ok');
         } else {
