@@ -1,0 +1,30 @@
+###########################################################
+#                    Awesome Team
+############################################################
+
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+  Designer: Pedro Borges
+  Contact: http://fb.com/pedrowborges
+  Twitter: @pedrowborges
+  From: Brazil
+
+  Front-End Engineer: Thulio Philipe
+  Contact: http://thulioph.com
+  Twitter: @thulioph_
+  From: Brazil
+
+  Back-End Engineer: Julio Melo
+  Contact: http://fb.com/juliosmelo
+  Twitter: @julios_melo
+  From: Brazil
+
+
+# PROJECT
+
+  Last update: 2016/05/31
+  Doctype: HTML5
+  Standards: HTML5, CSS3, Angular.js
