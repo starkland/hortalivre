@@ -13,11 +13,14 @@ angular.module('hortalivreApp')
     // ====
     // Logout
     function _logout() {
-      $rootScope.user_logged = false;
-      $location.path('/');
       LocalStorage.remove('HRTLVR');
+      LocalStorage.remove('HRTLVR_POS');
+      LocalStorage.remove('HRTLVR_POS_FAKE');
 
+      $rootScope.user_logged = false;
       delete $rootScope.userInfo;
+
+      $location.path('/');
     };
     // ====
 
