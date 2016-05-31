@@ -365,7 +365,9 @@ angular.module('hortalivreApp')
                 fullName: i.fullName
               });
             });
-          } else { console.warn('nenhuma horta'); }
+          } else {
+            // console.warn('nenhuma horta');
+          }
 
           if (markets.length > 0){
             angular.forEach(markets, function(i) {
@@ -379,7 +381,9 @@ angular.module('hortalivreApp')
                 link: i.link
               });
             });
-          } else { console.warn('nenhuma feira'); }
+          } else {
+            // console.warn('nenhuma feira');
+          }
 
           all_arr = arr_gardens.concat(arr_markets);
 
@@ -599,7 +603,7 @@ angular.module('hortalivreApp')
     });
 
     $scope.$on('marker_click', function(event, args) {
-      console.log(args.marker.data);
+      // console.log(args.marker.data);
 
       $scope.$apply(function() {
         $scope.markerInfo = args.marker.data;
