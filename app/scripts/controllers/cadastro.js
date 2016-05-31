@@ -42,10 +42,9 @@ angular.module('hortalivreApp')
         gender: $scope.user_fb_data.gender,
         fullName: $scope.user_fb_data.name,
         email: $scope.user_fb_data.email,
-        password: "",
-        lat: ls.lat,
-        lng: ls.lng,
-        fullAddress: '',
+        lat: ls.lat.toString(),
+        lng: ls.lng.toString(),
+        // fullAddress: '',
         platform: 'web',
         social : {
           email: $scope.user_fb_data.email,
@@ -59,21 +58,23 @@ angular.module('hortalivreApp')
 
       console.log(params);
 
-      UserApi.create(params, function(result) {
+      UserApi.createFb(params, function(result) {
         if (result.status === 201) {
-            LocalStorage.SaveUser(result.data);
+          LocalStorage.SaveUser(result.data);
 
-            $rootScope.user_logged = true; // altera o header
-            $scope.$emit('user_created');
-            $scope.progressbar.complete();
+          $rootScope.user_logged = true; // altera o header
+          $scope.$emit('user_created');
+          $scope.progressbar.complete();
 
-            $location.path('/mapa');
-          } else {
-            $scope.error.status = result.status;
-            $scope.error.type = 'create-user';
+          $location.path('/mapa');
+        } else if (result.status === 422) {
+          Notification.show('Atenção', 'Já existe um usuário cadastrado para este e-mail!')
+        } else {
+          $scope.error.status = result.status;
+          $scope.error.type = 'create-user';
 
-            $scope.progressbar.complete();
-          }
+          $scope.progressbar.complete();
+        }
       })
     });
     // ====

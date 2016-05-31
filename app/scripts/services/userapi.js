@@ -88,6 +88,23 @@ angular.module('hortalivreApp')
       });
     };
 
+    obj.createFb = function(data, callback) {
+      $http.post(apiUrl + '/api/v1/users/', data, { headers: { 'Content-Type': 'application/json' }}).then(function (data) {
+          sessionStorage.setItem('authorization', data.headers()['authorization']);
+          callback(data);
+        }, function (error) {
+          callback(error);
+        });
+    };
+
+    obj.loginFb = function(data, callback) {
+      $http.post(apiUrl + '/api/v1/auth/fb/', data, { headers: { 'Content-Type': 'application/json' }}).then(function (data) {
+          callback(data);
+        }, function (error) {
+          callback(error);
+        });
+    };
+
     obj.authTwitter = function(callback) {
       var params = {};
 
