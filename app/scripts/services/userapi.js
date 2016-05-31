@@ -98,24 +98,24 @@ angular.module('hortalivreApp')
     };
 
     obj.loginFb = function(data, callback) {
-      $http.post(apiUrl + '/api/v1/auth/fb/', data, { headers: { 'Content-Type': 'application/json' }}).then(function (data) {
+      $http.post(apiUrl + '/api/v1/auth/fb/', data, { headers: { 'Content-Type': 'application/json', 'Authorization': sessionStorage.getItem('authorization') }}).then(function (data) {
           callback(data);
         }, function (error) {
           callback(error);
         });
     };
 
-    obj.authTwitter = function(callback) {
-      var params = {};
+    // obj.authTwitter = function(callback) {
+    //   var params = {};
 
-      OAuth.initialize('VrRWgnnAU3aUm5PNeaBM42oj5Cs');
+    //   OAuth.initialize('VrRWgnnAU3aUm5PNeaBM42oj5Cs');
 
-      OAuth.popup('twitter').done(function(result) {
-        console.log(result);
-      }).fail(function (err) {
-        console.log(err);
-      });
-    };
+    //   OAuth.popup('twitter').done(function(result) {
+    //     console.log(result);
+    //   }).fail(function (err) {
+    //     console.log(err);
+    //   });
+    // };
 
     return obj;
 
