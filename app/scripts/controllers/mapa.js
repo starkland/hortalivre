@@ -319,7 +319,7 @@ angular.module('hortalivreApp')
 
       // Eventos
       // carrega mais marcadores
-      google.maps.event.addListener(map, 'idle', _showMarkers);
+      // google.maps.event.addListener(map, 'idle', _showMarkers);
 
       // Permite o usuário desenhar no mapa
       // google.maps.event.addListener(drawingManager, 'polygoncomplete', _getCoordinates);
@@ -346,7 +346,7 @@ angular.module('hortalivreApp')
         lng: user_position.lng,
       };
 
-      GardenApi.ByLatLng(params, function(response) {
+      GardenApi.All(function(response) {
         var gardens, markets;
 
         if (response.status === 200) {
@@ -362,8 +362,7 @@ angular.module('hortalivreApp')
                 garden: i.garden,
                 type: 'garden',
                 email: i.email,
-                fullName: i.fullName,
-                address: 'Av cruz de rebouças, 1222, TIJIPIÓ - PE'
+                fullName: i.fullName
               });
             });
           } else { console.warn('nenhuma horta'); }
@@ -466,106 +465,106 @@ angular.module('hortalivreApp')
     }
 
     // obtém mais marcadores quando move o mapa
-    function _showMarkers() {
-      var bounds, south, south_lat, south_lng, north,
-      north_lat, north_lng, center_lat, center_lng,
-      marker, latLng, map, params;
+    // function _showMarkers() {
+    //   var bounds, south, south_lat, south_lng, north,
+    //   north_lat, north_lng, center_lat, center_lng,
+    //   marker, latLng, map, params;
 
-      map = $scope.map;
+    //   map = $scope.map;
 
-      bounds = map.getBounds();
+    //   bounds = map.getBounds();
 
-      // south = map.getBounds().getSouthWest();
-      south_lat = map.getBounds().getSouthWest().lat();
-      south_lng = map.getBounds().getSouthWest().lng();
+    //   // south = map.getBounds().getSouthWest();
+    //   south_lat = map.getBounds().getSouthWest().lat();
+    //   south_lng = map.getBounds().getSouthWest().lng();
 
-      // north = map.getBounds().getNorthEast();
-      north_lat = map.getBounds().getNorthEast().lat();
-      north_lng = map.getBounds().getNorthEast().lng();
+    //   // north = map.getBounds().getNorthEast();
+    //   north_lat = map.getBounds().getNorthEast().lat();
+    //   north_lng = map.getBounds().getNorthEast().lng();
 
-      center_lat = (south_lat + north_lat) / 2;
-      center_lng = (south_lng + north_lng) / 2;
+    //   center_lat = (south_lat + north_lat) / 2;
+    //   center_lng = (south_lng + north_lng) / 2;
 
-      latLng = {
-        'lat': center_lat,
-        'lng': center_lng
-      };
+    //   latLng = {
+    //     'lat': center_lat,
+    //     'lng': center_lng
+    //   };
 
-      params = latLng;
+    //   params = latLng;
 
-      GardenApi.ByLatLng(params, function(response) {
-        // console.warn('response', response);
+    //   GardenApi.ByLatLng(params, function(response) {
+    //     // console.warn('response', response);
 
-        var gardens, markets, arr_gardens, arr_markets, all_arr;
+    //     var gardens, markets, arr_gardens, arr_markets, all_arr;
 
-        arr_gardens = [];
-        arr_markets = [];
+    //     arr_gardens = [];
+    //     arr_markets = [];
 
-        if (response.status === 200) {
-          gardens = response.data.gardens;
-          markets = response.data.markets;
+    //     if (response.status === 200) {
+    //       gardens = response.data.gardens;
+    //       markets = response.data.markets;
 
-          if (gardens.length > 0){
-            angular.forEach(gardens, function(i) {
-              arr_gardens.push({
-                id: i._id,
-                lat: i.geolocation[1],
-                lng: i.geolocation[0],
-                garden: i.garden,
-                type: 'garden',
-                email: i.email,
-                fullName: i.fullName,
-                address: 'Av cruz de rebouças, 1222, TIJIPIÓ - PE'
-              });
-            });
-          } else { console.warn('nenhuma horta'); }
+    //       if (gardens.length > 0){
+    //         angular.forEach(gardens, function(i) {
+    //           arr_gardens.push({
+    //             id: i._id,
+    //             lat: i.geolocation[1],
+    //             lng: i.geolocation[0],
+    //             garden: i.garden,
+    //             type: 'garden',
+    //             email: i.email,
+    //             fullName: i.fullName,
+    //             address: 'Av cruz de rebouças, 1222, TIJIPIÓ - PE'
+    //           });
+    //         });
+    //       } else { console.warn('nenhuma horta'); }
 
-          if (markets.length > 0){
-            angular.forEach(markets, function(i) {
-              arr_markets.push({
-                id: i._id,
-                title: i.title,
-                lat: i.geolocation[1],
-                lng: i.geolocation[0],
-                rating_value: i.rating_value,
-                type: i.type,
-                link: i.link
-              });
-            });
-          } else { console.warn('nenhuma feira'); }
+    //       if (markets.length > 0){
+    //         angular.forEach(markets, function(i) {
+    //           arr_markets.push({
+    //             id: i._id,
+    //             title: i.title,
+    //             lat: i.geolocation[1],
+    //             lng: i.geolocation[0],
+    //             rating_value: i.rating_value,
+    //             type: i.type,
+    //             link: i.link
+    //           });
+    //         });
+    //       } else { console.warn('nenhuma feira'); }
 
-          all_arr = arr_gardens.concat(arr_markets);
+    //       all_arr = arr_gardens.concat(arr_markets);
 
-          $scope.arr_gardens = arr_gardens;
-          $scope.arr_markets = arr_markets;
-          $scope.all_arr = all_arr;
+    //       $scope.arr_gardens = arr_gardens;
+    //       $scope.arr_markets = arr_markets;
+    //       $scope.all_arr = all_arr;
 
-          // console.warn('aqui caralho de asa voador', all_arr);
+    //       // console.warn('aqui caralho de asa voador', all_arr);
 
-          $scope.$emit('pins_ok');
-        } else {
-          Notification.show('Atenção', 'Tivemos um problema no nosso servidor, tente em instantes.');
-        }
-      });
+    //       $scope.$emit('pins_ok');
+    //     } else {
+    //       Notification.show('Atenção', 'Tivemos um problema no nosso servidor, tente em instantes.');
+    //     }
+    //   });
 
-      // marker = new google.maps.Marker({
-      //   position: new google.maps.LatLng(latLng.lat, latLng.lng),
-      //   map: map,
-      //   icon: 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/map-marker-64.png'
-      // });
+    //   // marker = new google.maps.Marker({
+    //   //   position: new google.maps.LatLng(latLng.lat, latLng.lng),
+    //   //   map: map,
+    //   //   icon: 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/map-marker-64.png'
+    //   // });
 
-      // $scope.infowindow = new google.maps.InfoWindow({
-      //   content: 'lat: ' + center_lat + ', lng: ' + center_lng,
-      //   maxWidth: 700
-      // });
+    //   // $scope.infowindow = new google.maps.InfoWindow({
+    //   //   content: 'lat: ' + center_lat + ', lng: ' + center_lng,
+    //   //   maxWidth: 700
+    //   // });
 
-      // google.maps.event.addListener(marker, 'click', function(e, i) {
-      //   console.warn('EEE -> ', e);
-      //   console.warn('III -> ', i);
+    //   // google.maps.event.addListener(marker, 'click', function(e, i) {
+    //   //   console.warn('EEE -> ', e);
+    //   //   console.warn('III -> ', i);
 
-      //   $scope.infowindow.open(map, marker);
-      // });
-    }
+    //   //   $scope.infowindow.open(map, marker);
+    //   // });
+    // }
 
     // obtém as coordenadas de acordo com o desenho no mapa
     // function _getCoordinates(polygon) {

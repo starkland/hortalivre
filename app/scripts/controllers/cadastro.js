@@ -56,7 +56,7 @@ angular.module('hortalivreApp')
         }
       };
 
-      console.log(params);
+      // console.log(params);
 
       UserApi.createFb(params, function(result) {
         if (result.status === 201) {
@@ -80,9 +80,9 @@ angular.module('hortalivreApp')
     // ====
 
     // ====
-    $scope.twCadastro = function() {
-      console.log('Twitter')
-    };
+    // $scope.twCadastro = function() {
+    //   console.log('Twitter')
+    // };
     // ====
 
     // ====
