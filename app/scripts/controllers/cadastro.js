@@ -12,14 +12,76 @@ angular.module('hortalivreApp')
 
     // ====
     $scope.fbCadastro = function() {
-      console.log('Facebook')
+      facebookLogin();
+    };
+
+    function facebookLogin() {
+      $scope.progressbar.start();
+
+      var user_fb_data = {};
+
+      UserApi.authFacebook(function(result) {
+        user_fb_data.email = result.user_fb_data.email;
+        user_fb_data.gender = result.user_fb_data.gender;
+        user_fb_data.id = result.user_fb_data.id;
+        user_fb_data.name = result.user_fb_data.name;
+        user_fb_data.picture = result.user_fb_data.picture.data.url;
+        user_fb_data.access_token = result.access_token;
+
+        $scope.user_fb_data = user_fb_data;
+
+        $scope.$emit('fb_ok');
+      });
     }
+
+    $scope.$on('fb_ok', function() {
+      var params = {};
+      var ls = LocalStorage.getItem('HRTLVR_POS');
+
+      params = {
+        gender: $scope.user_fb_data.gender,
+        fullName: $scope.user_fb_data.name,
+        email: $scope.user_fb_data.email,
+        password: "",
+        lat: ls.lat,
+        lng: ls.lng,
+        fullAddress: '',
+        platform: 'web',
+        social : {
+          email: $scope.user_fb_data.email,
+          gender: $scope.user_fb_data.gender,
+          id: $scope.user_fb_data.id,
+          name: $scope.user_fb_data.name,
+          picture: $scope.user_fb_data.picture,
+          accessToken: $scope.user_fb_data.access_token
+        }
+      };
+
+      console.log(params);
+
+      UserApi.create(params, function(result) {
+        if (result.status === 201) {
+            LocalStorage.SaveUser(result.data);
+
+            $rootScope.user_logged = true; // altera o header
+            $scope.$emit('user_created');
+            $scope.progressbar.complete();
+
+            $location.path('/mapa');
+          } else {
+            $scope.error.status = result.status;
+            $scope.error.type = 'create-user';
+
+            $scope.progressbar.complete();
+          }
+      })
+    });
     // ====
 
     // ====
     $scope.twCadastro = function() {
       console.log('Twitter')
-    }
+    };
     // ====
 
     // ====
