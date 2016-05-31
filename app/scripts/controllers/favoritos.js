@@ -17,6 +17,8 @@ angular.module('hortalivreApp')
     };
 
     function getAllFavorites() {
+      $scope.progressbar.start();
+
       var favorites;
 
       FavoriteApi.All(function(response) {
@@ -25,9 +27,14 @@ angular.module('hortalivreApp')
 
           if (favorites.length > 0) {
             $scope.favorites = favorites;
+            $scope.progressbar.complete();
           } else {
             Notification.show('Atenção', 'Você ainda não possui nenhum usuário favorito.');
+            $scope.progressbar.complete();
           }
+        } else {
+          Notification.show('Atenção', 'Tivemos um problema ao listar seus favoritos, tente novamente em instantes.');
+          $scope.progressbar.complete();
         }
       })
     }
