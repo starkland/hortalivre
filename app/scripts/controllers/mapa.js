@@ -661,6 +661,8 @@ angular.module('hortalivreApp')
     // ====
     // adicionar aos favoritos
     $scope.addToFavorite = function(id) {
+      $scope.progressbar.start();
+
       var params = { favID: id };
 
       FavoriteApi.Add(params, function(response) {
@@ -670,15 +672,18 @@ angular.module('hortalivreApp')
           UserApi.lookup(function(response) {
             if (response.status === 200) {
               LocalStorage.SaveUser(response.data);
+              $scope.progressbar.complete();
             } else {
-              console.warn('lookup: ', response);
+              // console.warn('lookup: ', response);
               Notification.show('Atenção', 'Tivemos um problema no nosso servidor. Tente novamente em instantes.');
+              $scope.progressbar.complete();
             }
           });
 
         } else {
-          console.warn('status: ', response.status);
+          // console.warn('status: ', response.status);
           Notification.show('Atenção', 'Tivemos um problema ao adicionar o usuário como favorito. Tente novamente em instantes.');
+          $scope.progressbar.complete();
         }
       });
     };
