@@ -123,10 +123,10 @@ angular
     $rootScope.$on('network_changed', function() {
       if ($rootScope.online === true) {
         Notification.show('UHUL!', 'Sua internet voltou a funcionar :)');
-        _setOnlineFavicon();
+        // _setOnlineFavicon();
       } else {
         Notification.show('OPS!', 'Você parece está com problemas de internet :(');
-        _setOfflineFavicon();
+        // _setOfflineFavicon();
       }
     });
     // ====
