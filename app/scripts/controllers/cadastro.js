@@ -8,7 +8,7 @@
  * Controller of the hortalivreApp
  */
 angular.module('hortalivreApp')
-  .controller('CadastroCtrl', ['$scope', '$http', 'UserApi', 'LocalStorage', '$location', '$rootScope', function ($scope, $http, UserApi, LocalStorage, $location, $rootScope) {
+  .controller('CadastroCtrl', ['$scope', '$http', 'UserApi', 'LocalStorage', '$location', '$rootScope', 'Notification', function ($scope, $http, UserApi, LocalStorage, $location, $rootScope, Notification) {
 
     // ====
     $scope.fbCadastro = function() {
@@ -68,7 +68,11 @@ angular.module('hortalivreApp')
 
           $location.path('/mapa');
         } else if (result.status === 422) {
-          Notification.show('Atenção', 'Já existe um usuário cadastrado para este e-mail!')
+          Notification.show('Atenção', 'Já existe um usuário cadastrado para este e-mail!');
+
+          $scope.progressbar.complete();
+
+          $location.path('/login');
         } else {
           $scope.error.status = result.status;
           $scope.error.type = 'create-user';
