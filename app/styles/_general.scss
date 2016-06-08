@@ -46,7 +46,6 @@ body {
 }
 
 .navbar {
-  // position: relative;
   position: fixed;
   width: 100%;
 
@@ -55,6 +54,7 @@ body {
   z-index: 20;
   margin-bottom: 0;
   border: none;
+  box-shadow: 0 0 1px rgba(22,102,59, .3) inset;
 }
 
 .navbar-header { height: 100%; }
@@ -196,11 +196,11 @@ body {
   margin: 65px auto 105px auto;
 }
 
-main {
-  section {
-    margin-top: 80px;
-  }
-}
+// main {
+//   section {
+//     margin-top: 80px;
+//   }
+// }
 
 // ====
 
@@ -261,6 +261,8 @@ footer {
   main {
     min-height: 710px;
     // height: 100%;
+
+    section { margin-top: 80px; }
   }
 
   .by {
