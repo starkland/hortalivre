@@ -23,7 +23,9 @@
 
           <li class="mini-avatar-user hidden-xs">
             <figure id="menuPrimary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              <img ng-src="{{userInfo.social.picture}}" alt="{{userInfo.fullName}}">
+              <img ng-if="userInfo.social" ng-src="https://graph.facebook.com/{{userInfo.social.id}}/picture?type=large" alt="{{userInfo.fullName}}">
+
+              <img src="images/selo.png" alt="selo verde com o naipe de espadas branco">
             </figure>
 
             <span class="caret" id="menuPrimary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></span>
