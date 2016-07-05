@@ -313,7 +313,7 @@ angular.module('hortalivreApp')
         userMarker.setMap(null);
       }
 
-      // Aplicando as configurações do mapa
+      // // Aplicando as configurações do mapa
       // map.mapTypes.set('horta_map', styledMap);
       // map.setMapTypeId('horta_map');
 
