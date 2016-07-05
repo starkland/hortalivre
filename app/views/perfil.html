@@ -4,7 +4,7 @@
       <figure>
         <img ng-if="userInfo.social" ng-src="https://graph.facebook.com/{{userInfo.social.id}}/picture?type=large" alt="{{userInfo.fullName}}">
 
-        <img src="images/selo.png" alt="selo verde com o naipe de espadas branco">
+        <img ng-if="!userInfo.social" src="images/user-default.png" alt="selo verde com o naipe de espadas branco">
       </figure>
 
       <h3>{{userInfo.fullName}}</h3>
