@@ -62,7 +62,7 @@
 
         <fieldset class="form-group">
           <input type="checkbox" class="checkbox-primary" id="concordo-termos-de-uso" ng-model="cadastro.termos">
-          <label for="concordo-termos-de-uso">concordo com os termos de uso</label>
+          <label for="concordo-termos-de-uso">concordo com os <a class="modal-termos-link" ng-href="" data-toggle="modal" data-target="#modal-termos-de-uso">termos de uso</a></label>
         </fieldset>
 
         <button type="submit" class="btn btn-primary small active col-xs-12 col-sm-4 col-sm-offset-4">cadastrar</button>
@@ -87,3 +87,6 @@
 
 <!-- Footer -->
 <div ng-include class="container" src="'views/partials/footer.html'"></div>
+
+<!-- Termos de Uso -->
+<div ng-include src="'views/modal/modal-termos-de-uso.html'"></div>
