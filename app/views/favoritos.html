@@ -7,14 +7,14 @@
 
       <aside ng-repeat="item in favorites" class="col-xs-12 col-sm-4">
         <figure>
-          <img src="http://dummyimage.com/165x165/4d494d/686a82.gif&text=placeholder+image" alt="">
+          <img src="images/user-default.png" alt="{{item.fullName}}">
           <!-- <img ng-src="{{item.image}}" alt="imagem de {{item.fullName}}"> -->
         </figure>
 
         <h3>{{item.fullName}}</h3>
 
         <div class="row wrapper-button">
-          <button ng-click="link(item.fb_link)" class="btn btn-secondary smallest fb col-sm-4 col-sm-offset-4">com facebook</button>
+          <!-- <button ng-click="link(item.fb_link)" class="btn btn-secondary smallest fb col-sm-4 col-sm-offset-4">com facebook</button> -->
           <!-- <button ng-click="link(item.tw_link)" class="btn btn-secondary smallest tw col-sm-4">com twitter</button> -->
         </div>
 
