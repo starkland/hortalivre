@@ -306,7 +306,7 @@ angular.module('hortalivreApp')
         }
       });
 
-      drawingManager.setMap(map);
+      // drawingManager.setMap(map);
 
       if (args === 'zoom') {
         map.setZoom(4);
