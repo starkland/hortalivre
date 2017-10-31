@@ -347,49 +347,64 @@ angular.module('hortalivreApp')
       };
 
       GardenApi.All(function(response) {
+        // console.warn('tudo -< ', response);
+
         var gardens, markets;
 
         if (response.status === 200) {
-          gardens = response.data.gardens;
-          markets = response.data.markets;
+          gardens = response.data;
+          // markets = response.data.markets;
 
-          if (gardens.length > 0){
-            angular.forEach(gardens, function(i) {
+          // console.warn('ds', );
+
+          Object.keys(gardens).map((i) => {
+            console.warn(gardens[i]);
+
+            if (gardens[i] && gardens[i].veggie.location) {
+
               arr_gardens.push({
-                id: i._id,
-                lat: i.geolocation[1],
-                lng: i.geolocation[0],
-                garden: i.garden,
+                id: gardens[i].id,
+                lat: gardens[i].veggie.location[0],
+                lng: gardens[i].veggie.location[1],
+                garden: gardens[i].garden,
                 type: 'garden',
-                email: i.email,
-                fullName: i.fullName
+                address: gardens[i].address,
+                fullName: gardens[i].veggie.name
               });
-            });
-          } else {
-            // console.warn('nenhuma horta');
-          }
+            }
 
-          if (markets.length > 0){
-            angular.forEach(markets, function(i) {
-              arr_markets.push({
-                id: i._id,
-                title: i.title,
-                lat: i.geolocation[1],
-                lng: i.geolocation[0],
-                rating_value: i.rating_value,
-                type: i.type,
-                link: i.link
-              });
-            });
-          } else {
-            // console.warn('nenhuma feira');
-          }
+          })
 
-          all_arr = arr_gardens.concat(arr_markets);
+          // if (gardens){
+            // angular.forEach(Object.keys(gardens), function(i) {
+            //   console.warn(i);
+
+          //   });
+          // } else {
+          //   // console.warn('nenhuma horta');
+          // }
+
+          // if (markets.length > 0){
+          //   angular.forEach(markets, function(i) {
+          //     arr_markets.push({
+          //       id: i._id,
+          //       title: i.title,
+          //       lat: i.geolocation[1],
+          //       lng: i.geolocation[0],
+          //       rating_value: i.rating_value,
+          //       type: i.type,
+          //       link: i.link
+          //     });
+          //   });
+          // } else {
+          //   // console.warn('nenhuma feira');
+          // }
+
+          // all_arr = arr_gardens.concat(arr_markets);
 
           $scope.arr_gardens = arr_gardens;
-          $scope.arr_markets = arr_markets;
-          $scope.all_arr = all_arr;
+          $scope.arr_markets = arr_gardens;
+          $scope.all_arr = arr_gardens;
 
           // console.warn('todos os arrays:', all_arr);
 
