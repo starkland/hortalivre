@@ -2,20 +2,15 @@
 
 > Seja bem-vindo a maior horta online do Brasil!
 
-[![NPM version][shield-npm]](#)
-[![Node.js][shield-node]](#)
 [![Code Climate] [code-climate]](#)
 [![Build status][shield-build]](#)
-[![Dependencies][shield-dependencies]](#)
-[![MIT licensed][shield-license]](#)
+[![Maintainability][maintainability]](https://codeclimate.com/repos/59f7f48d19f69e02c2000a1a/maintainability)
+[![Test Coverage][test-coverage]](https://codeclimate.com/repos/59f7f48d19f69e02c2000a1a/test_coverage)
 
-[shield-npm]: https://img.shields.io/badge/npm-v2.15.0-blue.svg
-[shield-node]: https://img.shields.io/node/v/gh-badges.svg?maxAge=2592000
 [code-climate]: https://codeclimate.com/github/comodocoletivo/hortalivre/badges/gpa.svg
 [shield-build]: https://img.shields.io/badge/build-passing-brightgreen.svg
-[shield-dependencies]: https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg
-[shield-license]: https://img.shields.io/badge/license-MIT-blue.svg
-
+[maintainability]: https://api.codeclimate.com/v1/badges/ce5446d3de4359b37605/maintainability
+[test-coverage]: https://api.codeclimate.com/v1/badges/ce5446d3de4359b37605/test_coverage
 
 ## Requisitos
 
