@@ -34,7 +34,8 @@
   "scripts": {
     "preinstall": "npm i -g grunt-cli grunt bower",
     "start": "grunt serve",
-    "build": "grunt build"
+    "build": "grunt build",
+    "test": "grunt test"
   },
   "engines": {
     "node": "<=8.0.0"
