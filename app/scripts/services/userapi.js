@@ -73,19 +73,26 @@ angular.module('hortalivreApp')
 
     obj.authFacebook = function(callback) {
       var params = {};
+      var fb_provider = new firebase.auth.FacebookAuthProvider();
 
-      $facebook.login().then(function(data) {
-        params.access_token = data.authResponse.accessToken;
-
-        if (data.status === 'connected') {
-          $facebook.api('me', { fields: 'name,email,gender,ids_for_business,picture' }).then(function(response) {
-            params.user_fb_data = response;
-            callback(params);
-          });
-        } else {
-          console.warn('Não conseguimos nos conecta ao facebook, tente novamente em alguns instantes!');
-        }
+      firebase.auth().signInWithPopup(fb_provider).then((result) => {
+        callback(result.user);
+      }).catch((err) => {
+        console.error(err);
       });
+
+      // $facebook.login().then(function(data) {
+      //   params.access_token = data.authResponse.accessToken;
+
+      //   if (data.status === 'connected') {
+      //     $facebook.api('me', { fields: 'name,email,gender,ids_for_business,picture' }).then(function(response) {
+      //       params.user_fb_data = response;
+      //       callback(params);
+      //     });
+      //   } else {
+      //     console.warn('Não conseguimos nos conecta ao facebook, tente novamente em alguns instantes!');
+      //   }
+      // });
     };
 
     obj.createFb = function(data, callback) {

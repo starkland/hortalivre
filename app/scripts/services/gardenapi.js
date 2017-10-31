@@ -14,8 +14,8 @@ angular.module('hortalivreApp')
     var apiUrl = ApiConfig.API_URL;
 
     obj.All = function(callback) {
-      $http.get(apiUrl + '/api/v1/markets/', { headers: { 'Content-Type': 'application/json' }}).then(function (data) {
-          callback(data);
+      $http.get('https://form-location-jsday-recife.firebaseio.com/veggies.json').then(function (result) {
+          callback(result);
         }, function (error) {
           callback(error);
         });

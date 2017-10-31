@@ -31,7 +31,13 @@
     "sc5-styleguide": "^0.3.44",
     "time-grunt": "^1.0.0"
   },
+  "scripts": {
+    "preinstall": "npm i -g grunt-cli grunt bower",
+    "start": "grunt serve",
+    "build": "grunt build",
+    "test": "grunt test"
+  },
   "engines": {
-    "node": ">=0.10.0"
+    "node": "<=8.0.0"
   }
 }

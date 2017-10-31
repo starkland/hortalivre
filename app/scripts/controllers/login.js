@@ -64,9 +64,11 @@ angular.module('hortalivreApp')
       var user_fb_data = {};
 
       UserApi.authFacebook(function(result) {
-        user_fb_data.email = result.user_fb_data.email;
-        user_fb_data.accessToken = result.access_token;
-        user_fb_data.fbID = result.user_fb_data.id;
+        user_fb_data.displayName = result.displayName;
+        user_fb_data.email = result.email;
+        user_fb_data.fbID = result.uid;
+        user_fb_data.photo = result.photoURL;
+        user_fb_data.last_access = new Date().getTime();
 
         $scope.user_fb_data = user_fb_data;
 
@@ -79,22 +81,31 @@ angular.module('hortalivreApp')
 
       params = $scope.user_fb_data;
 
-      UserApi.loginFb(params, function(result) {
-        if (result.status === 200) {
-            LocalStorage.SaveUser(result.data);
+      LocalStorage.SaveUser(params);
 
-            $rootScope.user_logged = true; // altera o header
-            $scope.$emit('user_created');
-            $scope.progressbar.complete();
+      $rootScope.user_logged = true; // altera o header
+      $scope.$emit('user_created');
+      $scope.progressbar.complete();
 
-            $location.path('/mapa');
-          } else {
-            $scope.error.status = result.status;
-            $scope.error.type = 'create-user';
+      $location.path('/mapa');
 
-            $scope.progressbar.complete();
-          }
-      })
+
+      // UserApi.loginFb(params, function(result) {
+      //   if (result.status === 200) {
+      //       LocalStorage.SaveUser(result.data);
+
+      //       $rootScope.user_logged = true; // altera o header
+      //       $scope.$emit('user_created');
+      //       $scope.progressbar.complete();
+
+      //       $location.path('/mapa');
+      //     } else {
+      //       $scope.error.status = result.status;
+      //       $scope.error.type = 'create-user';
+
+      //       $scope.progressbar.complete();
+      //     }
+      // })
     });
     // ====
 

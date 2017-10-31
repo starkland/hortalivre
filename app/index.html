@@ -117,6 +117,21 @@
       }(document, 'script', 'facebook-jssdk'));
     </script>
 
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCLzfwq2Yh4Ete40CveLYO8yEUE-m8bNug",
+        authDomain: "hortalivre-1309.firebaseapp.com",
+        databaseURL: "https://hortalivre-1309.firebaseio.com",
+        projectId: "hortalivre-1309",
+        storageBucket: "",
+        messagingSenderId: "784880436032"
+      };
+      firebase.initializeApp(config);
+    </script>
+
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
