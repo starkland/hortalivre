@@ -33,5 +33,9 @@
   },
   "engines": {
     "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "bower": "^1.8.4",
+    "grunt-cli": "^1.2.0"
   }
 }
