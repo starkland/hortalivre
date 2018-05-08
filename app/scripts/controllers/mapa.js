@@ -10,6 +10,22 @@
 angular.module('hortalivreApp')
   .controller('MapaCtrl', ['$scope', '$rootScope', 'Notification', 'LocalStorage', 'GardenApi', 'UserApi', 'FavoriteApi', function ($scope, $rootScope, Notification, LocalStorage, GardenApi, UserApi, FavoriteApi) {
 
+    $rootScope.user_logged = true; // altera o header
+    $scope.markerInfo = {
+      id: 2,
+      fullName: 'ManoChao Laricado',
+      email: 'manochao@laricado.com',
+      address: 'Meu endereço é esse aqui',
+      // title: 'Title vem Aqui',
+      // rating_value: '5',
+
+      link: 'link-to-adress.html',
+      garden: [
+        { item: 'Cebola', id: 1},
+        { item: 'Cenoura', id: 2},
+      ]
+    }
+
     // ====
     $scope.link = function(param) { link(param); };
 
